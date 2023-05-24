@@ -13,4 +13,8 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\MeetUp.IdentityService.Application\MeetUp.IdentityService.Application.csproj" />
+    </ItemGroup>
+
 </Project>

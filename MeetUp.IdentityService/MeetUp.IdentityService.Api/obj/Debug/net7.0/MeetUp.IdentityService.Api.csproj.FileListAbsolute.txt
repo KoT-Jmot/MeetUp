@@ -24,3 +24,10 @@
 /home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Api/obj/Debug/net7.0/MeetUp.IdentityService.Api.pdb
 /home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Api/obj/Debug/net7.0/MeetUp.IdentityService.Api.genruntimeconfig.cache
 /home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Api/obj/Debug/net7.0/ref/MeetUp.IdentityService.Api.dll
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Api/bin/Debug/net7.0/MeetUp.IdentityService.Application.dll
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Api/bin/Debug/net7.0/MeetUp.IdentityService.Domain.dll
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Api/bin/Debug/net7.0/MeetUp.IdentityService.Infrastructure.dll
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Api/bin/Debug/net7.0/MeetUp.IdentityService.Application.pdb
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Api/bin/Debug/net7.0/MeetUp.IdentityService.Domain.pdb
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Api/bin/Debug/net7.0/MeetUp.IdentityService.Infrastructure.pdb
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Api/obj/Debug/net7.0/MeetUp.IdentityService.Api.csproj.CopyComplete

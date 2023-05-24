@@ -1,11 +1,66 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "MeetUp.IdentityService.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "MeetUp.IdentityService.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MeetUp.IdentityService.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MeetUp.IdentityService.Application.dll": {}
+        }
+      },
+      "MeetUp.IdentityService.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/MeetUp.IdentityService.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MeetUp.IdentityService.Domain.dll": {}
+        }
+      },
+      "MeetUp.IdentityService.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "MeetUp.IdentityService.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MeetUp.IdentityService.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MeetUp.IdentityService.Infrastructure.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "MeetUp.IdentityService.Application/1.0.0": {
+      "type": "project",
+      "path": "../MeetUp.IdentityService.Application/MeetUp.IdentityService.Application.csproj",
+      "msbuildProject": "../MeetUp.IdentityService.Application/MeetUp.IdentityService.Application.csproj"
+    },
+    "MeetUp.IdentityService.Domain/1.0.0": {
+      "type": "project",
+      "path": "../MeetUp.IdentityService.Domain/MeetUp.IdentityService.Domain.csproj",
+      "msbuildProject": "../MeetUp.IdentityService.Domain/MeetUp.IdentityService.Domain.csproj"
+    },
+    "MeetUp.IdentityService.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../MeetUp.IdentityService.Infrastructure/MeetUp.IdentityService.Infrastructure.csproj",
+      "msbuildProject": "../MeetUp.IdentityService.Infrastructure/MeetUp.IdentityService.Infrastructure.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "MeetUp.IdentityService.Application >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/home/ivan/.nuget/packages/": {}
@@ -32,7 +87,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/MeetUp.IdentityService.Application.csproj": {
+              "projectPath": "/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/MeetUp.IdentityService.Application.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
