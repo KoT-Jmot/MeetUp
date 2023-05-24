@@ -10,4 +10,10 @@
       <ProjectReference Include="..\MeetUp.IdentityService.Infrastructure\MeetUp.IdentityService.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Contracts\" />
+      <Folder Include="Services\" />
+      <Folder Include="Validation\" />
+    </ItemGroup>
+
 </Project>

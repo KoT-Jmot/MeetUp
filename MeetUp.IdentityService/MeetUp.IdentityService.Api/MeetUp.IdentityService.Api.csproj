@@ -18,4 +18,9 @@
       <ProjectReference Include="..\MeetUp.IdentityService.Application\MeetUp.IdentityService.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+      <Folder Include="Extensions\" />
+    </ItemGroup>
+
 </Project>

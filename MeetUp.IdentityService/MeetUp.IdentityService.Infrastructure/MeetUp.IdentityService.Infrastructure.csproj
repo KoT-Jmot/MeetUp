@@ -10,4 +10,10 @@
       <ProjectReference Include="..\MeetUp.IdentityService.Domain\MeetUp.IdentityService.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Configurations\" />
+      <Folder Include="Contexts\" />
+      <Folder Include="Repositories\" />
+    </ItemGroup>
+
 </Project>
