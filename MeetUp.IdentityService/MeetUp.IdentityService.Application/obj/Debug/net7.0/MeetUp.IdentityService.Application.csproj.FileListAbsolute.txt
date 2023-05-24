@@ -1,0 +1,17 @@
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/bin/Debug/net7.0/MeetUp.IdentityService.Application.deps.json
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/bin/Debug/net7.0/MeetUp.IdentityService.Application.dll
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/bin/Debug/net7.0/MeetUp.IdentityService.Application.pdb
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/bin/Debug/net7.0/MeetUp.IdentityService.Domain.dll
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/bin/Debug/net7.0/MeetUp.IdentityService.Infrastructure.dll
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/bin/Debug/net7.0/MeetUp.IdentityService.Infrastructure.pdb
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/bin/Debug/net7.0/MeetUp.IdentityService.Domain.pdb
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/obj/Debug/net7.0/MeetUp.IdentityService.Application.csproj.AssemblyReference.cache
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/obj/Debug/net7.0/MeetUp.IdentityService.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/obj/Debug/net7.0/MeetUp.IdentityService.Application.AssemblyInfoInputs.cache
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/obj/Debug/net7.0/MeetUp.IdentityService.Application.AssemblyInfo.cs
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/obj/Debug/net7.0/MeetUp.IdentityService.Application.csproj.CoreCompileInputs.cache
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/obj/Debug/net7.0/MeetUp.IdentityService.Application.csproj.CopyComplete
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/obj/Debug/net7.0/MeetUp.IdentityService.Application.dll
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/obj/Debug/net7.0/refint/MeetUp.IdentityService.Application.dll
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/obj/Debug/net7.0/MeetUp.IdentityService.Application.pdb
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Application/obj/Debug/net7.0/ref/MeetUp.IdentityService.Application.dll

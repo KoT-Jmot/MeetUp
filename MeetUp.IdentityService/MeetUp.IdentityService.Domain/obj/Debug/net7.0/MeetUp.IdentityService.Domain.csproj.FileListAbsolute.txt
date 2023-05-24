@@ -1,0 +1,12 @@
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Domain/bin/Debug/net7.0/MeetUp.IdentityService.Domain.deps.json
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Domain/bin/Debug/net7.0/MeetUp.IdentityService.Domain.dll
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Domain/bin/Debug/net7.0/MeetUp.IdentityService.Domain.pdb
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Domain/obj/Debug/net7.0/MeetUp.IdentityService.Domain.csproj.AssemblyReference.cache
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Domain/obj/Debug/net7.0/MeetUp.IdentityService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Domain/obj/Debug/net7.0/MeetUp.IdentityService.Domain.AssemblyInfoInputs.cache
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Domain/obj/Debug/net7.0/MeetUp.IdentityService.Domain.AssemblyInfo.cs
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Domain/obj/Debug/net7.0/MeetUp.IdentityService.Domain.csproj.CoreCompileInputs.cache
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Domain/obj/Debug/net7.0/MeetUp.IdentityService.Domain.dll
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Domain/obj/Debug/net7.0/refint/MeetUp.IdentityService.Domain.dll
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Domain/obj/Debug/net7.0/MeetUp.IdentityService.Domain.pdb
+/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Domain/obj/Debug/net7.0/ref/MeetUp.IdentityService.Domain.dll
