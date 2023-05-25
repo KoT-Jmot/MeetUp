@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  identityService:
+    image: ${DOCKER_REGISTRY-}meetup.identityservice.api
+    build:
+      context: .
+      dockerfile: /MeetUp.IdentityService.Api/Dockerfile

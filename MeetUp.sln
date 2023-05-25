@@ -1,6 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.IdentityService", "MeetUp.IdentityService", "{B0AC178F-9264-467E-8067-64CBC64E5FDA}"
+	ProjectSection(SolutionItems) = preProject
+		MeetUp.IdentityService\docker-compose.yml = MeetUp.IdentityService\docker-compose.yml
+		MeetUp.IdentityService\docker-compose.override.yml = MeetUp.IdentityService\docker-compose.override.yml
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.IdentityService.Infrastructure", "MeetUp.IdentityService\MeetUp.IdentityService.Infrastructure\MeetUp.IdentityService.Infrastructure.csproj", "{EF609655-9931-4193-990A-3F9B71DE6157}"
 EndProject
