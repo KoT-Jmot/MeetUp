@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace MeetUp.IdentityService.Infrastructure.Contexts;
+namespace MeetUp.IdentityService.Infrastructure;
 
 public class ApplicationContext : IdentityDbContext<IdentityUser>
 {
