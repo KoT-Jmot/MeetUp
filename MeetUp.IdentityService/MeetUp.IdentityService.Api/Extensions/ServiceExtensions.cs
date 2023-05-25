@@ -13,7 +13,7 @@ public static class ServiceExtensions
         services.AddDbContext<ApplicationContext>(optionsBuilder =>
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), b =>
             {
-                b.MigrationsAssembly(Assembly.Load("MeetUp.IdentityService,Infrastructure").FullName);
+                b.MigrationsAssembly(Assembly.Load("MeetUp.IdentityService.Infrastructure").FullName);
             }));
 
         return services;
