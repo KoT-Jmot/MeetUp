@@ -1,4 +1,4 @@
-using MeetUp.IdentityService.Infrastructure.Contexts;
+using MeetUp.IdentityService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
