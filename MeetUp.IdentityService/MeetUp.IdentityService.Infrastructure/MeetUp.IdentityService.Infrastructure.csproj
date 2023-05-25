@@ -7,13 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Configurations\" />
-      <Folder Include="Contexts\" />
-      <Folder Include="Repositories\" />
+      <ProjectReference Include="..\MeetUp.IdentityService.Domain\MeetUp.IdentityService.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MeetUp.IdentityService.Domain\MeetUp.IdentityService.Domain.csproj" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
     </ItemGroup>
 
 </Project>

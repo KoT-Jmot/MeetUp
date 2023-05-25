@@ -1,0 +1,19 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.4"
+services:
+  identityService:
+    build:
+      context: "/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService"
+      dockerfile: "/MeetUp.IdentityService.Api/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net7.0/MeetUp.IdentityService.Api.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+    image: "meetup.identityservice.api:dev"
+    ports: []
+    volumes:
+    - "/home/ivan/RiderProjects/MeetUp/MeetUp.IdentityService/MeetUp.IdentityService.Api:/app:rw"
+    working_dir: "/app"
