@@ -14,6 +14,8 @@ services.ConfigureSqlServer(configuration)
 
 var app = builder.Build();
 
+await app.ConfigureMigrationAsync();
+
 app.UseHttpsRedirection();
 app.UseRouting();
 
