@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "LtGPth3S/wjmv2UoLbIShklZacQL7zYSmm9Ed1M4VQE=",
+  "Source": "MeetUp.IdentityService.Api",
+  "BasePath": "_content/MeetUp.IdentityService.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
