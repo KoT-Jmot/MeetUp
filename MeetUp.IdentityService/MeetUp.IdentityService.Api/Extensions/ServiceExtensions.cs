@@ -1,6 +1,6 @@
 using MeetUp.IdentityService.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+using System.Reflection;
 
 namespace MeetUp.IdentityService.Api.Extensions;
 
@@ -11,7 +11,10 @@ public static class ServiceExtensions
             IConfiguration configuration)
     {
         services.AddDbContext<ApplicationContext>(optionsBuilder =>
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), b =>
+            {
+                b.MigrationsAssembly(Assembly.Load("MeetUp.IdentityService,Infrastructure").FullName);
+            }));
 
         return services;
     }
