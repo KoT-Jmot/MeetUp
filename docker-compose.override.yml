@@ -1,22 +1,21 @@
 version: '3.4'
 
 services:
-  identityService:
-    container_name: MeetUp.identityService
+  meetup.identityservice.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - SECRET=MeetUpIdentityService
     ports:
-      - "9000:80"
+      - "10501:80"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
-     - identityservice
+      - identityservice
 
   identityDb:
-    container_name: DataBase
+    container_name: IdentityDb
     ports:
       - 1433:1433
     environment:
@@ -26,6 +25,7 @@ services:
       - restate-sql-server:/var/opt/mssql
     networks:
       - identityservice
+ 
 
 networks:
   identityservice:
