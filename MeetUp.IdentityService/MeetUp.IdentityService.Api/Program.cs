@@ -1,3 +1,4 @@
+using MeetUp.IdentityService.Api.ExceptionHandler;
 using MeetUp.IdentityService.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,8 +19,12 @@ services.ConfigureIdentity()
 
 var app = await builder.Build().ConfigureMigrationAsync();
 
-app.UseHttpsRedirection();
-app.UseRouting();
+app.UseMiddleware<ExceptionMiddleware>();
+
+await app.InitializeDbContextAsync();
+
+app.UseHttpsRedirection()
+   .UseRouting();
 
 app.MapControllers();
 
