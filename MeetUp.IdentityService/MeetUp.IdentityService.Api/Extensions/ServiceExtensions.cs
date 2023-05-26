@@ -40,9 +40,7 @@ public static class ServiceExtensions
         IConfiguration configuration)
     {
         var jwtSettings = configuration.GetSection("JwtSettings");
-        //var secretKey = Environment.GetEnvironmentVariable("SECRET");
-
-        var secretKey = "abama2317";
+        var secretKey = Environment.GetEnvironmentVariable("SECRET");
 
         services.AddSingleton<JWTConfig>();
 
