@@ -6,6 +6,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
+      - SECRET=MeetUpIdentityService
     ports:
       - "9000:80"
     volumes:
@@ -14,7 +15,7 @@ services:
     networks:
      - identityservice
 
-  db:
+  identityDb:
     container_name: DataBase
     ports:
       - 1433:1433
