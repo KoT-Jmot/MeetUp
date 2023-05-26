@@ -1,5 +1,7 @@
 using MeetUp.IdentityService.Api.ExceptionHandler;
 using MeetUp.IdentityService.Api.Extensions;
+using FluentValidation;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,8 @@ var configuration = new ConfigurationBuilder()
 
 services.ConfigureSqlServer(configuration)
         .AddControllers();
+
+services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.IdentityService.Application"));
 
 services.ConfigureIdentity()
         .ConfigureJWT(configuration)

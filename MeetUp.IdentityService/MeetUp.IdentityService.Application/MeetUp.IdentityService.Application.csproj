@@ -13,7 +13,10 @@
     <ItemGroup>
       <Folder Include="Contracts\" />
       <Folder Include="DTOs\OutputDto\" />
-      <Folder Include="Validation\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="11.5.2" />
     </ItemGroup>
 
 </Project>

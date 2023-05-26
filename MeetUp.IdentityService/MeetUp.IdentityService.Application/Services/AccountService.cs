@@ -1,11 +1,12 @@
-﻿using MeetUp.IdentityService.Application.Contracts;
+﻿using MeetUp.IdentityService.Application.Utils.Exceptions;
 using MeetUp.IdentityService.Application.DTOs.InputDto;
+using MeetUp.IdentityService.Application.Contracts;
 using MeetUp.IdentityService.Application.Utils;
-using MeetUp.IdentityService.Application.Utils.Exceptions;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using FluentValidation;
 using System.Text;
 
 namespace MeetUp.IdentityService.Application.Services
@@ -15,18 +16,27 @@ namespace MeetUp.IdentityService.Application.Services
         private readonly UserManager<IdentityUser> _userManager;
         private readonly JWTConfig _jwtConfig;
 
+        private readonly IValidator<UserForRegistrationDto> _registrationUserValidator;
+        private readonly IValidator<UserForLoginDto> _loginUserValidator;
+
         public AccountService(
             UserManager<IdentityUser> userManager,
-            JWTConfig jwtConfig)
+            JWTConfig jwtConfig,
+            IValidator<UserForRegistrationDto> registrationUserValidator,
+            IValidator<UserForLoginDto> loginUserValidator)
         {
             _userManager = userManager;
             _jwtConfig = jwtConfig;
+            _registrationUserValidator = registrationUserValidator;
+            _loginUserValidator = loginUserValidator;
         }
 
         public async Task<string> SignInAsync(
             UserForLoginDto userForLoginDto,
             CancellationToken cancellationToken)
         {
+            await _loginUserValidator.ValidateAndThrowAsync(userForLoginDto, cancellationToken);
+
             var user = await _userManager.FindByEmailAsync(userForLoginDto.Email);
 
             var isCorrectPassword = await _userManager.CheckPasswordAsync(user, userForLoginDto.Password);
@@ -37,8 +47,12 @@ namespace MeetUp.IdentityService.Application.Services
             return await CreateTokenAsync(user);
         }
 
-        public async Task<string> SignUpAsync(UserForRegistrationDto userForRegistrationDto, CancellationToken cancellationToken)
+        public async Task<string> SignUpAsync(
+            UserForRegistrationDto userForRegistrationDto,
+            CancellationToken cancellationToken)
         {
+            await _registrationUserValidator.ValidateAndThrowAsync(userForRegistrationDto, cancellationToken);
+
             var user = new IdentityUser
             {
                 UserName = userForRegistrationDto.UserName,
