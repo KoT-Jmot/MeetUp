@@ -1,5 +1,8 @@
 ﻿using MeetUp.IdentityService.Application.Utils.Exceptions;
+using MeetUp.IdentityService.Application.RequestFeatures;
+using MeetUp.IdentityService.Application.DTOs.OutputDto;
 using MeetUp.IdentityService.Application.DTOs.InputDto;
+using MeetUp.IdentityService.Application.DTOs.QueryDto;
 using MeetUp.IdentityService.Application.Contracts;
 using MeetUp.IdentityService.Application.Utils;
 using System.IdentityModel.Tokens.Jwt;
@@ -8,6 +11,8 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using FluentValidation;
 using System.Text;
+using Mapster;
+using Microsoft.EntityFrameworkCore;
 
 namespace MeetUp.IdentityService.Application.Services
 {
@@ -53,13 +58,7 @@ namespace MeetUp.IdentityService.Application.Services
         {
             await _registrationUserValidator.ValidateAndThrowAsync(userForRegistrationDto, cancellationToken);
 
-            var user = new IdentityUser
-            {
-                UserName = userForRegistrationDto.UserName,
-                PhoneNumber = userForRegistrationDto.PhoneNumber,
-                Email = userForRegistrationDto.Email
-
-            };
+            var user = userForRegistrationDto.Adapt<IdentityUser>();
 
             var result = await _userManager.CreateAsync(user!, userForRegistrationDto.Password);
 
@@ -127,6 +126,39 @@ namespace MeetUp.IdentityService.Application.Services
             );
 
             return tokenOptions;
+        }
+
+        public async Task<PagedList<OutputUserDto>> GetAllUsersAsync(UserQueryDto userQuery, CancellationToken cancellationToken)
+        {
+            var user = _userManager.Users;
+
+            if (!userQuery.UserName.IsNullOrEmpty())
+                user = user.Where(u => u.UserName.Contains(userQuery.UserName!));
+
+            user = user.OrderBy(p => p.UserName);
+            var totalCount = await user.CountAsync(cancellationToken);
+
+            var pagingUsers = await user
+                        .Skip((userQuery.PageNumber - 1) * userQuery.PageSize)
+                        .Take(userQuery.PageSize)
+                        .ToListAsync(cancellationToken);
+
+            var outputUsers = pagingUsers.Adapt<IEnumerable<OutputUserDto>>();
+            var usersWithMetaData = PagedList<OutputUserDto>.ToPagedList(outputUsers, userQuery.PageNumber, totalCount, userQuery.PageSize);
+
+            return usersWithMetaData;
+        }
+
+        public async Task<OutputUserDto> GetUserByEmail(string userEmail)
+        {
+            var user = await _userManager.FindByEmailAsync(userEmail);
+
+            if (user is null)
+                throw new EntityNotFoundException("User was not found!");
+
+            var outputUser = user.Adapt<OutputUserDto>();
+
+            return outputUser;
         }
     }
 }

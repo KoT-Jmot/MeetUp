@@ -1,3 +1,5 @@
+using Mapster;
+using MapsterMapper;
 using MeetUp.IdentityService.Application.Contracts;
 using MeetUp.IdentityService.Application.Services;
 using MeetUp.IdentityService.Application.Utils;
@@ -31,6 +33,17 @@ public static class ServiceExtensions
            this IServiceCollection services)
     {
         services.AddScoped<IAccountService, AccountService>();
+
+        return services;
+    }
+
+    public static IServiceCollection ConfigureMapster(this IServiceCollection services)
+    {
+        var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
+        typeAdapterConfig.Scan(Assembly.Load("MeetUp.IdentityService.Application"));
+
+        var mapperConfig = new Mapper(typeAdapterConfig);
+        services.AddSingleton<IMapper>(mapperConfig);
 
         return services;
     }
