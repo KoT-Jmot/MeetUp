@@ -12,24 +12,6 @@ namespace MeetUp.IdentityService.Application.DbInIt
 
             if (!userIsInitialize)
                 await roleManager.CreateAsync(new IdentityRole(userName));
-
-            var adminName = AccountRoles.GetAdministratorRole;
-            var adminIsInitialize = await roleManager.RoleExistsAsync(adminName);
-
-            if (!adminIsInitialize)
-                await roleManager.CreateAsync(new IdentityRole(adminName));
-
-            var superAdminName = AccountRoles.GetSuperAdministratorRole;
-            var superAdminIsInitialize = await roleManager.RoleExistsAsync(superAdminName);
-
-            if (!superAdminIsInitialize)
-                await roleManager.CreateAsync(new IdentityRole(superAdminName));
-
-            var blockedRole = AccountRoles.GetBlockedRole;
-            var blockedIsInitialize = await roleManager.RoleExistsAsync(blockedRole);
-
-            if (!blockedIsInitialize)
-                await roleManager.CreateAsync(new IdentityRole(blockedRole));
         }
     }
 }

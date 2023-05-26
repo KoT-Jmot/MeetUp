@@ -71,10 +71,12 @@ public static class ServiceExtensions
     {
         var builder = services.AddIdentityCore<IdentityUser>(o =>
         {
+            o.User.RequireUniqueEmail = true;
             o.Password.RequireDigit = true;
             o.Password.RequireLowercase = true;
             o.Password.RequiredLength = 8;
-            o.User.RequireUniqueEmail = true;
+            o.Password.RequireUppercase = false;
+            o.Password.RequireNonAlphanumeric = false;
         });
 
         IdentityModelEventSource.ShowPII = true;
