@@ -46,6 +46,7 @@ namespace MeetUp.IdentityService.Application.Services
                 Email = userForRegistrationDto.Email
 
             };
+
             var result = await _userManager.CreateAsync(user!, userForRegistrationDto.Password);
 
             if (!result.Succeeded)
