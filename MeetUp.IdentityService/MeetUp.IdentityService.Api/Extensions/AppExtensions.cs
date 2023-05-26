@@ -1,4 +1,6 @@
-﻿using MeetUp.IdentityService.Infrastructure;
+﻿using MeetUp.IdentityService.Application.DbInIt;
+using MeetUp.IdentityService.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace MeetUp.IdentityService.Api.Extensions
@@ -11,6 +13,17 @@ namespace MeetUp.IdentityService.Api.Extensions
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
                 await dbContext.Database.MigrateAsync();
+            }
+
+            return app;
+        }
+
+        public static async Task<WebApplication> InitializeDbContextAsync(this WebApplication app)
+        {
+            await using (var scope = app.Services.CreateAsyncScope())
+            {
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                await roleManager.RolesInitialize();
             }
 
             return app;
