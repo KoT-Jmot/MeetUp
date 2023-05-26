@@ -12,9 +12,11 @@ var configuration = new ConfigurationBuilder()
 services.ConfigureSqlServer(configuration)
         .AddControllers();
 
-var app = builder.Build();
+services.ConfigureIdentity()
+        .ConfigureJWT(configuration)
+        .ConfigureServices();
 
-await app.ConfigureMigrationAsync();
+var app = await builder.Build().ConfigureMigrationAsync();
 
 app.UseHttpsRedirection();
 app.UseRouting();
