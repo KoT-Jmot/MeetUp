@@ -1,3 +1,4 @@
+using MeetUp.EventsService.Api.ExceptionHandler;
 using MeetUp.EventsService.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,5 +14,7 @@ services.ConfigureSqlServer(configuration)
         .AddControllers();
 
 var app = await builder.Build().ConfigureMigrationAsync();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.Run();
