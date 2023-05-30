@@ -1,8 +1,7 @@
 ﻿namespace MeetUp.EventsService.Infrastructure.Models
 {
-    public class Event
+    public class Event : BaseEntity
     {
-        public Guid Id { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
         public string? SponsorId { get; set; }
