@@ -10,4 +10,13 @@
     <ProjectReference Include="..\MeetUp.EventsService.Infrastructure\MeetUp.EventsService.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Contracts\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="Validation\" />
+    <Folder Include="Mapster\" />
+    <Folder Include="Response\" />
+  </ItemGroup>
+
 </Project>
