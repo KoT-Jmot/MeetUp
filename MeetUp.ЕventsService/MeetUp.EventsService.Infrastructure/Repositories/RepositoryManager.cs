@@ -17,7 +17,7 @@ namespace MeetUp.EventsService.Infrastructure.Repositories
 
         public IEventRepository Events =>
             _eventRepository ??= new EventRepository(_context);
-        public ICategoryRepository Catigories =>
+        public ICategoryRepository Categories =>
             _categoryRepository ??= new CategoryRepository(_context);
 
         public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
