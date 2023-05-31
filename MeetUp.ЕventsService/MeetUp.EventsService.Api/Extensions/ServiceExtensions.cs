@@ -1,12 +1,12 @@
-﻿using Mapster;
-using MapsterMapper;
-using MeetUp.EventsService.Infrastructure;
+﻿using MeetUp.EventsService.Infrastructure.Repositories;
 using MeetUp.EventsService.Infrastructure.Contracts;
-using MeetUp.EventsService.Infrastructure.Repositories;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Routing;
+using MeetUp.EventsService.Application.Contracts;
+using MeetUp.EventsService.Application.Services;
+using MeetUp.EventsService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using MapsterMapper;
+using Mapster;
 
 namespace MeetUp.EventsService.Api.Extensions
 {
@@ -44,7 +44,7 @@ namespace MeetUp.EventsService.Api.Extensions
         public static IServiceCollection ConfigureServices(
                    this IServiceCollection services)
         {
-            // services...
+            services.AddScoped<IEventService, EventService>();
             return services;
         }
     }
