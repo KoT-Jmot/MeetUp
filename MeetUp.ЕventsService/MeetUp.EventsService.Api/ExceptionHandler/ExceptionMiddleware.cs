@@ -1,4 +1,4 @@
-﻿using MeetUp.EventsService.Api.Utils.Excaption;
+﻿using MeetUp.EventsService.Application.Utils.Excaption;
 using System.ComponentModel.DataAnnotations;
 
 namespace MeetUp.EventsService.Api.ExceptionHandler
