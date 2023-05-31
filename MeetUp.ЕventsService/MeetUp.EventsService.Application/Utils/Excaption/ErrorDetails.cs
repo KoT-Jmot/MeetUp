@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace MeetUp.EventsService.Api.Utils.Excaption
+namespace MeetUp.EventsService.Application.Utils.Excaption
 {
     public class ErrorDetails
     {
