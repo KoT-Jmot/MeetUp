@@ -13,7 +13,6 @@
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Contracts\" />
-    <Folder Include="DTOs\" />
     <Folder Include="Validation\" />
     <Folder Include="Mapster\" />
     <Folder Include="Response\" />
