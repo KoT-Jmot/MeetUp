@@ -11,10 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="Contracts\" />
     <Folder Include="Validation\" />
-    <Folder Include="Mapster\" />
     <Folder Include="Response\" />
   </ItemGroup>
 
