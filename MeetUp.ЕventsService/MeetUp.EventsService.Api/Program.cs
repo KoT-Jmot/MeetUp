@@ -20,7 +20,8 @@ builder.Host.UseSerilog();
 services.ConfigureSqlServer(configuration)
         .AddControllers();
 
-services.ConfigureMapster()
+services.ConfigureJWT(configuration)
+        .ConfigureMapster()
         .ConfigureServices();
 
 var app = await builder.Build().ConfigureMigrationAsync();
