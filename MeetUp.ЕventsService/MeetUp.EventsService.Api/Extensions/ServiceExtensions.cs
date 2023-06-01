@@ -49,6 +49,8 @@ namespace MeetUp.EventsService.Api.Extensions
                    this IServiceCollection services)
         {
             services.AddScoped<IEventService, EventService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+
             return services;
         }
 
