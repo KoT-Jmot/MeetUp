@@ -1,26 +1,34 @@
-﻿using Mapster;
-using MeetUp.EventsService.Application.Contracts;
-using MeetUp.EventsService.Application.DTOs.InputDto.EventDto;
+﻿using MeetUp.EventsService.Application.DTOs.InputDto.EventDto;
 using MeetUp.EventsService.Application.Utils.Excaption;
 using MeetUp.EventsService.Infrastructure.Contracts;
+using MeetUp.EventsService.Application.Contracts;
 using MeetUp.EventsService.Infrastructure.Models;
+using FluentValidation;
+using Mapster;
+using MeetUp.EventsService.Application.DTOs.InputDto.CategoryDto;
+using MeetUp.EventsService.Application.Validation;
 
 namespace MeetUp.EventsService.Application.Services
 {
     public class EventService : IEventService
     {
         private readonly IRepositoryManager _repositoryManager;
-
-        public EventService(IRepositoryManager repositoryManager)
+        private readonly IValidator<EventDto> _eventValidator;
+        public EventService(
+            IRepositoryManager repositoryManager,
+            IValidator<EventDto> eventValidator)
         {
             _repositoryManager = repositoryManager;
+            _eventValidator = eventValidator;
         }
 
         public async Task<Guid> CreateEventBySponserIdAsync(
-            EventDto eventDto,
-            string sponserId,
+        EventDto eventDto,
+        string sponserId,
             CancellationToken cancellationToken)
         {
+            await _eventValidator.ValidateAndThrowAsync(eventDto, cancellationToken);
+
             var category = await _repositoryManager.Categories.GetByIdAsync(eventDto.CategoryId, trackChanges: false, cancellationToken);
 
             if (category is null)
@@ -56,6 +64,8 @@ namespace MeetUp.EventsService.Application.Services
             string sponserId,
             CancellationToken cancellationToken)
         {
+            await _eventValidator.ValidateAndThrowAsync(eventDto, cancellationToken);
+
             var category = await _repositoryManager.Categories.GetByIdAsync(eventDto.CategoryId, trackChanges: false, cancellationToken);
 
             if (category is null)

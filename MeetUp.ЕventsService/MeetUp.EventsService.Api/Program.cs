@@ -1,9 +1,9 @@
 using MeetUp.EventsService.Api.ExceptionHandler;
 using MeetUp.EventsService.Api.Extensions;
 using MeetUp.EventsService.Api.Features;
+using System.Reflection;
 using FluentValidation;
 using Serilog;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 

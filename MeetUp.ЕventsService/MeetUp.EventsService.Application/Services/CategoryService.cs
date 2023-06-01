@@ -1,26 +1,31 @@
-﻿using MeetUp.EventsService.Infrastructure.Contracts;
-using MeetUp.EventsService.Application.Contracts;
-using MeetUp.EventsService.Application.DTOs.InputDto.CategoryDto;
-using MeetUp.EventsService.Infrastructure.Models;
-using MeetUp.EventsService.Infrastructure.Repositories;
-using Mapster;
+﻿using MeetUp.EventsService.Application.DTOs.InputDto.CategoryDto;
 using MeetUp.EventsService.Application.Utils.Excaption;
+using MeetUp.EventsService.Infrastructure.Contracts;
+using MeetUp.EventsService.Application.Contracts;
+using MeetUp.EventsService.Infrastructure.Models;
+using FluentValidation;
+using Mapster;
 
 namespace MeetUp.EventsService.Application.Services
 {
     public class CategoryService : ICategoryService
     {
         private readonly IRepositoryManager _repositoryManager;
+        private readonly IValidator<CategoryDto> _categoryValidator;
 
-        public CategoryService(IRepositoryManager repositoryManager)
+        public CategoryService(
+            IRepositoryManager repositoryManager,
+            IValidator<CategoryDto> categoryValidator)
         {
             _repositoryManager = repositoryManager;
+            _categoryValidator = categoryValidator;
         }
 
         public async Task<Guid> CreateCategoryAsync(
             CategoryDto categoryDto,
             CancellationToken cancellationToken)
         {
+            await _categoryValidator.ValidateAndThrowAsync(categoryDto, cancellationToken);
 
             var existedCategory = await _repositoryManager.Categories.GetCategoryByNameAsync(categoryDto.Name!, trackChanges: false, cancellationToken);
 
@@ -53,6 +58,8 @@ namespace MeetUp.EventsService.Application.Services
             CategoryDto categoryDto,
             CancellationToken cancellationToken)
         {
+            await _categoryValidator.ValidateAndThrowAsync(categoryDto, cancellationToken);
+
             var existedCategory = await _repositoryManager.Categories.GetCategoryByNameAsync(categoryDto.Name!, trackChanges: false, cancellationToken);
 
             if (existedCategory is not null)
