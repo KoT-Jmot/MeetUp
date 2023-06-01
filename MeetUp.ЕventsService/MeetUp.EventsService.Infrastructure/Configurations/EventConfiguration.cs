@@ -14,7 +14,7 @@ namespace MeetUp.EventsService.Infrastructure.Configurations
             builder
                 .HasOne(e => e.Category)
                 .WithMany(c => c.Events)
-                .HasForeignKey(e => e.categoryId);
+                .HasForeignKey(e => e.CategoryId);
         }
     }
 }

@@ -8,7 +8,7 @@
         public DateTime? DateStart { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public string? SponsorId { get; set; }
-        public Guid categoryId { get; set; }
+        public Guid CategoryId { get; set; }
         public virtual Category? Category { get; set; }
     }
 }
