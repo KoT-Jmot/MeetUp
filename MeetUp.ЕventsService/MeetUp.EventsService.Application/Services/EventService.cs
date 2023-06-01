@@ -127,6 +127,8 @@ namespace MeetUp.EventsService.Application.Services
             updatingEvent = eventDto.Adapt<Event>();
             updatingEvent.CreateDate = DateTime.UtcNow;
 
+            await _repositoryManager.SaveChangesAsync();
+
             return eventId;
         }
     }

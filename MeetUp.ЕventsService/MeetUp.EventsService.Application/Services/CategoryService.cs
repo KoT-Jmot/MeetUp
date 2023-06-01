@@ -110,7 +110,9 @@ namespace MeetUp.EventsService.Application.Services
             if (updatingCategory is null)
                 throw new EntityNotFoundException("Catgory was not found!");
 
-            updatingCategory = categoryDto.Adapt<Category>();
+            updatingCategory.Name = categoryDto.Name!;
+
+            await _repositoryManager.SaveChangesAsync();
 
             return categoryId;
         }
