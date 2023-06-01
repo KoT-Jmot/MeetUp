@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.IdentityService.Doma
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.ЕventsService", "MeetUp.ЕventsService", "{A149CCE5-E6A5-4E0E-800D-27B5C8540196}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.EventsService.Application", "MeetUp.ЕventsService\MeetUp.EventsService.Application\MeetUp.EventsService.Application.csproj", "{43A676F3-3CC5-480C-B7E5-EC402AF0B74D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.EventsService.Application", "MeetUp.ЕventsService\MeetUp.EventsService.Application\MeetUp.EventsService.Application.csproj", "{43A676F3-3CC5-480C-B7E5-EC402AF0B74D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.EventsService.Infrastructure", "MeetUp.ЕventsService\MeetUp.EventsService.Infrastructure\MeetUp.EventsService.Infrastructure.csproj", "{B3038F2A-4D4C-450A-89CF-98948DB50BBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.EventsService.Infrastructure", "MeetUp.ЕventsService\MeetUp.EventsService.Infrastructure\MeetUp.EventsService.Infrastructure.csproj", "{B3038F2A-4D4C-450A-89CF-98948DB50BBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.EventsService.Api", "MeetUp.ЕventsService\MeetUp.EventsService.Api\MeetUp.EventsService.Api.csproj", "{3AE4BC5A-7598-481F-A895-4866F2DB07AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.EventsService.Api", "MeetUp.ЕventsService\MeetUp.EventsService.Api\MeetUp.EventsService.Api.csproj", "{3AE4BC5A-7598-481F-A895-4866F2DB07AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

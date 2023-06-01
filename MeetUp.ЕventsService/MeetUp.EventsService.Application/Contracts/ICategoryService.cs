@@ -1,5 +1,6 @@
 ﻿using MeetUp.EventsService.Application.DTOs.InputDto.CategoryDto;
 using MeetUp.EventsService.Application.DTOs.OutputDto;
+using MeetUp.EventsService.Application.RequestFeatures;
 
 namespace MeetUp.EventsService.Application.Contracts
 {
