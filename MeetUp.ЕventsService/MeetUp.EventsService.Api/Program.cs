@@ -1,6 +1,7 @@
 using MeetUp.EventsService.Api.ExceptionHandler;
 using MeetUp.EventsService.Api.Extensions;
 using MeetUp.EventsService.Api.Features;
+using FluentValidation;
 using Serilog;
 using System.Reflection;
 
@@ -19,6 +20,8 @@ builder.Host.UseSerilog();
 
 services.ConfigureSqlServer(configuration)
         .AddControllers();
+
+services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.EventsService.Application"));
 
 services.ConfigureJWT(configuration)
         .ConfigureMapster()
