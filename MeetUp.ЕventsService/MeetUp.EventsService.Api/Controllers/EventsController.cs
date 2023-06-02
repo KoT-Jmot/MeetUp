@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MeetUp.EventsService.Api.Controllers
 {
-    [Route("Products")]
+    [Route("Events")]
     public class EventsController : Controller
     {
         private readonly IEventService _eventManager;
@@ -42,7 +42,8 @@ namespace MeetUp.EventsService.Api.Controllers
             [FromBody] EventDto eventDto,
             CancellationToken cancellationToken)
         {
-            var userId = User.GetUserId();
+            //var userId = User.GetUserId();
+            var userId = "0e3c3302-281c-464d-9ab3-d8fdb461c552";
 
             var eventId = await _eventManager.CreateEventBySponserIdAsync(eventDto, userId, cancellationToken);
 
@@ -54,9 +55,10 @@ namespace MeetUp.EventsService.Api.Controllers
             [FromRoute] Guid eventId,
             CancellationToken cancellationToken)
         {
-            var sponserId = User.GetUserId();
+            //var userId = User.GetUserId();
+            var userId = "0e3c3302-281c-464d-9ab3-d8fdb461c552";
 
-            await _eventManager.DeleteEventByIdAndSponserIdAsync(sponserId, eventId, cancellationToken);
+            await _eventManager.DeleteEventByIdAndSponserIdAsync(userId, eventId, cancellationToken);
 
             return NoContent();
         }
@@ -67,9 +69,10 @@ namespace MeetUp.EventsService.Api.Controllers
             [FromBody] EventDto eventDto,
             CancellationToken cancellationToken)
         {
-            var sponserId = User.GetUserId();
+            //var userId = User.GetUserId();
+            var userId = "0e3c3302-281c-464d-9ab3-d8fdb461c552";
 
-            var updatedEventId = await _eventManager.UpdateEventByIdAndSponserIdAsync(eventId, eventDto, sponserId, cancellationToken);
+            var updatedEventId = await _eventManager.UpdateEventByIdAndSponserIdAsync(eventId, eventDto, userId, cancellationToken);
 
             return Ok(updatedEventId);
         }

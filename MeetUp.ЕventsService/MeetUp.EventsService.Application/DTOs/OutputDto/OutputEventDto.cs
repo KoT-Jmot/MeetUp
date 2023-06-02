@@ -9,6 +9,6 @@
         public DateTime? DateStart { get; set; }
         public DateTime? CreateDate { get; set; }
         public string? SponsorId { get; set; }
-        public Guid categoryId { get; set; }
+        public Guid CategoryId { get; set; }
     }
 }

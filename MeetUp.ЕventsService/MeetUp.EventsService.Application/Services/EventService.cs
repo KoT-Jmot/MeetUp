@@ -74,7 +74,7 @@ namespace MeetUp.EventsService.Application.Services
         {
             await _eventValidator.ValidateAndThrowAsync(eventDto, cancellationToken);
 
-            var category = await _repositoryManager.Categories.GetByIdAsync(eventDto.CategoryId, trackChanges: false, cancellationToken);
+            var category = await _repositoryManager.Categories.GetByIdAsync(eventDto.CategoryId!.Value, trackChanges: false, cancellationToken);
 
             if (category is null)
                 throw new EntityNotFoundException("Category was not found!");
@@ -111,7 +111,7 @@ namespace MeetUp.EventsService.Application.Services
         {
             await _eventValidator.ValidateAndThrowAsync(eventDto, cancellationToken);
 
-            var category = await _repositoryManager.Categories.GetByIdAsync(eventDto.CategoryId, trackChanges: false, cancellationToken);
+            var category = await _repositoryManager.Categories.GetByIdAsync(eventDto.CategoryId!.Value, trackChanges: false, cancellationToken);
 
             if (category is null)
                 throw new EntityNotFoundException("Category was not found!");
