@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MeetUp.EventsService.Infrastructure\MeetUp.EventsService.Infrastructure.csproj" />
+    <Compile Remove="Response\**" />
+    <EmbeddedResource Remove="Response\**" />
+    <None Remove="Response\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Response\" />
+    <ProjectReference Include="..\MeetUp.EventsService.Infrastructure\MeetUp.EventsService.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
