@@ -47,9 +47,11 @@ namespace MeetUp.IdentityService.Application.Services
             var isCorrectPassword = await _userManager.CheckPasswordAsync(user, userForLoginDto.Password);
 
             if (user is null || !isCorrectPassword)
+            {
                 throw new LoginUserException();
+            }
 
-            return await CreateTokenAsync(user);
+                return await CreateTokenAsync(user);
         }
 
         public async Task<string> SignUpAsync(
@@ -67,7 +69,9 @@ namespace MeetUp.IdentityService.Application.Services
                 var message = string.Empty;
 
                 foreach (var error in result.Errors)
+                {
                     message += error.Description + "\n";
+                }
 
                 throw new RegistrationUserException(message);
             }
@@ -133,7 +137,9 @@ namespace MeetUp.IdentityService.Application.Services
             var user = _userManager.Users;
 
             if (!userQuery.UserName.IsNullOrEmpty())
+            {
                 user = user.Where(u => u.UserName.Contains(userQuery.UserName!));
+            }
 
             user = user.OrderBy(p => p.UserName);
             var totalCount = await user.CountAsync(cancellationToken);
@@ -154,7 +160,9 @@ namespace MeetUp.IdentityService.Application.Services
             var user = await _userManager.FindByEmailAsync(userEmail);
 
             if (user is null)
+            {
                 throw new EntityNotFoundException("User was not found!");
+            }
 
             var outputUser = user.Adapt<OutputUserDto>();
 

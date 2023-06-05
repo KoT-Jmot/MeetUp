@@ -11,7 +11,9 @@ namespace MeetUp.IdentityService.Application.DbInIt
             var userIsInitialize = await roleManager.RoleExistsAsync(userName);
 
             if (!userIsInitialize)
+            {
                 await roleManager.CreateAsync(new IdentityRole(userName));
+            }
         }
     }
 }
