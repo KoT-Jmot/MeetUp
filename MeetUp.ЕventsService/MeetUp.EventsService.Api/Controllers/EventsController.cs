@@ -42,8 +42,7 @@ namespace MeetUp.EventsService.Api.Controllers
             [FromBody] EventDto eventDto,
             CancellationToken cancellationToken)
         {
-            //var userId = User.GetUserId();
-            var userId = "0e3c3302-281c-464d-9ab3-d8fdb461c552";
+            var userId = User.GetUserId();
 
             var eventId = await _eventManager.CreateEventBySponserIdAsync(eventDto, userId, cancellationToken);
 
@@ -55,8 +54,7 @@ namespace MeetUp.EventsService.Api.Controllers
             [FromRoute] Guid eventId,
             CancellationToken cancellationToken)
         {
-            //var userId = User.GetUserId();
-            var userId = "0e3c3302-281c-464d-9ab3-d8fdb461c552";
+            var userId = User.GetUserId();
 
             await _eventManager.DeleteEventByIdAndSponserIdAsync(userId, eventId, cancellationToken);
 
@@ -69,8 +67,7 @@ namespace MeetUp.EventsService.Api.Controllers
             [FromBody] EventDto eventDto,
             CancellationToken cancellationToken)
         {
-            //var userId = User.GetUserId();
-            var userId = "0e3c3302-281c-464d-9ab3-d8fdb461c552";
+            var userId = User.GetUserId();
 
             var updatedEventId = await _eventManager.UpdateEventByIdAndSponserIdAsync(eventId, eventDto, userId, cancellationToken);
 

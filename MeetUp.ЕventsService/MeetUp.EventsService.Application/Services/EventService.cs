@@ -144,8 +144,12 @@ namespace MeetUp.EventsService.Application.Services
                 throw new RequestAccessException();
             }
 
-            updatingEvent = eventDto.Adapt<Event>();
+            updatingEvent.CategoryId = eventDto.CategoryId.Value;
+            updatingEvent.Description = eventDto.Description;
+            updatingEvent.DateStart = eventDto.DateStart;
             updatingEvent.CreateDate = DateTime.UtcNow;
+            updatingEvent.Place = eventDto.Place;
+            updatingEvent.Title = eventDto.Title;
 
             await _repositoryManager.SaveChangesAsync();
 

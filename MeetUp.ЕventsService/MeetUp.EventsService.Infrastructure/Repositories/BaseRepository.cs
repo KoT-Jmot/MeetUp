@@ -25,7 +25,7 @@ namespace MeetUp.EventsService.Infrastructure.Repositories
             CancellationToken cancellationToken = default)
         {
             return trackChanges
-                        ? await Set.FirstOrDefaultAsync(t => t.Id.Equals(id), cancellationToken)
+                        ? await Set.AsTracking().FirstOrDefaultAsync(t => t.Id.Equals(id), cancellationToken)
                         : await Set.AsNoTracking().FirstOrDefaultAsync(t => t.Id.Equals(id), cancellationToken);
         }
 
@@ -57,7 +57,7 @@ namespace MeetUp.EventsService.Infrastructure.Repositories
             var items = Set.Where(expression);
 
             return trackChanges
-                        ? items
+                        ? items.AsTracking()
                         : items.AsNoTracking();
         }
     }
