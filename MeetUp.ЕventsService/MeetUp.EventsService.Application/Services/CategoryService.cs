@@ -32,7 +32,9 @@ namespace MeetUp.EventsService.Application.Services
             var category = await _repositoryManager.Categories.GetByIdAsync(categoryId, trackChanges: false, cancellationToken);
 
             if (category is null)
+            {
                 throw new EntityNotFoundException("Category was not found!");
+            }
 
             var outputCategory = category.Adapt<OutputCategoryDto>();
 
@@ -45,7 +47,9 @@ namespace MeetUp.EventsService.Application.Services
             var categories = _repositoryManager.Categories.GetAll();
 
             if (!categoryQuery.Name.IsNullOrEmpty())
+            {
                 categories = categories.Where(c => c.Name!.Contains(categoryQuery.Name!));
+            }
 
             categories = categories.OrderBy(c => c.Name);
             var totalCount = await categories.CountAsync(cancellationToken);
@@ -70,7 +74,9 @@ namespace MeetUp.EventsService.Application.Services
             var existedCategory = await _repositoryManager.Categories.GetCategoryByNameAsync(categoryDto.Name!, trackChanges: false, cancellationToken);
 
             if (existedCategory is not null)
+            {
                 throw new CreatingCategoryException("This category already exists!");
+            }
 
             var category = categoryDto.Adapt<Category>();
 
@@ -87,7 +93,9 @@ namespace MeetUp.EventsService.Application.Services
             var category = await _repositoryManager.Categories.GetByIdAsync(categoryId, trackChanges: false, cancellationToken);
 
             if (category is null)
+            {
                 throw new EntityNotFoundException("Category was not found!");
+            }
 
             await _repositoryManager.Categories.RemoveAsync(category, cancellationToken);
             await _repositoryManager.SaveChangesAsync(cancellationToken);
@@ -103,12 +111,16 @@ namespace MeetUp.EventsService.Application.Services
             var existedCategory = await _repositoryManager.Categories.GetCategoryByNameAsync(categoryDto.Name!, trackChanges: false, cancellationToken);
 
             if (existedCategory is not null)
+            {
                 throw new CreatingCategoryException("This category already exists!");
+            }
 
             var updatingCategory = await _repositoryManager.Categories.GetByIdAsync(categoryId, trackChanges: true, cancellationToken);
 
             if (updatingCategory is null)
+            {
                 throw new EntityNotFoundException("Catgory was not found!");
+            }
 
             updatingCategory.Name = categoryDto.Name!;
 

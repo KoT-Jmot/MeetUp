@@ -29,16 +29,24 @@ namespace MeetUp.EventsService.Application.Services
             var events = _repositoryManager.Events.GetAll();
 
             if (!eventQuery.Title.IsNullOrEmpty())
+            {
                 events = events.Where(p => p.Title!.Contains(eventQuery.Title!));
+            }
 
             if (!eventQuery.Description.IsNullOrEmpty())
+            {
                 events = events.Where(p => p.Description!.Contains(eventQuery.Description!));
+            }
 
             if (!eventQuery.Place.IsNullOrEmpty())
+            {
                 events = events.Where(p => p.Place!.Contains(eventQuery.Place!));
+            }
 
             if (eventQuery.CategoryId is not null)
+            {
                 events = events.Where(p => p.CategoryId.Equals(eventQuery.CategoryId));
+            }
 
             events = events.OrderBy(p => p.DateStart);
 
@@ -60,7 +68,9 @@ namespace MeetUp.EventsService.Application.Services
             var exectlEvent = await _repositoryManager.Events.GetByIdAsync(eventId, trackChanges: false, cancellationToken);
 
             if (exectlEvent is null)
+            {
                 throw new EntityNotFoundException("Event was not found!");
+            }
 
             var outputProduct = exectlEvent.Adapt<OutputEventDto>();
 
@@ -77,7 +87,9 @@ namespace MeetUp.EventsService.Application.Services
             var category = await _repositoryManager.Categories.GetByIdAsync(eventDto.CategoryId!.Value, trackChanges: false, cancellationToken);
 
             if (category is null)
+            {
                 throw new EntityNotFoundException("Category was not found!");
+            }
 
             var newEvent = eventDto.Adapt<Event>();
             newEvent.CreateDate = DateTime.UtcNow;
@@ -97,7 +109,9 @@ namespace MeetUp.EventsService.Application.Services
             var deletingEvent = await _repositoryManager.Events.GetEventByIdAndUserIdAsync(eventId, sponserId, trackChanges: false, cancellationToken);
 
             if (deletingEvent is null)
+            {
                 throw new EntityNotFoundException("Event was not found!");
+            }
 
             await _repositoryManager.Events.RemoveAsync(deletingEvent, cancellationToken);
             await _repositoryManager.SaveChangesAsync(cancellationToken);
@@ -114,15 +128,21 @@ namespace MeetUp.EventsService.Application.Services
             var category = await _repositoryManager.Categories.GetByIdAsync(eventDto.CategoryId!.Value, trackChanges: false, cancellationToken);
 
             if (category is null)
+            {
                 throw new EntityNotFoundException("Category was not found!");
+            }
 
             var updatingEvent = await _repositoryManager.Events.GetByIdAsync(eventId, trackChanges: true, cancellationToken);
 
             if (updatingEvent is null)
+            {
                 throw new EntityNotFoundException("Event was not found!");
+            }
 
             if (!updatingEvent.SponsorId!.Equals(sponserId))
+            {
                 throw new RequestAccessException();
+            }
 
             updatingEvent = eventDto.Adapt<Event>();
             updatingEvent.CreateDate = DateTime.UtcNow;
