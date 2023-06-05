@@ -4,7 +4,8 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "meetup.identityservice.api": "StartDebugging"
+        "meetup.identityservice.api": "StartDebugging",
+        "meetup.eventsservice.api": "StartDebugging"
       }
     }
   }

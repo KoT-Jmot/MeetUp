@@ -8,9 +8,18 @@ services:
       dockerfile: MeetUp.IdentityService/MeetUp.IdentityService.Api/Dockerfile
     depends_on:
       - elasticsearch
-      - identityDb
+      - meetupDb
 
-  identityDb:
+  meetup.eventsservice.api:
+    image: ${DOCKER_REGISTRY-}meetupeventsserviceapi
+    build:
+      context: .
+      dockerfile: MeetUp.ЕventsService/MeetUp.EventsService.Api/Dockerfile
+    depends_on:
+      - elasticsearch
+      - meetupDb
+
+  meetupDb:
     image: mcr.microsoft.com/mssql/server:2019-latest
 
   elasticsearch:
