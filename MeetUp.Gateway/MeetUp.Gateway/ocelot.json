@@ -1,0 +1,63 @@
+{
+  "Routes": [
+    //Identity Service
+    {
+      "UpstreamPathTemplate": "/account",
+      "UpstreamHttpMethod": [ "Get" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.identityservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/account"
+    },
+    {
+      "UpstreamPathTemplate": "/account/{email}",
+      "UpstreamHttpMethod": [ "Get" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.identityservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/account/{email}",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/account/SignUp",
+      "UpstreamHttpMethod": [ "Post" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.identityservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/account/SignUp",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/account/SignIn",
+      "UpstreamHttpMethod": [ "Post" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.identityservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/account/SignIn",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:10500"
+  }
+}
