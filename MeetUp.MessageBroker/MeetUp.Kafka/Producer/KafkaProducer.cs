@@ -12,7 +12,7 @@ namespace MeetUp.Kafka.Producer
 
         public KafkaProducer(IOptions<ProducerKafkaConfiguration<TKey, TValue>> options, IProducer<TKey, TValue> producer)
         {
-            _topic = options.Value.Topic;
+            _topic = options.Value.Topic!;
             _producer = producer;
         }
 
