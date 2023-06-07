@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.EventsService.Infras
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.EventsService.Api", "MeetUp.ЕventsService\MeetUp.EventsService.Api\MeetUp.EventsService.Api.csproj", "{3AE4BC5A-7598-481F-A895-4866F2DB07AE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.MessageBroker", "MeetUp.MessageBroker", "{68D820D7-F879-4F04-9F5D-B18ED912B506}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.Kafka", "MeetUp.MessageBroker\MeetUp.Kafka\MeetUp.Kafka.csproj", "{2CA34555-947D-44D9-9BF4-0AF274627AFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,10 @@ Global
 		{3AE4BC5A-7598-481F-A895-4866F2DB07AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AE4BC5A-7598-481F-A895-4866F2DB07AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AE4BC5A-7598-481F-A895-4866F2DB07AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CA34555-947D-44D9-9BF4-0AF274627AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CA34555-947D-44D9-9BF4-0AF274627AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CA34555-947D-44D9-9BF4-0AF274627AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CA34555-947D-44D9-9BF4-0AF274627AFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +81,7 @@ Global
 		{43A676F3-3CC5-480C-B7E5-EC402AF0B74D} = {A149CCE5-E6A5-4E0E-800D-27B5C8540196}
 		{B3038F2A-4D4C-450A-89CF-98948DB50BBB} = {A149CCE5-E6A5-4E0E-800D-27B5C8540196}
 		{3AE4BC5A-7598-481F-A895-4866F2DB07AE} = {A149CCE5-E6A5-4E0E-800D-27B5C8540196}
+		{2CA34555-947D-44D9-9BF4-0AF274627AFF} = {68D820D7-F879-4F04-9F5D-B18ED912B506}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90F4CEF7-763E-4A1B-8539-EA3742745122}
