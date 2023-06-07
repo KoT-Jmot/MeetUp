@@ -28,7 +28,7 @@ services:
       - elastic
 
   meetupDb:
-    container_name: MeetUpDb
+    container_name: MeetUp.DataBase
     ports:
       - 1433:1433
     environment:
@@ -40,10 +40,9 @@ services:
       - elastic
 
   elasticsearch:
-    container_name: elasticsearch
+    container_name: MeetUp.Elasticsearch
     ports:
       - 9200:9200
-
     environment:
       - xpack.monitoring.enabled=true
       - xpack.watcher.enabled=false
@@ -53,13 +52,34 @@ services:
       - elastic
 
   kibana:
-    container_name: kibana
+    container_name: MeetUp.Kibana
     ports:
       - 5601:5601
     environment:
       - ELASTICSEARCH_URL =http://localhost:9200
     networks:
       - elastic
+
+  zookeeper:
+    container_name: MeetUp.Zookeeper
+    ports:
+      - "2181:2181"
+    volumes:
+      - "zookeeper_data:/bitnami"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  kafka:
+    container_name: MeetUp.Kafka
+    ports:
+      - "9092:9092"
+    volumes:
+      - "kafka_data:/bitnami"
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_ENABLE_KRAFT=no
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
 
 networks:
   elastic:
@@ -68,3 +88,7 @@ networks:
 volumes:
   restate-sql-server:
     external: false
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local

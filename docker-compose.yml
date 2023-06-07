@@ -29,3 +29,11 @@ services:
     image: docker.elastic.co/kibana/kibana:7.16.1
     depends_on:
       - elasticsearch
+
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:3.8
+
+  kafka:
+    image: docker.io/bitnami/kafka:3.4
+    depends_on:
+      - zookeeper
