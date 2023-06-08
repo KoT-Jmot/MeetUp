@@ -55,9 +55,94 @@
       ],
       "DownstreamPathTemplate": "/account/SignIn",
       "DangerousAcceptAnyServerCertificateValidator": true
+    },
+
+    //Events Service
+    {
+      "UpstreamPathTemplate": "/event",
+      "UpstreamHttpMethod": [ "Get" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.eventsservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/event",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/event",
+      "UpstreamHttpMethod": [ "Post" ],
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "claims_UserId": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value > |"
+      },
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.eventsservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/event",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/event/{eventId}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.eventsservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/event/{eventId}",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+
+    //Category Service
+    {
+      "UpstreamPathTemplate": "/category",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.eventsservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/category",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/category/{categoryId}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.eventsservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/category/{categoryId}",
+      "DangerousAcceptAnyServerCertificateValidator": true
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:10500"
+    "BaseUrl": "http://localhost:10500",
+    "HttpHandlerOptions": {
+      "AllowAutoRedirect": true
+    }
   }
 }

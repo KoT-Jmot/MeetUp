@@ -23,8 +23,7 @@ services.ConfigureSqlServer(configuration)
 
 services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.EventsService.Application"));
 
-services.ConfigureJWT(configuration)
-        .ConfigureMapster()
+services.ConfigureMapster()
         .ConfigureServices();
 
 var app = await builder.Build().ConfigureMigrationAsync();

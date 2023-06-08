@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MeetUp.EventsService.Api.Controllers
 {
-    [Route("Events")]
+    [Route("event")]
     public class EventsController : Controller
     {
         private readonly IEventService _eventManager;
@@ -42,7 +42,7 @@ namespace MeetUp.EventsService.Api.Controllers
             [FromBody] EventDto eventDto,
             CancellationToken cancellationToken)
         {
-            var userId = User.GetUserId();
+            var userId = Request.Headers["claims_UserId"];
 
             var eventId = await _eventManager.CreateEventBySponserIdAsync(eventDto, userId, cancellationToken);
 

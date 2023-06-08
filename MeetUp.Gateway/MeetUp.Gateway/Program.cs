@@ -1,17 +1,27 @@
+using MeetUp.Gateway.Extensions;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
-    .AddJsonFile("ocelot.json", optional: false, reloadOnChange: true)
-    .AddEnvironmentVariables();
+var services = builder.Services;
 
-builder.Services.AddOcelot(builder.Configuration);
+var configuration = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                    .AddJsonFile("ocelot.json", optional: false, reloadOnChange: true)
+                    .AddEnvironmentVariables()
+                    .Build();
+
+services.ConfigureJWT(configuration)
+        .AddOcelot(configuration);
 
 var app = builder.Build();
 
+
 await app.UseOcelot();
+
+app.UseAuthentication()
+   .UseAuthorization();
 
 
 app.Run();

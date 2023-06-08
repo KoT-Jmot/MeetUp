@@ -7,7 +7,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5035"
+      "applicationUrl": "http://localhost:5035",
     },
     "https": {
       "commandName": "Project",
@@ -29,7 +29,7 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
-      "publishAllPorts": true,
+      "publishAllPorts": false,
       "useSSL": true
     }
   },
