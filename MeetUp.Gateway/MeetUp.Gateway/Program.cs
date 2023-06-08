@@ -17,11 +17,9 @@ services.ConfigureJWT(configuration)
 
 var app = builder.Build();
 
-
 await app.UseOcelot();
 
 app.UseAuthentication()
    .UseAuthorization();
-
 
 app.Run();
