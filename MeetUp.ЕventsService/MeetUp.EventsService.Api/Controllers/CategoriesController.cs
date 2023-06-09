@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MeetUp.EventsService.Api.Controllers
 {
 
-    [Route("Categories")]
+    [Route("category")]
     public class CategoriesController : Controller
     {
         private readonly ICategoryService _categoryManager;

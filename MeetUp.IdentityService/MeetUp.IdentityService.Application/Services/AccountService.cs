@@ -103,7 +103,7 @@ namespace MeetUp.IdentityService.Application.Services
             var claims = new List<Claim>
             {
                 new(ClaimTypes.Name, user.UserName!),
-                new(ClaimTypes.NameIdentifier, user.Id)
+                new("userIdentifier", user.Id)
             };
 
             var roles = await _userManager.GetRolesAsync(user);

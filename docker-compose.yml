@@ -1,6 +1,12 @@
 version: '3.4'
 
 services:
+  meetup.gateway:
+    image: ${DOCKER_REGISTRY-}meetupgateway
+    build:
+      context: .
+      dockerfile: MeetUp.Gateway/MeetUp.Gateway/Dockerfile
+
   meetup.identityservice.api:
     image: ${DOCKER_REGISTRY-}meetupidentityserviceapi
     build:
@@ -29,3 +35,12 @@ services:
     image: docker.elastic.co/kibana/kibana:7.16.1
     depends_on:
       - elasticsearch
+
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:3.8
+
+  kafka:
+    image: docker.io/bitnami/kafka:3.4
+    depends_on:
+      - zookeeper
+
