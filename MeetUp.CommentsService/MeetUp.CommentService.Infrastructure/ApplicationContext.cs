@@ -13,7 +13,7 @@ namespace MeetUp.CommentsService.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Comment>().HasIndex(e => e.Id);
+            modelBuilder.Entity<Comment>().HasKey(e => e.Id);
 
             base.OnModelCreating(modelBuilder);
         }
