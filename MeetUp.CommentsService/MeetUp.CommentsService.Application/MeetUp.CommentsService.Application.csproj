@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MeetUp.CommentService.Infrastructure\MeetUp.CommentsService.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

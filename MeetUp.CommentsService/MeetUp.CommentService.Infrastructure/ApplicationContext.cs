@@ -7,12 +7,15 @@ namespace MeetUp.CommentsService.Infrastructure
     {
         public DbSet<Comment> Comments { get; set; }
 
-        protected ApplicationContext(DbContextOptions options) : base(options)
+        public ApplicationContext(DbContextOptions options) : base(options)
         {
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Comment>().HasIndex(e => e.Id);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
