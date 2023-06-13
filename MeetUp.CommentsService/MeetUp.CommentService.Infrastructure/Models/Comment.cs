@@ -1,8 +1,7 @@
 ﻿namespace MeetUp.CommentsService.Infrastructure.Models
 {
-    public class Comment
+    public class Comment : BaseEntity
     {
-        public Guid Id { get; set; }
         public string Text { get; set; } = null!;
         public string UserId { get; set; } = null!;
         public Guid EventId { get; set; }

@@ -1,4 +1,6 @@
 ﻿using MeetUp.CommentsService.Infrastructure;
+using MeetUp.CommentsService.Infrastructure.Contracts;
+using MeetUp.CommentsService.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -16,6 +18,8 @@ namespace MeetUp.CommentsService.Api.Extensions
                     {
                         b.MigrationsAssembly(Assembly.Load("MeetUp.CommentsService.Infrastructure").FullName);
                     }));
+
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
 
             return services;
         }

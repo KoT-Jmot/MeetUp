@@ -12,7 +12,6 @@ namespace MeetUp.CommentsService.Api.Extensions
                 var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
                 await dbContext.Database.MigrateAsync();
             }
-
             return app;
         }
     }
