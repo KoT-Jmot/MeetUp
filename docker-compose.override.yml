@@ -39,6 +39,17 @@ services:
     networks:
       - elastic
 
+  meetup.commentsservice.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "10503:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    networks:
+      - elastic
+
   meetupDb:
     container_name: MeetUp.DataBase
     ports:
@@ -104,4 +115,5 @@ volumes:
     driver: local
   kafka_data:
     driver: local
+
 

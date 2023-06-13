@@ -25,6 +25,15 @@ services:
       - elasticsearch
       - meetupDb
 
+  meetup.commentsservice.api:
+    image: ${DOCKER_REGISTRY-}meetupcommentsserviceapi
+    build:
+      context: .
+      dockerfile: MeetUp.CommentsService/MeetUp.CommentsService.Api/Dockerfile
+    depends_on:
+      - elasticsearch
+      - meetupDb
+
   meetupDb:
     image: mcr.microsoft.com/mssql/server:2019-latest
 
