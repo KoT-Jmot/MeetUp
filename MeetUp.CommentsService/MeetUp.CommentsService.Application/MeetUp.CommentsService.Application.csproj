@@ -16,9 +16,8 @@
 
   <ItemGroup>
     <Folder Include="Protos\" />
-    <Folder Include="Contracts\" />
-    <Folder Include="DTOs\" />
     <Folder Include="Mapster\" />
+    <Folder Include="Services\" />
     <Folder Include="Validation\" />
   </ItemGroup>
 
