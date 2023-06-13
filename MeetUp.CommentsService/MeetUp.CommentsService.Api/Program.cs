@@ -1,3 +1,4 @@
+using MeetUp.CommentsService.Api.ExceptionHandler;
 using MeetUp.CommentsService.Api.Extensions;
 using MeetUp.CommentsService.Api.Features;
 using Serilog;
@@ -19,6 +20,8 @@ services.ConfigureSqlServer(configuration)
         .AddControllers();
 
 var app = await builder.Build().ConfigureMigrationAsync();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 app.UseRouting();
