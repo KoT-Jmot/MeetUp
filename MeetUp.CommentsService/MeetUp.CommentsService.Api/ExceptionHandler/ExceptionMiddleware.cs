@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MeetUp.CommentsService.Application.Utils.Excaption;
+using System.ComponentModel.DataAnnotations;
 
 namespace MeetUp.CommentsService.Api.ExceptionHandler
 {

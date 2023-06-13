@@ -27,4 +27,8 @@
     <ProjectReference Include="..\MeetUp.CommentsService.Application\MeetUp.CommentsService.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>

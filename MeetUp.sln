@@ -31,9 +31,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.Gateway", "MeetUp.Ga
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.Gateway", "MeetUp.Gateway\MeetUp.Gateway\MeetUp.Gateway.csproj", "{705CE489-4D12-415E-8FF5-577EF334EE84}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.CommentService", "MeetUp.CommentService", "{BDE5C384-CA1E-43A9-B7B5-B602EFFFB1B4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.CommentsService", "MeetUp.CommentsService", "{BDE5C384-CA1E-43A9-B7B5-B602EFFFB1B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.CommentsService.Infrastructure", "MeetUp.CommentsService\MeetUp.CommentService.Infrastructure\MeetUp.CommentsService.Infrastructure.csproj", "{F226E26A-3E26-4DD5-A1CB-48A54E78D17D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.CommentsService.Infrastructure", "MeetUp.CommentsService\MeetUp.CommentsService.Infrastructure\MeetUp.CommentsService.Infrastructure.csproj", "{F226E26A-3E26-4DD5-A1CB-48A54E78D17D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.CommentsService.Application", "MeetUp.CommentsService\MeetUp.CommentsService.Application\MeetUp.CommentsService.Application.csproj", "{AD8AE4D6-8D9F-49ED-A784-5ABF747BEFD4}"
 EndProject
