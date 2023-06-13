@@ -1,4 +1,6 @@
-﻿namespace MeetUp.CommentsService.Application.RequestFeatures
+﻿using MeetUp.CommentsService.Application.Contracts;
+
+namespace MeetUp.CommentsService.Application.RequestFeatures
 {
     public class PagedList<T> : List<T>, IPagination
     {
