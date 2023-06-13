@@ -1,5 +1,6 @@
-﻿using MeetUp.CommentsService.Application.DTOs.InputDto;
+﻿using MeetUp.CommentsService.Application.RequestFeatures;
 using MeetUp.CommentsService.Application.DTOs.OutputDto;
+using MeetUp.CommentsService.Application.DTOs.InputDto;
 
 namespace MeetUp.CommentsService.Application.Contracts
 {
@@ -14,7 +15,11 @@ namespace MeetUp.CommentsService.Application.Contracts
             CancellationToken cancellationToken);
 
         Task<PagedList<OutputCommentDto>> GetCommentsByUserIdAsync(
-            Guid commentId,
+            string userId,
+            CancellationToken cancellationToken);
+
+        Task<PagedList<OutputCommentDto>> GetCommentsByEventIdAsync(
+            Guid eventId,
             CancellationToken cancellationToken);
 
         Task<Guid> CreateCommentAsync(
