@@ -197,6 +197,74 @@
       ],
       "DownstreamPathTemplate": "/category/{categoryId}",
       "DangerousAcceptAnyServerCertificateValidator": true
+    },
+
+    //Comment Service
+    {
+      "UpstreamPathTemplate": "/comment",
+      "UpstreamHttpMethod": [ "Get" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.commentsservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/comment",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/comment/{commentId}",
+      "UpstreamHttpMethod": [ "Get" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.commentsservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/comment/{commentId}",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/comment",
+      "UpstreamHttpMethod": [ "Post" ],
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.commentsservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/comment",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/comment/{commentId}",
+      "UpstreamHttpMethod": [ "Delete" ],
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "meetup.commentsservice.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/comment/{commentId}",
+      "DangerousAcceptAnyServerCertificateValidator": true
     }
   ],
   "GlobalConfiguration": {
