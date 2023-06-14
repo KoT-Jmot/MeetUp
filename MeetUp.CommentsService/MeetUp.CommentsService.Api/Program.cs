@@ -1,7 +1,9 @@
 using FluentValidation;
+using Grpc.Net.Client;
 using MeetUp.CommentsService.Api.ExceptionHandler;
 using MeetUp.CommentsService.Api.Extensions;
 using MeetUp.CommentsService.Api.Features;
+using MeetUpGrpc;
 using Serilog;
 using System.Reflection;
 
@@ -25,6 +27,10 @@ services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.CommentsService.Applica
 
 services.ConfigureMapster(configuration)
         .ConfigureServices();
+
+var channel = GrpcChannel.ForAddress("http://meetup.eventsservice.api:80"); // Замените URL на URL вашего gRPC-сервиса
+var client = new Greeter.GreeterClient(channel);
+services.AddSingleton(client);
 
 var app = await builder.Build().ConfigureMigrationAsync();
 

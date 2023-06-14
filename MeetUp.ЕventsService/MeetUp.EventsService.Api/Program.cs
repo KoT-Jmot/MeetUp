@@ -4,6 +4,7 @@ using MeetUp.EventsService.Api.Features;
 using System.Reflection;
 using FluentValidation;
 using Serilog;
+using MeetUp.EventsService.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,12 +24,16 @@ services.ConfigureSqlServer(configuration)
 
 services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.EventsService.Application"));
 
+services.AddGrpc();
+
 services.ConfigureMapster()
         .ConfigureServices();
 
 var app = await builder.Build().ConfigureMigrationAsync();
 
 app.UseMiddleware<ExceptionMiddleware>();
+
+app.MapGrpcService<GreeterService>();
 
 app.UseHttpsRedirection();
 app.UseRouting();

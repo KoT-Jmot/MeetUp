@@ -5,9 +5,12 @@ using MeetUp.CommentsService.Application.DTOs.InputDto;
 using MeetUp.CommentsService.Infrastructure.Contracts;
 using MeetUp.CommentsService.Infrastructure.Models;
 using MeetUp.CommentsService.Application.Contracts;
+using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation;
 using Mapster;
+using Grpc.Net.Client;
+using MeetUpGrpc;
 
 namespace MeetUp.CommentsService.Application.Services
 {
@@ -30,9 +33,10 @@ namespace MeetUp.CommentsService.Application.Services
         {
             await _commentValidator.ValidateAndThrowAsync(commentDto);
 
-            //
-            // use gRPC
-            //
+            if(! await IsEventExistAsync(commentDto.EventId))
+            {
+                throw new EntityNotFoundException("Event was not found!");
+            }
 
             var comment = commentDto.Adapt<Comment>();
             comment.UserId = userId;
@@ -109,6 +113,17 @@ namespace MeetUp.CommentsService.Application.Services
             var outputComment = exectlComment.Adapt<OutputCommentDto>();
 
             return outputComment;
+        }
+
+        private async Task<bool> IsEventExistAsync(Guid eventId)
+        {
+            var channel = GrpcChannel.ForAddress("http://meetup.eventsservice.api:80");
+            var client = new Greeter.GreeterClient(channel);
+
+            var response = await client.EventExistAsync(
+                new EventRequest { EventId = eventId.ToString() });
+
+            return response.Message;
         }
     }
 }

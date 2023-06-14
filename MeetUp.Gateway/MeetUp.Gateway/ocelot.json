@@ -236,6 +236,9 @@
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       },
+      "AddHeadersToRequest": {
+        "claims_UserId": "Claims[userIdentifier] > value > |"
+      },
 
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -254,6 +257,9 @@
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "claims_UserId": "Claims[userIdentifier] > value > |"
       },
 
       "DownstreamScheme": "http",
