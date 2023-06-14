@@ -14,14 +14,6 @@ namespace MeetUp.CommentsService.Application.Contracts
             Guid commentId,
             CancellationToken cancellationToken);
 
-        Task<PagedList<OutputCommentDto>> GetCommentsByUserIdAsync(
-            string userId,
-            CancellationToken cancellationToken);
-
-        Task<PagedList<OutputCommentDto>> GetCommentsByEventIdAsync(
-            Guid eventId,
-            CancellationToken cancellationToken);
-
         Task<Guid> CreateCommentByUserIdAsync(
             string userId,
             CommentDto commentDto,
