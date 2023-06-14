@@ -7,10 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using MapsterMapper;
 using Mapster;
-using MeetUp.EventsService.Application.Utils;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 namespace MeetUp.EventsService.Api.Extensions
 {
