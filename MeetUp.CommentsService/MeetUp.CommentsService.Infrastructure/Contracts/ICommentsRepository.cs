@@ -4,11 +4,10 @@ namespace MeetUp.CommentsService.Infrastructure.Contracts
 {
     public interface ICommentsRepository : IBaseRepository<Comment>
     {
-        IQueryable<Comment?> GetCommentsByEventId(
-            Guid eventId,
-            bool trackChanges = false);
-        IQueryable<Comment?> GetCommentsByUserId(
+        Task<Comment?> GetCommentByIdAndUserIdAsync(
             string userId,
-            bool trackChanges = false);
+            Guid eventId,
+            bool trackChanges = false,
+            CancellationToken cancellationToken = default);
     }
 }

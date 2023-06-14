@@ -1,5 +1,6 @@
 ﻿using MeetUp.CommentsService.Infrastructure.Contracts;
 using MeetUp.CommentsService.Infrastructure.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MeetUp.CommentsService.Infrastructure.Repositories
 {
@@ -9,14 +10,13 @@ namespace MeetUp.CommentsService.Infrastructure.Repositories
         {
         }
 
-        public IQueryable<Comment> GetCommentsByEventId(Guid eventId, bool trackChanges = false)
+        public async Task<Comment?> GetCommentByIdAndUserIdAsync(
+            string userId,
+            Guid commentId,
+            bool trackChanges = false,
+            CancellationToken cancellationToken = default)
         {
-            return GetByQueryable(c => c.EventId!.Equals(eventId), trackChanges);
-        }
-
-        public IQueryable<Comment?> GetCommentsByUserId(string userId, bool trackChanges = false)
-        {
-            return GetByQueryable(c => c.UserId!.Equals(userId), trackChanges);
+            return await GetByQueryable(c => c.UserId!.Equals(userId) && c.Id.Equals(commentId), trackChanges).FirstOrDefaultAsync(cancellationToken);
         }
     }
 }
