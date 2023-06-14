@@ -62,6 +62,15 @@ services:
     networks:
       - elastic
 
+  commentDb:
+    container_name: MeetUp.CommentsDataBase
+    environment:
+      POSTGRES_PASSWORD: password
+    networks:
+      - elastic
+    ports:
+      - "5432:80"
+
   elasticsearch:
     container_name: MeetUp.Elasticsearch
     ports:
