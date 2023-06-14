@@ -22,11 +22,13 @@ namespace MeetUp.CommentsService.Application.Contracts
             Guid eventId,
             CancellationToken cancellationToken);
 
-        Task<Guid> CreateCommentAsync(
+        Task<Guid> CreateCommentByUserIdAsync(
+            string userId,
             CommentDto commentDto,
             CancellationToken cancellationToken);
 
-        Task DeleteCommentByIdAsync(
+        Task DeleteCommentByIdAndUserIdAsync(
+            string userId,
             Guid commentId,
             CancellationToken cancellationToken);
     }
