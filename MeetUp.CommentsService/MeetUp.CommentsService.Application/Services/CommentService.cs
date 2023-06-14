@@ -18,12 +18,15 @@ namespace MeetUp.CommentsService.Application.Services
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IValidator<CommentDto> _commentValidator;
+        private readonly string _grpcUrl;
         public CommentService(
             IRepositoryManager repositoryManager,
-            IValidator<CommentDto> commentValidator)
+            IValidator<CommentDto> commentValidator,
+            IConfiguration configuration)
         {
             _repositoryManager = repositoryManager;
             _commentValidator = commentValidator;
+            _grpcUrl = configuration["Kestrel:Endpoints:gRPC:Url"]!;
         }
 
         public async Task<Guid> CreateCommentByUserIdAsync(
@@ -117,7 +120,7 @@ namespace MeetUp.CommentsService.Application.Services
 
         private async Task<bool> IsEventExistAsync(Guid eventId)
         {
-            var channel = GrpcChannel.ForAddress("http://meetup.eventsservice.api:80");
+            var channel = GrpcChannel.ForAddress(_grpcUrl);
             var client = new Greeter.GreeterClient(channel);
 
             var response = await client.EventExistAsync(

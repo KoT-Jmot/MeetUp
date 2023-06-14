@@ -1,9 +1,11 @@
-﻿using Mapster;
+﻿using Grpc.Net.Client;
+using Mapster;
 using MapsterMapper;
 using MeetUp.CommentsService.Application.Contracts;
 using MeetUp.CommentsService.Infrastructure;
 using MeetUp.CommentsService.Infrastructure.Contracts;
 using MeetUp.CommentsService.Infrastructure.Repositories;
+using MeetUpGrpc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -28,8 +30,7 @@ namespace MeetUp.CommentsService.Api.Extensions
         }
 
         public static IServiceCollection ConfigureMapster(
-          this IServiceCollection services,
-          IConfiguration configuration)
+            this IServiceCollection services)
         {
             var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
             typeAdapterConfig.Scan(Assembly.Load("MeetUp.CommentsService.Application"));
@@ -41,12 +42,23 @@ namespace MeetUp.CommentsService.Api.Extensions
         }
 
         public static IServiceCollection ConfigureServices(
-                   this IServiceCollection services)
+            this IServiceCollection services)
         {
             services.AddScoped<ICommentService, Application.Services.CommentService>();
 
             return services;
         }
 
+        public static IServiceCollection ConfigureGRPC(
+            this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            var channel = GrpcChannel.ForAddress(configuration["Kestrel:Endpoints:gRPC:Url"]!);
+            var client = new Greeter.GreeterClient(channel);
+
+            services.AddSingleton(client);
+
+            return services;
+        }
     }
 }
