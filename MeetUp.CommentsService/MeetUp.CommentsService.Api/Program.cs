@@ -1,7 +1,9 @@
+using FluentValidation;
 using MeetUp.CommentsService.Api.ExceptionHandler;
 using MeetUp.CommentsService.Api.Extensions;
 using MeetUp.CommentsService.Api.Features;
 using Serilog;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,11 @@ builder.Host.UseSerilog();
 
 services.ConfigureSqlServer(configuration)
         .AddControllers();
+
+services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.CommentsService.Application"));
+
+services.ConfigureMapster(configuration)
+        .ConfigureServices();
 
 var app = await builder.Build().ConfigureMigrationAsync();
 
