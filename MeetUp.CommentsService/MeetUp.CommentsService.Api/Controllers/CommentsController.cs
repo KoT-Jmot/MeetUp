@@ -2,9 +2,9 @@
 using MeetUp.CommentsService.Application.DTOs.OutputDto;
 using MeetUp.CommentsService.Application.DTOs.InputDto;
 using MeetUp.CommentsService.Application.Contracts;
+using MeetUp.CommentsService.Application.Utils;
 using MeetUp.CommentsService.Api.Features;
 using Microsoft.AspNetCore.Mvc;
-using MeetUp.CommentsService.Application.Utils;
 
 namespace MeetUp.CommentsService.Api.Controllers
 {
