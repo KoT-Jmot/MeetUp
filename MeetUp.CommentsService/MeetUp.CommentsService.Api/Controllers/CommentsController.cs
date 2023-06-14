@@ -4,6 +4,7 @@ using MeetUp.CommentsService.Application.DTOs.InputDto;
 using MeetUp.CommentsService.Application.Contracts;
 using MeetUp.CommentsService.Api.Features;
 using Microsoft.AspNetCore.Mvc;
+using MeetUp.CommentsService.Application.Utils;
 
 namespace MeetUp.CommentsService.Api.Controllers
 {
@@ -35,6 +36,30 @@ namespace MeetUp.CommentsService.Api.Controllers
             var comment = await _commentManager.GetCommentByIdAsync(commentId, cancellationToken);
 
             return Ok(comment);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateCommentAsync(
+            [FromBody] CommentDto commentDto,
+            CancellationToken cancellationToken)
+        {
+            var userId = Request.Headers[ClaimsConfiguration.UserId];
+
+            var commentId = await _commentManager.CreateCommentByUserIdAsync(userId!, commentDto, cancellationToken);
+
+            return Created(nameof(CreateCommentAsync), commentId);
+        }
+
+        [HttpDelete("{commentId}")]
+        public async Task<IActionResult> DeleteCommentByIdAsync(
+            [FromRoute] Guid commentId,
+            CancellationToken cancellationToken)
+        {
+            var userId = Request.Headers[ClaimsConfiguration.UserId];
+
+            await _commentManager.DeleteCommentByIdAndUserIdAsync(userId!, commentId, cancellationToken);
+
+            return NoContent();
         }
     }
 }
