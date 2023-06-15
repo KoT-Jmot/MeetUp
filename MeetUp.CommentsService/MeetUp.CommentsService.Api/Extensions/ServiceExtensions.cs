@@ -53,10 +53,23 @@ namespace MeetUp.CommentsService.Api.Extensions
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            var channel = GrpcChannel.ForAddress(configuration["Kestrel:Endpoints:gRPC:Url"]!);
+            var channel = GrpcChannel.ForAddress(configuration["GrpcEventConnection"]!);
             var client = new Greeter.GreeterClient(channel);
 
             services.AddSingleton(client);
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureSignalR(
+            this IServiceCollection services)
+        {
+            services.AddSignalR(hubOptions =>
+            {
+                hubOptions.EnableDetailedErrors = true;
+                hubOptions.KeepAliveInterval = TimeSpan.FromSeconds(10);
+                hubOptions.HandshakeTimeout = TimeSpan.FromSeconds(5);
+            });
 
             return services;
         }

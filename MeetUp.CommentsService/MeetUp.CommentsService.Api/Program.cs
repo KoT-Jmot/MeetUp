@@ -2,6 +2,7 @@ using FluentValidation;
 using MeetUp.CommentsService.Api.ExceptionHandler;
 using MeetUp.CommentsService.Api.Extensions;
 using MeetUp.CommentsService.Api.Features;
+using MeetUp.CommentsService.Application.Hubs;
 using Serilog;
 using System.Reflection;
 
@@ -25,6 +26,7 @@ services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.CommentsService.Applica
 
 services.ConfigureMapster()
         .ConfigureGRPC(configuration)
+        .ConfigureSignalR()
         .ConfigureServices();
 
 var app = await builder.Build().ConfigureMigrationAsync();
@@ -34,6 +36,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.MapHub<CommentsHub>("/chat");
 app.MapControllers();
 
 app.Run();
