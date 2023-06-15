@@ -11,6 +11,9 @@ using FluentValidation;
 using Mapster;
 using Grpc.Net.Client;
 using MeetUpGrpc;
+using MeetUp.CommentsService.Application.Hubs;
+using System.Text.Json;
+using Microsoft.AspNetCore.SignalR;
 
 namespace MeetUp.CommentsService.Application.Services
 {
@@ -19,14 +22,19 @@ namespace MeetUp.CommentsService.Application.Services
         private readonly IRepositoryManager _repositoryManager;
         private readonly IValidator<CommentDto> _commentValidator;
         private readonly string _grpcUrl;
+        private readonly IHubContext<CommentsHub> _chatHubContext;
+
+
         public CommentService(
             IRepositoryManager repositoryManager,
             IValidator<CommentDto> commentValidator,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IHubContext<CommentsHub> chatHubContext)
         {
             _repositoryManager = repositoryManager;
             _commentValidator = commentValidator;
-            _grpcUrl = configuration["Kestrel:Endpoints:gRPC:Url"]!;
+            _grpcUrl = configuration["GrpcEventConnection"]!;
+            _chatHubContext = chatHubContext;
         }
 
         public async Task<Guid> CreateCommentByUserIdAsync(
@@ -46,6 +54,8 @@ namespace MeetUp.CommentsService.Application.Services
 
             await _repositoryManager.Comments.AddAsync(comment, cancellationToken);
             await _repositoryManager.SaveChangesAsync(cancellationToken);
+
+            await _chatHubContext.Clients.Group(commentDto.EventId.ToString()).SendAsync(JsonSerializer.Serialize<Comment>(comment));
 
             return comment.Id;
         }
