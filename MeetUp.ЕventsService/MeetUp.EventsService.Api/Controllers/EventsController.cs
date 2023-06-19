@@ -43,7 +43,7 @@ namespace MeetUp.EventsService.Api.Controllers
             [FromBody] EventDto eventDto,
             CancellationToken cancellationToken)
         {
-            var userId = Request.Headers[ClaimsName.UserId];
+            var userId = Request.Headers[ClaimsConfiguration.UserId];
 
             var eventId = await _eventManager.CreateEventBySponserIdAsync(eventDto, userId, cancellationToken);
 
@@ -55,7 +55,7 @@ namespace MeetUp.EventsService.Api.Controllers
             [FromRoute] Guid eventId,
             CancellationToken cancellationToken)
         {
-            var userId = Request.Headers[ClaimsName.UserId];
+            var userId = Request.Headers[ClaimsConfiguration.UserId];
 
             await _eventManager.DeleteEventByIdAndSponserIdAsync(userId, eventId, cancellationToken);
 
@@ -68,7 +68,7 @@ namespace MeetUp.EventsService.Api.Controllers
             [FromBody] EventDto eventDto,
             CancellationToken cancellationToken)
         {
-            var userId = Request.Headers[ClaimsName.UserId];
+            var userId = Request.Headers[ClaimsConfiguration.UserId];
 
             var updatedEventId = await _eventManager.UpdateEventByIdAndSponserIdAsync(eventId, eventDto, userId, cancellationToken);
 

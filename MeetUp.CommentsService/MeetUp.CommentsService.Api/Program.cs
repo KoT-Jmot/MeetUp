@@ -1,10 +1,10 @@
-using MeetUp.EventsService.Api.ExceptionHandler;
-using MeetUp.EventsService.Api.Extensions;
-using MeetUp.EventsService.Api.Features;
-using System.Reflection;
 using FluentValidation;
+using MeetUp.CommentsService.Api.ExceptionHandler;
+using MeetUp.CommentsService.Api.Extensions;
+using MeetUp.CommentsService.Api.Features;
+using MeetUp.CommentsService.Application.Hubs;
 using Serilog;
-using MeetUp.EventsService.Application.Services;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,22 +22,21 @@ builder.Host.UseSerilog();
 services.ConfigureSqlServer(configuration)
         .AddControllers();
 
-services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.EventsService.Application"));
-
-services.AddGrpc();
+services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.CommentsService.Application"));
 
 services.ConfigureMapster()
+        .ConfigureGRPC(configuration)
+        .ConfigureSignalR()
         .ConfigureServices();
 
 var app = await builder.Build().ConfigureMigrationAsync();
 
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.MapGrpcService<GreeterService>();
-
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.MapHub<CommentsHub>("/chat");
 app.MapControllers();
 
 app.Run();

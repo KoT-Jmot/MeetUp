@@ -1,9 +1,9 @@
-﻿using MeetUp.EventsService.Application.RequestFeatures;
-using MeetUp.EventsService.Application.Contracts;
+﻿using MeetUp.CommentsService.Application.RequestFeatures;
+using MeetUp.CommentsService.Application.Contracts;
 using Microsoft.Extensions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MeetUp.EventsService.Api.Features
+namespace MeetUp.CommentsService.Api.Features
 {
     public class PagingActionResult<T> : IActionResult where T : IPagination
     {

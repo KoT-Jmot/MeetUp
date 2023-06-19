@@ -33,9 +33,21 @@ services:
       - ASPNETCORE_URLS=http://+:80
     ports:
       - "10502:80"
+      - "10504:443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - elastic
+
+  meetup.commentsservice.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "10503:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     networks:
       - elastic
 
@@ -50,6 +62,15 @@ services:
       - restate-sql-server:/var/opt/mssql
     networks:
       - elastic
+
+  commentDb:
+    container_name: MeetUp.CommentsDataBase
+    environment:
+      POSTGRES_PASSWORD: password
+    networks:
+      - elastic
+    ports:
+      - "5432:80"
 
   elasticsearch:
     container_name: MeetUp.Elasticsearch
@@ -104,4 +125,5 @@ volumes:
     driver: local
   kafka_data:
     driver: local
+
 

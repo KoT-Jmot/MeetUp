@@ -7,33 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Response\**" />
-    <EmbeddedResource Remove="Response\**" />
-    <None Remove="Response\**" />
+    <ProjectReference Include="..\MeetUp.CommentsService.Infrastructure\MeetUp.CommentsService.Infrastructure.csproj" />
+  </ItemGroup>
+	
+  <ItemGroup>
+		<Protobuf Include="Protos\greet.proto" GrpcServices="Server,Client" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MeetUp.EventsService.Infrastructure\MeetUp.EventsService.Infrastructure.csproj" />
+    <Folder Include="Protos\" />
   </ItemGroup>
-	
-  <ItemGroup>
-		<Protobuf Include="Protos\greet.proto" />
-  </ItemGroup>
-	
+
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.5.2" />
     <PackageReference Include="Google.Protobuf" Version="3.23.2" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.53.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.53.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.54.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Mapster" Version="7.3.0" />
     <PackageReference Include="Mapster.Async" Version="2.0.0" />
     <PackageReference Include="Mapster.Core" Version="1.2.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Protos\greet.proto">
-      <GrpcServices>Server,Client</GrpcServices>
-    </None>
   </ItemGroup>
 
 </Project>
