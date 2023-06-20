@@ -67,6 +67,8 @@ services:
     container_name: MeetUp.CommentsDataBase
     environment:
       POSTGRES_PASSWORD: password
+    volumes:
+      - restate-sql-server:/var/opt/postgresql 
     networks:
       - elastic
     ports:
@@ -101,6 +103,8 @@ services:
       - "zookeeper_data:/bitnami"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - elastic
 
   kafka:
     container_name: MeetUp.Kafka
@@ -113,6 +117,8 @@ services:
       - KAFKA_ENABLE_KRAFT=no
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+    networks:
+      - elastic
 
 networks:
   elastic:

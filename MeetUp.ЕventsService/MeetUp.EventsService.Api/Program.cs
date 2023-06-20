@@ -1,10 +1,10 @@
 using MeetUp.EventsService.Api.ExceptionHandler;
+using MeetUp.EventsService.Application.Services;
 using MeetUp.EventsService.Api.Extensions;
 using MeetUp.EventsService.Api.Features;
 using System.Reflection;
 using FluentValidation;
 using Serilog;
-using MeetUp.EventsService.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +26,8 @@ services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.EventsService.Applicati
 
 services.AddGrpc();
 
+services.ConfigureProducers();
+
 services.ConfigureMapster()
         .ConfigureServices();
 
@@ -35,7 +37,6 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapGrpcService<GreeterService>();
 
-app.UseHttpsRedirection();
 app.UseRouting();
 
 app.MapControllers();

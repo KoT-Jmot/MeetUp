@@ -24,6 +24,8 @@ services.ConfigureSqlServer(configuration)
 
 services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.CommentsService.Application"));
 
+services.ConfigureConsumers();
+
 services.ConfigureMapster()
         .ConfigureGRPC(configuration)
         .ConfigureSignalR()
@@ -33,7 +35,6 @@ var app = await builder.Build().ConfigureMigrationAsync();
 
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.UseHttpsRedirection();
 app.UseRouting();
 
 app.MapHub<CommentsHub>("/chat");

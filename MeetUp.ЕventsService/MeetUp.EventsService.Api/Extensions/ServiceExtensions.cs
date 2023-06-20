@@ -4,9 +4,11 @@ using MeetUp.EventsService.Application.Contracts;
 using MeetUp.EventsService.Application.Services;
 using MeetUp.EventsService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using MeetUp.Kafka.Extensions;
 using System.Reflection;
 using MapsterMapper;
 using Mapster;
+using Confluent.Kafka;
 
 namespace MeetUp.EventsService.Api.Extensions
 {
@@ -46,6 +48,17 @@ namespace MeetUp.EventsService.Api.Extensions
         {
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ICategoryService, CategoryService>();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureProducers(this IServiceCollection services)
+        {
+            services.AddKafkaProducer<string, Guid>(p =>
+            {
+                p.Topic = "DeletedEvents";
+                p.BootstrapServers = "kafka:9092";
+            });
 
             return services;
         }

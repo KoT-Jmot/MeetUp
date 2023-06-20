@@ -9,6 +9,7 @@ using FluentValidation;
 using Mapster;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
+using MeetUp.Kafka.Contracts;
 
 namespace MeetUp.EventsService.Application.Services
 {
@@ -16,12 +17,15 @@ namespace MeetUp.EventsService.Application.Services
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IValidator<EventDto> _eventValidator;
+        private readonly IKafkaProducer<string, Guid> _kafkaEventsProducer;
         public EventService(
             IRepositoryManager repositoryManager,
-            IValidator<EventDto> eventValidator)
+            IValidator<EventDto> eventValidator,
+            IKafkaProducer<string, Guid> kafkaEventsProducer)
         {
             _repositoryManager = repositoryManager;
             _eventValidator = eventValidator;
+            _kafkaEventsProducer = kafkaEventsProducer;
         }
 
         public async Task<PagedList<OutputEventDto>> GetAllEventsAsync(EventQueryDto eventQuery, CancellationToken cancellationToken)
@@ -114,6 +118,7 @@ namespace MeetUp.EventsService.Application.Services
             }
 
             await _repositoryManager.Events.RemoveAsync(deletingEvent, cancellationToken);
+            await StartEventCascadeDeleting(deletingEvent.Id);
             await _repositoryManager.SaveChangesAsync(cancellationToken);
         }
 
@@ -154,6 +159,11 @@ namespace MeetUp.EventsService.Application.Services
             await _repositoryManager.SaveChangesAsync();
 
             return eventId;
+        }
+
+        private async Task StartEventCascadeDeleting(Guid eventId)
+        {
+            await _kafkaEventsProducer.ProduceAsync("deleteComments", eventId);
         }
     }
 }
