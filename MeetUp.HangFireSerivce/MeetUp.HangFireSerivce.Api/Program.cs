@@ -1,6 +1,8 @@
 using Hangfire;
 using MeetUp.HangFireSerivce.Api.ExceptionHandler;
 using MeetUp.HangFireSerivce.Api.Extensions;
+using MeetUp.HangFireSerivce.Api.Features;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,10 @@ var configuration = new ConfigurationBuilder()
                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                    .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: false, reloadOnChange: true)
                    .Build();
+
+LoggerConfigurator.ConfigureLog(configuration);
+
+builder.Host.UseSerilog();
 
 services.ConfigureHangFire(configuration)
         .ConfigureServices();
