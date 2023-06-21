@@ -7,7 +7,8 @@
         "meetup.identityservice.api": "StartDebugging",
         "meetup.eventsservice.api": "StartDebugging",
         "meetup.gateway": "StartDebugging",
-        "meetup.commentsservice.api": "StartDebugging"
+        "meetup.commentsservice.api": "StartDebugging",
+        "meetup.hangfireserivce.api": "StartDebugging"
       }
     }
   }

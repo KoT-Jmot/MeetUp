@@ -51,6 +51,14 @@ services:
     networks:
       - elastic
 
+  meetup.hangfireserivce.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    ports:
+      - "10505:80"
+    networks:
+      - elastic
+
   meetupDb:
     container_name: MeetUp.DataBase
     ports:
@@ -131,5 +139,6 @@ volumes:
     driver: local
   kafka_data:
     driver: local
+
 
 
