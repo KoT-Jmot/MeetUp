@@ -1,4 +1,5 @@
 using Hangfire;
+using MeetUp.HangFireSerivce.Api.ExceptionHandler;
 using MeetUp.HangFireSerivce.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ services.ConfigureHangFire(configuration)
 
 var app = await builder.Build().ConfigureMigrationAsync();
 
+app.UseMiddleware<ExceptionMiddleware>();
 
 await app.InitializeHangFireContextAsync();
 
