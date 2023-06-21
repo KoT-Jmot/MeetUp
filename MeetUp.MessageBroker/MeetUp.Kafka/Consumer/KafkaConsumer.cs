@@ -12,7 +12,7 @@ namespace MeetUp.Kafka.Consumer
     {
         private readonly ConsumerKafkaConfiguration<TKey, TValue> _config;
         private readonly IServiceScopeFactory _serviceScopeFactory;
-        private IKafkaConsumerHandler<TKey, TValue>? _handler;
+        private IKafkaConsumerHandler<TKey, TValue> _handler;
 
         public KafkaConsumer(IOptions<ConsumerKafkaConfiguration<TKey, TValue>> config,
                              IServiceScopeFactory serviceScopeFactory)

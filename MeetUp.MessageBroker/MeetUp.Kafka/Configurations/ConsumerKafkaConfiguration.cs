@@ -4,7 +4,7 @@ namespace MeetUp.Kafka.Configurations
 {
     public class ConsumerKafkaConfiguration<TKey, TValue> : ConsumerConfig
     {
-        public string? Topic { get; set; }
+        public string Topic { get; set; }
 
         public ConsumerKafkaConfiguration()
         {

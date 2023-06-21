@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MeetUp.MessageBroker\MeetUp.Kafka\MeetUp.Kafka.csproj" />
     <ProjectReference Include="..\MeetUp.EventsService.Infrastructure\MeetUp.EventsService.Infrastructure.csproj" />
   </ItemGroup>
 	

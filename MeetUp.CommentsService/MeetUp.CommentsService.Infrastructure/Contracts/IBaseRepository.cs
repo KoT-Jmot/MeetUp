@@ -13,5 +13,8 @@
         Task RemoveAsync(
             T entity,
             CancellationToken cancellationToken = default);
+        Task RemoveRangeAsync(
+            IEnumerable<T> entity,
+            CancellationToken cancellationToken = default);
     }
 }

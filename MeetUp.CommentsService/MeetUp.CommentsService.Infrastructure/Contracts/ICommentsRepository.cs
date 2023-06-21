@@ -9,5 +9,9 @@ namespace MeetUp.CommentsService.Infrastructure.Contracts
             Guid eventId,
             bool trackChanges = false,
             CancellationToken cancellationToken = default);
+        Task<IEnumerable<Comment?>> GetCommentsByEventIdAsync(
+            Guid eventId,
+            bool trackChanges = false,
+            CancellationToken cancellationToken = default);
     }
 }

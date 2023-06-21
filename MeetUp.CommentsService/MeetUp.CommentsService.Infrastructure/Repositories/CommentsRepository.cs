@@ -18,5 +18,13 @@ namespace MeetUp.CommentsService.Infrastructure.Repositories
         {
             return await GetByQueryable(c => c.UserId!.Equals(userId) && c.Id.Equals(commentId), trackChanges).FirstOrDefaultAsync(cancellationToken);
         }
+
+        public async Task<IEnumerable<Comment?>> GetCommentsByEventIdAsync(
+            Guid eventId,
+            bool trackChanges = false,
+            CancellationToken cancellationToken = default)
+        {
+            return await GetByQueryable(c => c.EventId!.Equals(eventId), trackChanges).ToArrayAsync(cancellationToken);
+        }
     }
 }
