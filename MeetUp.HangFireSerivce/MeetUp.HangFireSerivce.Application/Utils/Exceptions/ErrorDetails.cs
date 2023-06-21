@@ -1,4 +1,6 @@
-﻿namespace MeetUp.HangFireSerivce.Application.Utils.Exceptions
+﻿using System.Text.Json;
+
+namespace MeetUp.HangFireSerivce.Application.Utils.Exceptions
 {
     public class ErrorDetails
     {
