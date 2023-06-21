@@ -33,11 +33,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.Gateway", "MeetUp.Ga
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.CommentsService", "MeetUp.CommentsService", "{BDE5C384-CA1E-43A9-B7B5-B602EFFFB1B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.CommentsService.Infrastructure", "MeetUp.CommentsService\MeetUp.CommentsService.Infrastructure\MeetUp.CommentsService.Infrastructure.csproj", "{F226E26A-3E26-4DD5-A1CB-48A54E78D17D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.CommentsService.Infrastructure", "MeetUp.CommentsService\MeetUp.CommentsService.Infrastructure\MeetUp.CommentsService.Infrastructure.csproj", "{F226E26A-3E26-4DD5-A1CB-48A54E78D17D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.CommentsService.Application", "MeetUp.CommentsService\MeetUp.CommentsService.Application\MeetUp.CommentsService.Application.csproj", "{AD8AE4D6-8D9F-49ED-A784-5ABF747BEFD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.CommentsService.Application", "MeetUp.CommentsService\MeetUp.CommentsService.Application\MeetUp.CommentsService.Application.csproj", "{AD8AE4D6-8D9F-49ED-A784-5ABF747BEFD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.CommentsService.Api", "MeetUp.CommentsService\MeetUp.CommentsService.Api\MeetUp.CommentsService.Api.csproj", "{40DEE3FF-C449-4270-9C5D-D18C4EC1AB50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.CommentsService.Api", "MeetUp.CommentsService\MeetUp.CommentsService.Api\MeetUp.CommentsService.Api.csproj", "{40DEE3FF-C449-4270-9C5D-D18C4EC1AB50}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.HangFireSerivce", "MeetUp.HangFireSerivce", "{2FA5321C-1061-4757-9AB7-5ED2D5C67836}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.HangFireSerivce.Api", "MeetUp.HangFireSerivce\MeetUp.HangFireSerivce.Api\MeetUp.HangFireSerivce.Api.csproj", "{4E8C6EF2-B990-4D0A-891D-379901EFC729}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +101,10 @@ Global
 		{40DEE3FF-C449-4270-9C5D-D18C4EC1AB50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40DEE3FF-C449-4270-9C5D-D18C4EC1AB50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40DEE3FF-C449-4270-9C5D-D18C4EC1AB50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E8C6EF2-B990-4D0A-891D-379901EFC729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E8C6EF2-B990-4D0A-891D-379901EFC729}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E8C6EF2-B990-4D0A-891D-379901EFC729}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E8C6EF2-B990-4D0A-891D-379901EFC729}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +122,7 @@ Global
 		{F226E26A-3E26-4DD5-A1CB-48A54E78D17D} = {BDE5C384-CA1E-43A9-B7B5-B602EFFFB1B4}
 		{AD8AE4D6-8D9F-49ED-A784-5ABF747BEFD4} = {BDE5C384-CA1E-43A9-B7B5-B602EFFFB1B4}
 		{40DEE3FF-C449-4270-9C5D-D18C4EC1AB50} = {BDE5C384-CA1E-43A9-B7B5-B602EFFFB1B4}
+		{4E8C6EF2-B990-4D0A-891D-379901EFC729} = {2FA5321C-1061-4757-9AB7-5ED2D5C67836}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90F4CEF7-763E-4A1B-8539-EA3742745122}
