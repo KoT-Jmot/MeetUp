@@ -8,7 +8,6 @@ using MeetUp.Kafka.Extensions;
 using System.Reflection;
 using MapsterMapper;
 using Mapster;
-using Confluent.Kafka;
 
 namespace MeetUp.EventsService.Api.Extensions
 {
