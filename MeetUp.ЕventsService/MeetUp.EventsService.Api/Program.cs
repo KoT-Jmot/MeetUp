@@ -26,7 +26,8 @@ services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.EventsService.Applicati
 
 services.AddGrpc();
 
-services.ConfigureProducers();
+services.ConfigureProducers()
+        .ConfigureConsumers();
 
 services.ConfigureMapster()
         .ConfigureServices();

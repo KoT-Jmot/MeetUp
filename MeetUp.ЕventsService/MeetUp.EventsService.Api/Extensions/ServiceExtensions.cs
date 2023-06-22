@@ -8,6 +8,7 @@ using MeetUp.Kafka.Extensions;
 using System.Reflection;
 using MapsterMapper;
 using Mapster;
+using MeetUp.EventsService.Application.MessageHandlers;
 
 namespace MeetUp.EventsService.Api.Extensions
 {
@@ -57,6 +58,20 @@ namespace MeetUp.EventsService.Api.Extensions
             {
                 p.Topic = "DeletedEvents";
                 p.BootstrapServers = "kafka:9092";
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureConsumers(this IServiceCollection services)
+        {
+            services.AddKafkaConsumer<string, DateTime, OldEventMessageHandler>(p =>
+            {
+                p.Topic = "OldEvents";
+                p.GroupId = "OldEventsGroup";
+                p.BootstrapServers = "kafka:9092";
+
+                p.AllowAutoCreateTopics = true;
             });
 
             return services;
