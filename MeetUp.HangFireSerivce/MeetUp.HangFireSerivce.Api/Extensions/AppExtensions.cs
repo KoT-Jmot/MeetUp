@@ -1,4 +1,6 @@
-﻿using MeetUp.HangFireSerivce.Infrastructure;
+﻿using Hangfire;
+using MeetUp.HangFireSerivce.Application.Contracts;
+using MeetUp.HangFireSerivce.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace MeetUp.HangFireSerivce.Api.Extensions
@@ -28,13 +30,13 @@ namespace MeetUp.HangFireSerivce.Api.Extensions
 
         public static async Task<WebApplication> InitializeHangFireJobStorageAsync(this WebApplication app)
         {
-            //await using (var scope = app.Services.CreateAsyncScope())
-            //{
-            //    var hangFireService = scope.ServiceProvider.GetRequiredService<INotificationServices>();
+            await using (var scope = app.Services.CreateAsyncScope())
+            {
+                var hangFireService = scope.ServiceProvider.GetRequiredService<INotificationServices>();
 
-            //    RecurringJob.AddOrUpdate(() =>
-            //        hangFireService.DeleteLatestOrdersAsync(), Cron.Daily);
-            //}
+                RecurringJob.AddOrUpdate(() =>
+                    hangFireService.DeleteLatestOrdersAsync(-3), Cron.Hourly);
+            }
 
             return app;
         }

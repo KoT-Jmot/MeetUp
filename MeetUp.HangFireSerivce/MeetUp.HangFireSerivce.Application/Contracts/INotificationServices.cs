@@ -2,5 +2,6 @@
 {
     public interface INotificationServices
     {
+        Task DeleteLatestOrdersAsync(int HoursInterval = 0);
     }
 }
