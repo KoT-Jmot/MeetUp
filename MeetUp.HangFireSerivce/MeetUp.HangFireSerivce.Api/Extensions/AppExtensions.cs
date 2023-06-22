@@ -35,7 +35,7 @@ namespace MeetUp.HangFireSerivce.Api.Extensions
                 var hangFireService = scope.ServiceProvider.GetRequiredService<INotificationServices>();
 
                 RecurringJob.AddOrUpdate(() =>
-                    hangFireService.DeleteLatestOrdersAsync(-3), Cron.Hourly);
+                    hangFireService.DeleteLatestOrdersAsync(10), Cron.Hourly);
             }
 
             return app;
