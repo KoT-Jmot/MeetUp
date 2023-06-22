@@ -18,6 +18,7 @@ LoggerConfigurator.ConfigureLog(configuration);
 builder.Host.UseSerilog();
 
 services.ConfigureHangFire(configuration)
+        .ConfigureProducers()
         .ConfigureServices();
 
 var app = await builder.Build().ConfigureMigrationAsync();
@@ -28,7 +29,10 @@ await app.InitializeHangFireContextAsync();
 
 app.UseRouting();
 
-app.UseHangfireDashboard();
+app.UseHangfireDashboard(options: new DashboardOptions
+{
+    Authorization = new[] { new HangfireAuthorizationFilter() }
+});
 
 await app.InitializeHangFireJobStorageAsync();
 
