@@ -1,7 +1,6 @@
-using MeetUp.EventsService.Api.ExceptionHandler;
-using MeetUp.EventsService.Application.Services;
-using MeetUp.EventsService.Api.Extensions;
-using MeetUp.EventsService.Api.Features;
+using MeetUp.HangFireSerivce.Api.ExceptionHandler;
+using MeetUp.HangFireSerivce.Api.Extensions;
+using MeetUp.HangFireSerivce.Api.Features;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,10 +22,8 @@ var app = await builder.Build().ConfigureMigrationAsync();
 
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.MapGrpcService<GreeterService>();
-
 app.UseRouting();
 
-app.MapControllers();
+await app.InjectHangfireSettings();
 
 app.Run();
