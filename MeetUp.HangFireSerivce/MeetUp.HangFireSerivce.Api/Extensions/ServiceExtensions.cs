@@ -54,4 +54,5 @@ namespace MeetUp.HangFireSerivce.Api.Extensions
 
             return services;
         }
+    }
 }
