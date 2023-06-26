@@ -2,8 +2,6 @@ using MeetUp.EventsService.Api.ExceptionHandler;
 using MeetUp.EventsService.Application.Services;
 using MeetUp.EventsService.Api.Extensions;
 using MeetUp.EventsService.Api.Features;
-using System.Reflection;
-using FluentValidation;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,18 +17,7 @@ LoggerConfigurator.ConfigureLog(configuration);
 
 builder.Host.UseSerilog();
 
-services.ConfigureSqlServer(configuration)
-        .AddControllers();
-
-services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.EventsService.Application"));
-
-services.AddGrpc();
-
-services.ConfigureProducers()
-        .ConfigureConsumers();
-
-services.ConfigureMapster()
-        .ConfigureServices();
+services.InjectConfiguration(configuration);
 
 var app = await builder.Build().ConfigureMigrationAsync();
 

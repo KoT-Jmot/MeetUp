@@ -32,6 +32,7 @@ namespace MeetUp.HangFireSerivce.Api.Extensions
 
             return services;
         }
+
         public static IServiceCollection ConfigureProducers(this IServiceCollection services)
         {
             services.AddKafkaProducer<string, DateTime>(p =>
@@ -42,5 +43,15 @@ namespace MeetUp.HangFireSerivce.Api.Extensions
 
             return services;
         }
-    }
+
+        public static IServiceCollection InjectConfiguration(
+            this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            services.ConfigureHangFire(configuration)
+                    .ConfigureProducers()
+                    .ConfigureServices();
+
+            return services;
+        }
 }

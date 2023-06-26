@@ -9,6 +9,7 @@ using System.Reflection;
 using MapsterMapper;
 using Mapster;
 using MeetUp.EventsService.Application.MessageHandlers;
+using FluentValidation;
 
 namespace MeetUp.EventsService.Api.Extensions
 {
@@ -31,8 +32,7 @@ namespace MeetUp.EventsService.Api.Extensions
             return services;
         }
 
-        public static IServiceCollection ConfigureMapster(
-                   this IServiceCollection services)
+        public static IServiceCollection ConfigureMapster(this IServiceCollection services)
         {
             var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
             typeAdapterConfig.Scan(Assembly.Load("MeetUp.EventsService.Application"));
@@ -43,8 +43,7 @@ namespace MeetUp.EventsService.Api.Extensions
             return services;
         }
 
-        public static IServiceCollection ConfigureServices(
-                   this IServiceCollection services)
+        public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ICategoryService, CategoryService>();
@@ -73,6 +72,26 @@ namespace MeetUp.EventsService.Api.Extensions
 
                 p.AllowAutoCreateTopics = true;
             });
+
+            return services;
+        }
+
+        public static IServiceCollection InjectConfiguration(
+                   this IServiceCollection services,
+                   IConfiguration configuration)
+        {
+            services.ConfigureSqlServer(configuration)
+                    .AddControllers();
+
+            services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.EventsService.Application"));
+
+            services.AddGrpc();
+
+            services.ConfigureProducers()
+                    .ConfigureConsumers();
+
+            services.ConfigureMapster()
+                    .ConfigureServices();
 
             return services;
         }

@@ -1,4 +1,3 @@
-using Hangfire;
 using MeetUp.HangFireSerivce.Api.ExceptionHandler;
 using MeetUp.HangFireSerivce.Api.Extensions;
 using MeetUp.HangFireSerivce.Api.Features;
@@ -17,24 +16,14 @@ LoggerConfigurator.ConfigureLog(configuration);
 
 builder.Host.UseSerilog();
 
-services.ConfigureHangFire(configuration)
-        .ConfigureProducers()
-        .ConfigureServices();
+services.InjectConfiguration(configuration);
 
 var app = await builder.Build().ConfigureMigrationAsync();
 
 app.UseMiddleware<ExceptionMiddleware>();
 
-await app.InitializeHangFireContextAsync();
-
 app.UseRouting();
 
-app.UseHangfireDashboard(options: new DashboardOptions
-{
-    Authorization = new[] { new HangfireAuthorizationFilter() }
-});
-
-await app.InitializeHangFireJobStorageAsync();
-
+await app.InjectHangfireSettings();
 
 app.Run();

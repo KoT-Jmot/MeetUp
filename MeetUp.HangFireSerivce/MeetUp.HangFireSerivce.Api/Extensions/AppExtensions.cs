@@ -1,7 +1,8 @@
-﻿using Hangfire;
-using MeetUp.HangFireSerivce.Application.Contracts;
+﻿using MeetUp.HangFireSerivce.Application.Contracts;
 using MeetUp.HangFireSerivce.Infrastructure;
+using MeetUp.HangFireSerivce.Api.Features;
 using Microsoft.EntityFrameworkCore;
+using Hangfire;
 
 namespace MeetUp.HangFireSerivce.Api.Extensions
 {
@@ -37,6 +38,22 @@ namespace MeetUp.HangFireSerivce.Api.Extensions
                 RecurringJob.AddOrUpdate(() =>
                     hangFireService.DeleteLatestOrdersAsync(-3), Cron.Hourly);
             }
+
+            return app;
+        }
+
+        public static async Task<WebApplication> InjectHangfireSettings(this WebApplication app)
+        {
+            await app.InitializeHangFireContextAsync();
+
+
+
+            app.UseHangfireDashboard(options: new DashboardOptions
+            {
+                Authorization = new[] { new HangfireAuthorizationFilter() }
+            });
+
+            await app.InitializeHangFireJobStorageAsync();
 
             return app;
         }
