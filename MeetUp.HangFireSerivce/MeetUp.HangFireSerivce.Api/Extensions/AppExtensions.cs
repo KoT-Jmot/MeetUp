@@ -46,8 +46,6 @@ namespace MeetUp.HangFireSerivce.Api.Extensions
         {
             await app.InitializeHangFireContextAsync();
 
-
-
             app.UseHangfireDashboard(options: new DashboardOptions
             {
                 Authorization = new[] { new HangfireAuthorizationFilter() }
