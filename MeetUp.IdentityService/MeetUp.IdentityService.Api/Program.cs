@@ -1,7 +1,5 @@
 using MeetUp.IdentityService.Api.ExceptionHandler;
 using MeetUp.IdentityService.Api.Extensions;
-using FluentValidation;
-using System.Reflection;
 using MeetUp.IdentityService.Api.Features;
 using Serilog;
 
@@ -18,14 +16,7 @@ LoggerConfigurator.ConfigureLog(configuration);
 
 builder.Host.UseSerilog();
 
-services.ConfigureSqlServer(configuration)
-        .AddControllers();
-
-services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.IdentityService.Application"));
-
-services.ConfigureIdentity()
-        .ConfigureJWT(configuration)
-        .ConfigureServices();
+services.InjectConfigurations(configuration);
 
 var app = await builder.Build().ConfigureMigrationAsync();
 
@@ -33,8 +24,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 await app.InitializeDbContextAsync();
 
-app.UseHttpsRedirection()
-   .UseRouting();
+app.UseRouting();
 
 app.MapControllers();
 

@@ -1,3 +1,4 @@
+using FluentValidation;
 using Mapster;
 using MapsterMapper;
 using MeetUp.IdentityService.Application.Contracts;
@@ -103,6 +104,22 @@ public static class ServiceExtensions
             .AddDefaultTokenProviders();
 
         builder.AddRoleManager<RoleManager<IdentityRole>>();
+
+        return services;
+    }
+
+    public static IServiceCollection InjectConfigurations(
+            this IServiceCollection services,
+            IConfiguration configuration)
+    {
+        services.ConfigureSqlServer(configuration)
+        .AddControllers();
+
+        services.AddValidatorsFromAssembly(Assembly.Load("MeetUp.IdentityService.Application"));
+
+        services.ConfigureIdentity()
+                .ConfigureJWT(configuration)
+                .ConfigureServices();
 
         return services;
     }
