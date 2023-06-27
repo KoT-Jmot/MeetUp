@@ -6,6 +6,7 @@ using MeetUp.IdentityService.Application.Services;
 using MeetUp.IdentityService.Application.Utils;
 using MeetUp.IdentityService.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Logging;
@@ -122,5 +123,48 @@ public static class ServiceExtensions
                 .ConfigureServices();
 
         return services;
+    }
+    public static IServiceCollection AddCorsPolicies(
+            this IServiceCollection services,
+            CorsSettings settings)
+    {
+        if(!settings.UserCors)
+        {
+            return services;
+        }
+
+        services.AddCors(options =>
+        {
+            foreach (var policy in settings.Policies)
+            {
+                options.AddPolicy(policy.PolicyName, builder => ConfigurePolicy(builder, policy));
+            }
+        });
+        return services;
+    }
+
+    private static void ConfigurePolicy(
+        CorsPolicyBuilder builder,
+        CorsPolicySettings settings)
+    {
+        if (settings.AllowAnyHeader)
+        {
+            builder.AllowAnyHeader();
+        }
+        else
+        {
+            builder.WithHeaders(settings.AllowedHeaders ?? Array.Empty<string>());
+        }
+
+        if (settings.AllowAnyMethod)
+        {
+            builder.AllowAnyMethod();
+        }
+        else
+        {
+            builder.WithMethods(settings.AllowedMethods ?? Array.Empty<string>());
+        }
+
+        builder.AllowAnyOrigin();
     }
 }

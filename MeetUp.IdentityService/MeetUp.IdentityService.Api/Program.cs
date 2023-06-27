@@ -16,6 +16,22 @@ LoggerConfigurator.ConfigureLog(configuration);
 
 builder.Host.UseSerilog();
 
+services.AddCorsPolicies(new CorsSettings
+{
+    UserCors = true,
+    UsePolicyWithName = "CorsDefaultPolicy",
+    Policies = new[]
+    {
+        new CorsPolicySettings
+        {
+            AllowAnyHeader = true,
+            AllowAnyMethod = true,
+            AllowedOrigins = new[] {"localhost:6001"},
+            PolicyName = "CorsDefaultPolicy"
+        }
+    }
+});
+
 services.InjectConfigurations(configuration);
 
 var app = await builder.Build().ConfigureMigrationAsync();
@@ -26,6 +42,8 @@ await app.InitializeDbContextAsync();
 
 app.UseRouting();
 
+
 app.MapControllers();
 
+app.UseCors("CorsDefaultPolicy");
 app.Run();
