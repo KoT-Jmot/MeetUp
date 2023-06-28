@@ -5,8 +5,10 @@ using MeetUp.IdentityService.Application.Utils;
 using Microsoft.AspNetCore.Identity;
 using FluentValidation;
 using Moq;
+using MockQueryable.Moq;
 using Microsoft.Extensions.Configuration;
 using MeetUp.IdentityService.Application.Utils.Exceptions;
+using MeetUp.IdentityService.Application.DTOs.QueryDto;
 
 namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
 {
@@ -36,8 +38,12 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         {
             var repositoryManager = new Mock<UserManager<IdentityUser>>(Mock.Of<IUserStore<IdentityUser>>(), null, null, null, null, null, null, null, null);
 
+
+
             repositoryManager.Setup(r => r.AddToRoleAsync(It.IsAny<IdentityUser>(), AccountRoles.GetDefaultRole)).ReturnsAsync(IdentityResult.Success);
             repositoryManager.Setup(r => r.GetRolesAsync(It.IsAny<IdentityUser>())).ReturnsAsync(new List<string> { "user" });
+
+            repositoryManager.Setup(r => r.Users).Returns(ServicesDataFactory.GetAllUsersEntity().BuildMock());
 
             return repositoryManager;
         }
@@ -114,7 +120,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
             var signInProcess = _userService.SignInAsync(userDto, default);
 
             //Assert
-            await Assert.ThrowsAsync<LoginUserException>(async ()=> await signInProcess);
+            await Assert.ThrowsAsync<LoginUserException>(async () => await signInProcess);
         }
 
         [Fact]
@@ -132,6 +138,73 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
 
             //Assert
             await Assert.ThrowsAsync<LoginUserException>(async () => await signInProcess);
+        }
+
+        [Fact]
+        public async Task GetUserByEmail_WhenUserExists_ShouldReturnUser()
+        {
+            //Arrange
+            var user = ServicesDataFactory.GetUserEntity();
+            var userEmail = user.Email;
+            var outputUser = ServicesDataFactory.GetOutputUserDto();
+
+            _userManagerMock.Setup(r => r.FindByEmailAsync(userEmail)).ReturnsAsync(user);
+
+            //Act
+            var result = await _userService.GetUserByEmail(userEmail);
+
+            //Assert
+            Assert.Equal(outputUser.Id, result.Id);
+        }
+
+        [Fact]
+        public async Task GetUserByEmail_WhenUserDoNotExists_ShouldReturnEntityNotFoundException()
+        {
+            //Arrange
+            var userEmail = ServicesDataFactory.GetUserEntity().Email;
+
+            _userManagerMock.Setup(r => r.FindByEmailAsync(userEmail)).ReturnsAsync(default(IdentityUser));
+
+            //Act
+            var getUserByEmailProcess = _userService.GetUserByEmail(userEmail);
+
+            //Assert
+            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await getUserByEmailProcess);
+        }
+
+        [Fact]
+        public async Task GetAllUsersAsync_WithPaging_ShouldReturnAllUsers()
+        {
+            //Arrange
+            var userQuery = new UserQueryDto();
+            var outputUserCount = 3;
+
+            //Act
+            var result = await _userService.GetAllUsersAsync(userQuery, default);
+
+            //Assert
+            Assert.NotEmpty(result);
+            Assert.NotNull(result);
+            Assert.Equal(outputUserCount, result.Count);
+        }
+
+        [Fact]
+        public async Task GetAllUsersAsync_WithPagingByUserName_ShouldReturnAllUsers()
+        {
+            //Arrange
+            var userQuery = new UserQueryDto()
+            {
+                UserName = "i"
+            };
+            var outputUserCount = 2;
+
+            //Act
+            var result = await _userService.GetAllUsersAsync(userQuery, default);
+
+            //Assert
+            Assert.NotEmpty(result);
+            Assert.NotNull(result);
+            Assert.Equal(outputUserCount, result.Count);
         }
     }
 }
