@@ -5,7 +5,6 @@ using MeetUp.IdentityService.Application.Utils;
 using Microsoft.AspNetCore.Identity;
 using FluentValidation;
 using Moq;
-using MockQueryable.Moq;
 using Microsoft.Extensions.Configuration;
 using MeetUp.IdentityService.Application.Utils.Exceptions;
 using MeetUp.IdentityService.Application.DTOs.QueryDto;
@@ -25,45 +24,20 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         {
             _registrationUserValidatorMock = new Mock<IValidator<UserForRegistrationDto>>();
             _loginUserValidatorMock = new Mock<IValidator<UserForLoginDto>>();
-            _userManagerMock = CreateRepositoryManagerMock();
             _configuration = new Mock<IConfiguration>();
-            _jwtConfigMock = CreateJwtConfigMock(_configuration.Object);
+            _jwtConfigMock = JwtConfigMock.Create(_configuration.Object);
+            _userManagerMock = RepositoryManagerMock.Create();
 
             Environment.SetEnvironmentVariable("SECRET", "MeetUpIdentityService");
 
             _userService = new AccountService(_userManagerMock.Object, _jwtConfigMock.Object, _registrationUserValidatorMock.Object, _loginUserValidatorMock.Object);
         }
 
-        private Mock<UserManager<IdentityUser>> CreateRepositoryManagerMock()
-        {
-            var repositoryManager = new Mock<UserManager<IdentityUser>>(Mock.Of<IUserStore<IdentityUser>>(), null, null, null, null, null, null, null, null);
-
-
-
-            repositoryManager.Setup(r => r.AddToRoleAsync(It.IsAny<IdentityUser>(), AccountRoles.GetDefaultRole)).ReturnsAsync(IdentityResult.Success);
-            repositoryManager.Setup(r => r.GetRolesAsync(It.IsAny<IdentityUser>())).ReturnsAsync(new List<string> { "user" });
-
-            repositoryManager.Setup(r => r.Users).Returns(ServicesDataFactory.GetAllUsersEntity().BuildMock());
-
-            return repositoryManager;
-        }
-
-        private Mock<JWTConfig> CreateJwtConfigMock(IConfiguration configuration)
-        {
-            var jwtConfig = new Mock<JWTConfig>(configuration);
-
-            jwtConfig.Setup(r => r.GetValidIssuer()).Returns("MeetUp");
-            jwtConfig.Setup(r => r.GetValidAudience()).Returns("https://localhost:5001");
-            jwtConfig.Setup(r => r.GetExpires()).Returns(30);
-
-            return jwtConfig;
-        }
-
         [Fact]
         public async Task RegisterUser_WhenUserDoNotExists_ShouldReturnSuccessResult()
         {
             //Arrange
-            var userDto = ServicesDataFactory.GetUserForRegistrationDto();
+            var userDto = DataFactory.GetUserForRegistrationDto();
 
             _userManagerMock.Setup(r => r.CreateAsync(It.IsAny<IdentityUser>(), userDto.Password)).ReturnsAsync(IdentityResult.Success);
 
@@ -78,7 +52,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         public async Task RegisterUser_WhenUserExists_ShouldReturnRegistrationUserException()
         {
             //Arrange
-            var userDto = ServicesDataFactory.GetUserForRegistrationDto();
+            var userDto = DataFactory.GetUserForRegistrationDto();
 
             _userManagerMock.Setup(r => r.CreateAsync(It.IsAny<IdentityUser>(), userDto.Password)).ReturnsAsync(IdentityResult.Failed());
 
@@ -93,8 +67,8 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         public async Task LoginUser_WhenUserExists_ShouldReturnSuccessResult()
         {
             //Arrange
-            var userDto = ServicesDataFactory.GetUserForLoginDto();
-            var user = ServicesDataFactory.GetUserEntity();
+            var userDto = DataFactory.GetUserForLoginDto();
+            var user = DataFactory.GetUserEntity();
 
             _userManagerMock.Setup(r => r.FindByEmailAsync(userDto.Email)).ReturnsAsync(user);
             _userManagerMock.Setup(r => r.CheckPasswordAsync(user, userDto.Password)).ReturnsAsync(true);
@@ -110,8 +84,8 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         public async Task LoginUser_WhenUserDoNotExists_ShouldReturnSuccessResult()
         {
             //Arrange
-            var userDto = ServicesDataFactory.GetUserForLoginDto();
-            var user = ServicesDataFactory.GetUserEntity();
+            var userDto = DataFactory.GetUserForLoginDto();
+            var user = DataFactory.GetUserEntity();
 
             _userManagerMock.Setup(r => r.FindByEmailAsync(userDto.Email)).ReturnsAsync(default(IdentityUser));
             _userManagerMock.Setup(r => r.CheckPasswordAsync(user, userDto.Password)).ReturnsAsync(true);
@@ -127,8 +101,8 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         public async Task LoginUser_WithIncorrectPassword_ShouldReturnSuccessResult()
         {
             //Arrange
-            var userDto = ServicesDataFactory.GetUserForLoginDto();
-            var user = ServicesDataFactory.GetUserEntity();
+            var userDto = DataFactory.GetUserForLoginDto();
+            var user = DataFactory.GetUserEntity();
 
             _userManagerMock.Setup(r => r.FindByEmailAsync(userDto.Email)).ReturnsAsync(user);
             _userManagerMock.Setup(r => r.CheckPasswordAsync(user, userDto.Password)).ReturnsAsync(false);
@@ -144,9 +118,9 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         public async Task GetUserByEmail_WhenUserExists_ShouldReturnUser()
         {
             //Arrange
-            var user = ServicesDataFactory.GetUserEntity();
+            var user = DataFactory.GetUserEntity();
             var userEmail = user.Email;
-            var outputUser = ServicesDataFactory.GetOutputUserDto();
+            var outputUser = DataFactory.GetOutputUserDto();
 
             _userManagerMock.Setup(r => r.FindByEmailAsync(userEmail)).ReturnsAsync(user);
 
@@ -161,7 +135,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         public async Task GetUserByEmail_WhenUserDoNotExists_ShouldReturnEntityNotFoundException()
         {
             //Arrange
-            var userEmail = ServicesDataFactory.GetUserEntity().Email;
+            var userEmail = DataFactory.GetUserEntity().Email;
 
             _userManagerMock.Setup(r => r.FindByEmailAsync(userEmail)).ReturnsAsync(default(IdentityUser));
 

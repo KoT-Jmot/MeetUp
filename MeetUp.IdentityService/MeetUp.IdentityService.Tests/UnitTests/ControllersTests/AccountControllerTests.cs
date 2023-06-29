@@ -1,15 +1,8 @@
-﻿using MeetUp.IdentityService.Application.Contracts;
+﻿using MeetUp.IdentityService.Application.DTOs.InputDto;
+using MeetUp.IdentityService.Application.DTOs.QueryDto;
+using MeetUp.IdentityService.Application.Contracts;
 using MeetUp.IdentityService.Api.Controllers;
 using Moq;
-using MeetUp.IdentityService.Application.DTOs.InputDto;
-using MeetUp.IdentityService.Application.DTOs.QueryDto;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using MeetUp.IdentityService.Api.Actions;
-using MeetUp.IdentityService.Application.DTOs.OutputDto;
-using MeetUp.IdentityService.Application.RequestFeatures;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace MeetUp.IdentityService.Tests.UnitTests.ControllersTests
 {
@@ -24,8 +17,8 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ControllersTests
 
             _accountService.Setup(r => r.SignUpAsync(It.IsAny<UserForRegistrationDto>(), It.IsAny<CancellationToken>())).ReturnsAsync(Guid.NewGuid().ToString());
             _accountService.Setup(r => r.SignInAsync(It.IsAny<UserForLoginDto>(), It.IsAny<CancellationToken>())).ReturnsAsync(Guid.NewGuid().ToString());
-            _accountService.Setup(r => r.GetUserByEmail(It.IsAny<string>())).ReturnsAsync(ControllersDataFactory.GetOutputUserDto());
-            _accountService.Setup(r => r.GetAllUsersAsync(It.IsAny<UserQueryDto>(), It.IsAny<CancellationToken>())).ReturnsAsync(ControllersDataFactory.GetAllOutputUsersDto());
+            _accountService.Setup(r => r.GetUserByEmail(It.IsAny<string>())).ReturnsAsync(DataFactory.GetOutputUserDto());
+            _accountService.Setup(r => r.GetAllUsersAsync(It.IsAny<UserQueryDto>(), It.IsAny<CancellationToken>())).ReturnsAsync(DataFactory.GetAllOutputUsersDto());
 
             _accountController = new AccountController(_accountService.Object);
         }
@@ -34,7 +27,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ControllersTests
         public async Task SignInAsync_WithCorrectData_ShouldReturnStatusCode200WithData()
         {
             //Arrange
-            var userDto = ControllersDataFactory.GetUserForLoginDto();
+            var userDto = DataFactory.GetUserForLoginDto();
 
             //Act
             var result = await _accountController.SignInAsync(userDto, default);
@@ -47,7 +40,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ControllersTests
         public async Task SignUpAsync_WithCorrectData_ShouldReturnStatusCodeCreatedWithData()
         {
             //Arrange
-            var userDto = ControllersDataFactory.GetUserForRegistrationDto();
+            var userDto = DataFactory.GetUserForRegistrationDto();
 
             //Act
             var result = await _accountController.SignUpAsync(userDto, default);
@@ -55,11 +48,12 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ControllersTests
             //Assert
             Assert.NotNull(result);
         }
+
         [Fact]
         public async Task GetUserByEmailAsync_WithCorrectData_ShouldReturnStatusCode200WithData()
         {
             //Arrange
-            var userEmail = ControllersDataFactory.GetOutputUserDto().Email;
+            var userEmail = DataFactory.GetOutputUserDto().Email;
 
             //Act
             var result = await _accountController.GetUserByEmailAsync(userEmail);
