@@ -39,8 +39,6 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
             //Arrange
             var userDto = DataFactory.GetUserForRegistrationDto();
 
-            _userManagerMock.Setup(r => r.CreateAsync(It.IsAny<IdentityUser>(), userDto.Password)).ReturnsAsync(IdentityResult.Success);
-
             //Act
             var result = await _userService.SignUpAsync(userDto, default);
 
