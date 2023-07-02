@@ -1,5 +1,4 @@
-﻿using MeetUp.IdentityService.Application.DTOs.InputDto;
-using MeetUp.IdentityService.Application.DTOs.QueryDto;
+﻿using MeetUp.IdentityService.Application.DTOs.QueryDto;
 using MeetUp.IdentityService.Application.Contracts;
 using MeetUp.IdentityService.Api.Controllers;
 using Moq;
@@ -13,13 +12,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ControllersTests
 
         public AccountControllerTests()
         {
-            _accountService = new Mock<IAccountService>();
-
-            _accountService.Setup(r => r.SignUpAsync(It.IsAny<UserForRegistrationDto>(), It.IsAny<CancellationToken>())).ReturnsAsync(Guid.NewGuid().ToString());
-            _accountService.Setup(r => r.SignInAsync(It.IsAny<UserForLoginDto>(), It.IsAny<CancellationToken>())).ReturnsAsync(Guid.NewGuid().ToString());
-            _accountService.Setup(r => r.GetUserByEmail(It.IsAny<string>())).ReturnsAsync(DataFactory.GetOutputUserDto());
-            _accountService.Setup(r => r.GetAllUsersAsync(It.IsAny<UserQueryDto>(), It.IsAny<CancellationToken>())).ReturnsAsync(DataFactory.GetAllOutputUsersDto());
-
+            _accountService = AccountServiceMock.Create();
             _accountController = new AccountController(_accountService.Object);
         }
 

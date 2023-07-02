@@ -1,13 +1,13 @@
-﻿using MeetUp.IdentityService.Application.Contracts;
+﻿using MeetUp.IdentityService.Application.Utils.Exceptions;
 using MeetUp.IdentityService.Application.DTOs.InputDto;
+using MeetUp.IdentityService.Application.DTOs.QueryDto;
+using MeetUp.IdentityService.Application.Contracts;
 using MeetUp.IdentityService.Application.Services;
 using MeetUp.IdentityService.Application.Utils;
+using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity;
 using FluentValidation;
 using Moq;
-using Microsoft.Extensions.Configuration;
-using MeetUp.IdentityService.Application.Utils.Exceptions;
-using MeetUp.IdentityService.Application.DTOs.QueryDto;
 
 namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
 {
