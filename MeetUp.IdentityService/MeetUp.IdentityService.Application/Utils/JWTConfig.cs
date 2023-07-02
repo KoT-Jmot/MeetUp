@@ -6,8 +6,6 @@ namespace MeetUp.IdentityService.Application.Utils
     {
         private readonly IConfiguration _configuration;
 
-        //public JWTConfig() { }
-
         public JWTConfig(IConfiguration configuration)
         {
             _configuration = configuration.GetSection("JwtSettings");
