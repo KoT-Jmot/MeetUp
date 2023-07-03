@@ -35,7 +35,7 @@ namespace MeetUp.EventsService.Api.ExceptionHandler
             HttpContext context,
             Exception exception)
         {
-            context.Response.ContentType = "application/json";
+            context.Response.ContentType = "application/json; charset=utf-8";
             context.Response.StatusCode = GetStatusCode(exception);
 
             await context.Response.WriteAsync(new ErrorDetails
@@ -51,7 +51,9 @@ namespace MeetUp.EventsService.Api.ExceptionHandler
             {
                 ArgumentNullException => StatusCodes.Status400BadRequest,
                 OperationCanceledException => StatusCodes.Status400BadRequest,
-                ValidationException => StatusCodes.Status422UnprocessableEntity,
+                FluentValidation.ValidationException => StatusCodes.Status422UnprocessableEntity,
+                CreatingCategoryException => StatusCodes.Status422UnprocessableEntity,
+                EntityNotFoundException => StatusCodes.Status422UnprocessableEntity,
                 _ => StatusCodes.Status500InternalServerError,
             };
         }
