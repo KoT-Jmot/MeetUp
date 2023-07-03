@@ -51,6 +51,7 @@ namespace MeetUp.IdentityService.Tests.IntegrationTests
         private static void ConfigEnvironment()
         {
             Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
+            Environment.SetEnvironmentVariable("SECRET", "MeetUpIdentityService");
             Environment.SetEnvironmentVariable("INTEGRATION_TEST", "True");
         }
     }
