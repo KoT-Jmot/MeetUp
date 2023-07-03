@@ -1,6 +1,5 @@
-﻿using Mapster;
-using MeetUp.IdentityService.Application.Mapster;
-using Microsoft.AspNetCore.Identity;
+﻿using MeetUp.IdentityService.Application.Mapster;
+using Mapster;
 
 namespace MeetUp.IdentityService.Tests.UnitTests.MappingTests
 {
