@@ -1,6 +1,4 @@
-﻿using MeetUp.IdentityService.Application.DTOs.OutputDto;
-using MeetUp.IdentityService.Application.RequestFeatures;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace MeetUp.IdentityService.Tests.IntegrationTests
 {
