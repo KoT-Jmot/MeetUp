@@ -1,4 +1,5 @@
-﻿using MeetUp.EventsService.Infrastructure.Models;
+﻿using MeetUp.EventsService.Application.DTOs.InputDto.CategoryDto;
+using MeetUp.EventsService.Infrastructure.Models;
 
 namespace MeetUp.EventsService.Tests.UnitTests
 {
@@ -31,6 +32,14 @@ namespace MeetUp.EventsService.Tests.UnitTests
             return new Category()
             {
                 Id = Guid.Parse("2789b1c3-34e5-4f4a-7bbf-08db683498b1"),
+                Name = "First"
+            };
+        }
+
+        public static CategoryDto GetCategoryDto()
+        {
+            return new CategoryDto()
+            {
                 Name = "First"
             };
         }

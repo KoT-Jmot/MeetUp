@@ -89,5 +89,125 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
             Assert.NotEmpty(result);
             Assert.NotEqual(users.Count(), result.Count());
         }
+
+        [Fact]
+        public async Task CreateCategory_WhenCategoryDoNotExist_ShouldReturnSuccessResult()
+        {
+            //Arrange
+            var categoryDto = DataFactory.GetCategoryDto();
+            var categoryId = DataFactory.GetCategoryEntity().Id;
+
+            //Act
+            var result = await _categoryService.CreateCategoryAsync(categoryDto, CancellationToken.None);
+
+            //Assert
+            Assert.NotEqual(categoryId, result);
+        }
+
+        [Fact]
+        public async Task CreateCategory_WhenCategoryExist_ShouldReturnCreatingCategoryException()
+        {
+            //Arrange
+            var categoryDto = DataFactory.GetCategoryDto();
+
+            _repositoryManager.Setup(r => r.Categories.GetCategoryByNameAsync(
+                              DataFactory.GetCategoryEntity().Name,
+                              It.IsAny<bool>(),
+                              It.IsAny<CancellationToken>()))
+                             .ReturnsAsync(DataFactory.GetCategoryEntity());
+
+            //Act
+            var createCategoryAsyncProcces = _categoryService.CreateCategoryAsync(categoryDto, CancellationToken.None);
+
+            //Assert
+            await Assert.ThrowsAsync<CreatingCategoryException>(async () => await createCategoryAsyncProcces);
+        }
+
+        [Fact]
+        public async Task DeleteCategory_WhenCategoryExist_ShouldReturnSuccessResult()
+        {
+            //Arrange
+            var categoryId = DataFactory.GetCategoryEntity().Id;
+
+            //Act
+            await _categoryService.DeleteCategoryByIdAsync(categoryId, CancellationToken.None);
+
+            //Assert
+            _repositoryManager.Verify();
+        }
+
+        [Fact]
+        public async Task DeleteCategory_WhenCategoryВщТщеExist_ShouldReturnEntityNotFoundException()
+        {
+            //Arrange
+            var categoryId = Guid.NewGuid();
+
+            _repositoryManager.Setup(r => r.Categories.GetByIdAsync(
+                               categoryId,
+                               It.IsAny<bool>(),
+                               It.IsAny<CancellationToken>()))
+                              .ReturnsAsync(default(Category));
+
+            //Act
+            var deleteCategoryByIdAsyncProcces = _categoryService.DeleteCategoryByIdAsync(categoryId, CancellationToken.None);
+
+            //Assert
+            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await deleteCategoryByIdAsyncProcces);
+        }
+
+        [Fact]
+        public async Task UpdateCategory_WhenCategoryExistWithCorrectData_ShouldReturnSuccessResult()
+        {
+            //Arrange
+            var categoryDto = DataFactory.GetCategoryDto();
+            var categoryId = DataFactory.GetCategoryEntity().Id;
+
+            //Act
+            var result = await _categoryService.UpdateCategoryByIdAsync(categoryId, categoryDto, CancellationToken.None);
+
+            //Assert
+            _repositoryManager.Verify();
+            Assert.Equal(categoryId, result);
+        }
+
+        [Fact]
+        public async Task UpdateCategory_WhenCategoryExistWithIncorrectData_ShouldReturnCreatingCategoryException()
+        {
+            //Arrange
+            var categoryDto = DataFactory.GetCategoryDto();
+            var categoryId = DataFactory.GetCategoryEntity().Id;
+
+            _repositoryManager.Setup(r => r.Categories.GetCategoryByNameAsync(
+                              categoryDto.Name!,
+                              It.IsAny<bool>(),
+                              It.IsAny<CancellationToken>()))
+                             .ReturnsAsync(DataFactory.GetCategoryEntity());
+
+            //Act
+            var pdateCategoryByIdAsyncProcces = _categoryService.UpdateCategoryByIdAsync(categoryId, categoryDto, CancellationToken.None);
+
+            //Assert
+            await Assert.ThrowsAsync<CreatingCategoryException>(async () => await pdateCategoryByIdAsyncProcces);
+        }
+
+        [Fact]
+        public async Task UpdateCategory_WhenCategoryIsNotExist_ShouldReturnCreatingCategoryException()
+        {
+            //Arrange
+            var categoryDto = DataFactory.GetCategoryDto();
+            var categoryId = Guid.NewGuid();
+
+            _repositoryManager.Setup(r => r.Categories.GetByIdAsync(
+                               categoryId,
+                               It.IsAny<bool>(),
+                               It.IsAny<CancellationToken>()))
+                              .ReturnsAsync(default(Category));
+
+            //Act
+            var pdateCategoryByIdAsyncProcces = _categoryService.UpdateCategoryByIdAsync(categoryId, categoryDto, CancellationToken.None);
+
+            //Assert
+            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await pdateCategoryByIdAsyncProcces);
+        }
     }
 }
