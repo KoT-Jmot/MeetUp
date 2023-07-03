@@ -1,11 +1,6 @@
-﻿using Elasticsearch.Net;
-using MeetUp.IdentityService.Application.DTOs.InputDto;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Testing;
+﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Text;
-using Xunit;
 
 namespace MeetUp.IdentityService.Tests.IntegrationTests
 {
