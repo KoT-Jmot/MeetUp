@@ -51,6 +51,7 @@ namespace MeetUp.EventsService.Api.ExceptionHandler
             {
                 ArgumentNullException => StatusCodes.Status400BadRequest,
                 OperationCanceledException => StatusCodes.Status400BadRequest,
+                RequestAccessException => StatusCodes.Status403Forbidden,
                 FluentValidation.ValidationException => StatusCodes.Status422UnprocessableEntity,
                 CreatingCategoryException => StatusCodes.Status422UnprocessableEntity,
                 EntityNotFoundException => StatusCodes.Status422UnprocessableEntity,
