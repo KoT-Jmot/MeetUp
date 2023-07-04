@@ -5,7 +5,7 @@ using MeetUp.EventsService.Infrastructure.Models;
 
 namespace MeetUp.EventsService.Tests.UnitTests
 {
-    public static class DataFactory
+    public static class CategoryDataFactory
     {
         public static IEnumerable<Category> GetAllCategoryEntity()
         {
