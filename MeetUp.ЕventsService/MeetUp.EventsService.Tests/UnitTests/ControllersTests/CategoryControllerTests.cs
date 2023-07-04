@@ -34,7 +34,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         public async Task GetCategoryByIdAsync_WithCorrectData_ShouldReturnSuccessResult()
         {
             //Arrange
-            var categoryId = DataFactory.GetCategoryEntity().Id;
+            var categoryId = CategoryDataFactory.GetCategoryEntity().Id;
 
             //Act
             var result = await _categoriesController.GetCategoryByIdAsync(categoryId, CancellationToken.None);
@@ -48,7 +48,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         public async Task CreateCategoryAsync_WithCorrectData_ShouldReturnSuccessResult()
         {
             //Arrange
-            var categoryDto = DataFactory.GetCategoryDto();
+            var categoryDto = CategoryDataFactory.GetCategoryDto();
 
             //Act
             var result = await _categoriesController.CreateCategoryAsync(categoryDto, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         {
             //Arrange
             var categoryId = Guid.NewGuid();
-            var categoryDto = DataFactory.GetCategoryDto();
+            var categoryDto = CategoryDataFactory.GetCategoryDto();
 
             //Act
             var result = await _categoriesController.UpdateCategoryAsync(categoryId, categoryDto, CancellationToken.None);

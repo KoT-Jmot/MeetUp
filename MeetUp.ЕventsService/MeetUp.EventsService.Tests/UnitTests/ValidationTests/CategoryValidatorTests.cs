@@ -19,12 +19,12 @@ namespace MeetUp.EventsService.Tests.UnitTests.ValidationTests
         [InlineData("a", false)]
         [InlineData("ajgorlfidnfuaudjsnauq", false)]
         public void CategoryDtoValidatorTests(
-            string username,
+            string name,
             bool isValid)
         {
             var categoryDto = new CategoryDto
             {
-                Name = username,
+                Name = name,
             };
 
             Assert.Equal(isValid, _categoryValidator.Validate(categoryDto).IsValid);

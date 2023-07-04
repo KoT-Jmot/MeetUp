@@ -13,17 +13,17 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
             categoryService.Setup(r => r.GetAllCategoriesAsync(
                             It.IsAny<CategoryQueryDto>(),
                             It.IsAny<CancellationToken>()))
-                           .ReturnsAsync(DataFactory.GetAllOutputCategoriesDto());
+                           .ReturnsAsync(CategoryDataFactory.GetAllOutputCategoriesDto());
 
             categoryService.Setup(r => r.GetCategoryByIdAsync(
-                            DataFactory.GetCategoryEntity().Id,
+                            CategoryDataFactory.GetCategoryEntity().Id,
                             It.IsAny<CancellationToken>()))
-                           .ReturnsAsync(DataFactory.GetOutputCategoryDto());
+                           .ReturnsAsync(CategoryDataFactory.GetOutputCategoryDto());
 
             categoryService.Setup(r => r.CreateCategoryAsync(
-                            DataFactory.GetCategoryDto(),
+                            CategoryDataFactory.GetCategoryDto(),
                             It.IsAny<CancellationToken>()))
-                           .ReturnsAsync(DataFactory.GetCategoryEntity().Id);
+                           .ReturnsAsync(CategoryDataFactory.GetCategoryEntity().Id);
 
             categoryService.Setup(r => r.DeleteCategoryByIdAsync(
                             It.IsAny<Guid>(),
@@ -31,7 +31,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
 
             categoryService.Setup(r => r.UpdateCategoryByIdAsync(
                             It.IsAny<Guid>(),
-                            DataFactory.GetCategoryDto(),
+                            CategoryDataFactory.GetCategoryDto(),
                             It.IsAny<CancellationToken>()))
                            .ReturnsAsync(Guid.NewGuid());
 
