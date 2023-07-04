@@ -56,10 +56,10 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
                              .ReturnsAsync(default(Event));
 
             //Act
-            var GetEventByIdAsyncProcces = _eventService.GetEventByIdAsync(eventId, CancellationToken.None);
+            var GetEventByIdAsyncProcess = _eventService.GetEventByIdAsync(eventId, CancellationToken.None);
 
             //Assert
-            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await GetEventByIdAsyncProcces);
+            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await GetEventByIdAsyncProcess);
         }
 
         [Fact]
@@ -106,16 +106,16 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
             var eventDto = EventDataFactory.GetEventDto();
 
             _repositoryManager.Setup(r => r.Categories.GetByIdAsync(
-                       eventDto.CategoryId.Value,
-                       It.IsAny<bool>(),
-                       It.IsAny<CancellationToken>()))
-                       .ReturnsAsync(default(Category));
+                               eventDto.CategoryId.Value,
+                               It.IsAny<bool>(),
+                               It.IsAny<CancellationToken>()))
+                              .ReturnsAsync(default(Category));
 
             //Act
-            var createEventBySponserIdAsyncProcces = _eventService.CreateEventBySponserIdAsync(eventDto, sponserId, CancellationToken.None);
+            var createEventBySponserIdAsyncProcess = _eventService.CreateEventBySponserIdAsync(eventDto, sponserId, CancellationToken.None);
 
             //Assert
-            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await createEventBySponserIdAsyncProcces);
+            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await createEventBySponserIdAsyncProcess);
         }
 
         [Fact]
@@ -150,10 +150,98 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
                               .ReturnsAsync(default(Event));
 
             //Act
-            var deleteEventByIdAndSponserIdAsyncProcces = _eventService.DeleteEventByIdAndSponserIdAsync(eventEntity.SponsorId, eventEntity.Id, CancellationToken.None);
+            var deleteEventByIdAndSponserIdAsyncProcess = _eventService.DeleteEventByIdAndSponserIdAsync(eventEntity.SponsorId, eventEntity.Id, CancellationToken.None);
 
             //Assert
-            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await deleteEventByIdAndSponserIdAsyncProcces);
+            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await deleteEventByIdAndSponserIdAsyncProcess);
+        }
+
+        [Fact]
+        public async Task UpdateEventByIdAndSponserIdAsync_WhenAllIsOk_ShouldReturnSuccessResult()
+        {
+            //Arrange
+            var eventEntity = EventDataFactory.GetEventEntity();
+            var eventDto = EventDataFactory.GetEventDto();
+
+            //Act
+            var result =
+               await _eventService.UpdateEventByIdAndSponserIdAsync(
+                                   eventEntity.Id,
+                                   eventDto,
+                                   eventEntity.SponsorId,
+                                   CancellationToken.None);
+
+            //Assert
+            Assert.Equal(eventEntity.Id, result);
+        }
+
+        [Fact]
+        public async Task UpdateEventByIdAndSponserIdAsync_WhenCategoryDoNotExists_ShouldReturnEntityNotFoundException()
+        {
+            //Arrange
+            var eventEntity = EventDataFactory.GetEventEntity();
+            var eventDto = EventDataFactory.GetEventDto();
+
+            _repositoryManager.Setup(r => r.Categories.GetByIdAsync(
+                               eventDto.CategoryId.Value,
+                               It.IsAny<bool>(),
+                               It.IsAny<CancellationToken>()))
+                              .ReturnsAsync(default(Category));
+
+            //Act
+            var updateEventByIdAndSponserIdAsyncProcess =
+                _eventService.UpdateEventByIdAndSponserIdAsync(
+                              eventEntity.Id,
+                              eventDto,
+                              eventEntity.SponsorId,
+                              CancellationToken.None);
+
+            //Assert
+            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await updateEventByIdAndSponserIdAsyncProcess);
+        }
+
+        [Fact]
+        public async Task UpdateEventByIdAndSponserIdAsync_WhenEventDoNotExists_ShouldReturnEntityNotFoundException()
+        {
+            //Arrange
+            var eventEntity = EventDataFactory.GetEventEntity();
+            var eventDto = EventDataFactory.GetEventDto();
+
+            _repositoryManager.Setup(r => r.Events.GetByIdAsync(
+                               eventEntity.Id,
+                               It.IsAny<bool>(),
+                               It.IsAny<CancellationToken>()))
+                              .ReturnsAsync(default(Event));
+
+            //Act
+            var updateEventByIdAndSponserIdAsyncProcess =
+                _eventService.UpdateEventByIdAndSponserIdAsync(
+                              eventEntity.Id,
+                              eventDto,
+                              eventEntity.SponsorId,
+                              CancellationToken.None);
+
+            //Assert
+            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await updateEventByIdAndSponserIdAsyncProcess);
+        }
+
+        [Fact]
+        public async Task UpdateEventByIdAndSponserIdAsync_WhenUserIsNotCorrect_ShouldReturnRequestAccessException()
+        {
+            //Arrange
+            var eventEntity = EventDataFactory.GetEventEntity();
+            var eventDto = EventDataFactory.GetEventDto();
+
+            //Act
+            var updateEventByIdAndSponserIdAsyncProcess =
+                _eventService.UpdateEventByIdAndSponserIdAsync(
+                              eventEntity.Id,
+                              eventDto,
+                              Guid.NewGuid().ToString(),
+                              CancellationToken.None);
+
+            //Assert
+            await Assert.ThrowsAsync<RequestAccessException>(async () => await updateEventByIdAndSponserIdAsyncProcess);
         }
     }
 }

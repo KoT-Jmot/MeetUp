@@ -117,10 +117,10 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
                              .ReturnsAsync(CategoryDataFactory.GetCategoryEntity());
 
             //Act
-            var createCategoryAsyncProcces = _categoryService.CreateCategoryAsync(categoryDto, CancellationToken.None);
+            var createCategoryAsyncProcess = _categoryService.CreateCategoryAsync(categoryDto, CancellationToken.None);
 
             //Assert
-            await Assert.ThrowsAsync<CreatingCategoryException>(async () => await createCategoryAsyncProcces);
+            await Assert.ThrowsAsync<CreatingCategoryException>(async () => await createCategoryAsyncProcess);
         }
 
         [Fact]
@@ -151,10 +151,10 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
                               .ReturnsAsync(default(Category));
 
             //Act
-            var deleteCategoryByIdAsyncProcces = _categoryService.DeleteCategoryByIdAsync(categoryId, CancellationToken.None);
+            var deleteCategoryByIdAsyncProcess = _categoryService.DeleteCategoryByIdAsync(categoryId, CancellationToken.None);
 
             //Assert
-            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await deleteCategoryByIdAsyncProcces);
+            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await deleteCategoryByIdAsyncProcess);
         }
 
         [Fact]
@@ -185,10 +185,10 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
                              .ReturnsAsync(CategoryDataFactory.GetCategoryEntity());
 
             //Act
-            var pdateCategoryByIdAsyncProcces = _categoryService.UpdateCategoryByIdAsync(categoryId, categoryDto, CancellationToken.None);
+            var pdateCategoryByIdAsyncProcess = _categoryService.UpdateCategoryByIdAsync(categoryId, categoryDto, CancellationToken.None);
 
             //Assert
-            await Assert.ThrowsAsync<CreatingCategoryException>(async () => await pdateCategoryByIdAsyncProcces);
+            await Assert.ThrowsAsync<CreatingCategoryException>(async () => await pdateCategoryByIdAsyncProcess);
         }
 
         [Fact]
@@ -205,10 +205,10 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
                               .ReturnsAsync(default(Category));
 
             //Act
-            var pdateCategoryByIdAsyncProcces = _categoryService.UpdateCategoryByIdAsync(categoryId, categoryDto, CancellationToken.None);
+            var pdateCategoryByIdAsyncProcess = _categoryService.UpdateCategoryByIdAsync(categoryId, categoryDto, CancellationToken.None);
 
             //Assert
-            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await pdateCategoryByIdAsyncProcces);
+            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await pdateCategoryByIdAsyncProcess);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
 
         public CategoryControllerTests()
         {
-            _categoryService = CategoryServiceMock.Create();
+            _categoryService = MockConfigure.CreateCategoryServiceMock();
             _categoriesController = new CategoriesController(_categoryService.Object);
         }
 
