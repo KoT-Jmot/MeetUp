@@ -13,7 +13,7 @@ namespace MeetUp.EventsService.Tests.UnitTests
         {
             return new Event()
             {
-                Id = Guid.Parse("2789b1c3-34e5-4f4a-7bbf-08db683498b1"),
+                Id = Guid.Parse("1789b1c3-34a2-4f4a-7bbf-08db683498b1"),
                 Title = "First",
                 Description = "TestDescription",
                 Place = "Minsk",
@@ -30,7 +30,7 @@ namespace MeetUp.EventsService.Tests.UnitTests
             {
                 new Event()
                 {
-                    Id = Guid.Parse("2789b1c3-34e5-4f4a-7bbf-08db683498b1"),
+                    Id = Guid.Parse("1789b1c3-34a2-4f4a-7bbf-08db683498b1"),
                     Title = "First",
                     Description = "TestDescription",
                     Place = "Minsk",
@@ -93,7 +93,7 @@ namespace MeetUp.EventsService.Tests.UnitTests
             {
                 new OutputEventDto()
                 {
-                    Id = Guid.Parse("2789b1c3-34e5-4f4a-7bbf-08db683498b1"),
+                    Id = Guid.Parse("1789b1c3-34a2-4f4a-7bbf-08db683498b1"),
                     Title = "First",
                     Description = "TestDescription",
                     Place = "Minsk",
@@ -133,7 +133,7 @@ namespace MeetUp.EventsService.Tests.UnitTests
         {
             return new OutputEventDto()
             {
-                Id = Guid.Parse("2789b1c3-34e5-4f4a-7bbf-08db683498b1"),
+                Id = Guid.Parse("1789b1c3-34a2-4f4a-7bbf-08db683498b1"),
                 Title = "First",
                 Description = "TestDescription",
                 Place = "Minsk",

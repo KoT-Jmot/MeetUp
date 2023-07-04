@@ -1,5 +1,4 @@
-﻿using MeetUp.EventsService.Tests.IntegrationTests.CategoriesTests;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Text;
 

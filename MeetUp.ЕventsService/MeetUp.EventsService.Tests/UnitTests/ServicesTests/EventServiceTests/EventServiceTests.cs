@@ -22,6 +22,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
         {
             _repositoryManager = RepositoryManagerMock.CreateForEventTests();
             _eventValidator = new Mock<IValidator<EventDto>>();
+
             _kafkaEventsProducer = new Mock<IKafkaProducer<string, Guid>>();
             _kafkaEventsProducer.Setup(r => r.ProduceAsync(It.IsAny<string>(), It.IsAny<Guid>()));
 

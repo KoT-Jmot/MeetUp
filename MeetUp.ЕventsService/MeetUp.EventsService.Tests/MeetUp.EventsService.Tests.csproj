@@ -30,8 +30,4 @@
     <ProjectReference Include="..\MeetUp.EventsService.Api\MeetUp.EventsService.Api.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="IntegrationTests\EventsTests\" />
-  </ItemGroup>
-
 </Project>
