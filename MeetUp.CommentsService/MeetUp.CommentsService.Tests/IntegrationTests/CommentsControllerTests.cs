@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MeetUp.CommentsService.Application.DTOs.InputDto;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace MeetUp.CommentsService.Tests.IntegrationTests
 {
@@ -30,6 +33,23 @@ namespace MeetUp.CommentsService.Tests.IntegrationTests
             // Assert
             Assert.Equal(statusCode, response.StatusCode.GetHashCode());
             Assert.Equal(resultContentType, response.Content.Headers.ContentType!.ToString());
+        }
+
+        [Theory]
+        [InlineData("/comment/c7264143-e47a-42e4-b97a-29d02088282a", StatusCodes.Status204NoContent)]
+        [InlineData("/comment/c7264143-e47a-42e4-b97a-29d02088282b", StatusCodes.Status422UnprocessableEntity)]
+        public async Task DeleteCommentByIdAsync_SendRequest_ShouldReturnOk(
+            string url,
+            int statusCode)
+        {
+            // Arrange
+            _client.DefaultRequestHeaders.Add("claims_UserId", DataFactory.GetUserId);
+
+            // Act
+            var response = await _client.DeleteAsync(url);
+
+            // Assert
+            Assert.Equal(statusCode, response.StatusCode.GetHashCode());
         }
     }
 }
