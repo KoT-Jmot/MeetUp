@@ -50,7 +50,6 @@ namespace MeetUp.HangFireSerivce.Api.ExceptionHandler
             {
                 ArgumentNullException => StatusCodes.Status400BadRequest,
                 OperationCanceledException => StatusCodes.Status400BadRequest,
-                ValidationException => StatusCodes.Status422UnprocessableEntity,
                 _ => StatusCodes.Status500InternalServerError,
             };
         }
