@@ -23,3 +23,4 @@ app.UseAuthentication()
    .UseAuthorization();
 
 app.Run();
+public partial class Program { }
