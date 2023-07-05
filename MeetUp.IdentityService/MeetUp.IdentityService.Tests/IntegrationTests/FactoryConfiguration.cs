@@ -16,18 +16,7 @@ namespace MeetUp.IdentityService.Tests.IntegrationTests
             {
                 builder.ConfigureTestServices(services =>
                 {
-                    var dbContextDescriptor = services.SingleOrDefault(d =>
-                        d.ServiceType.Equals(typeof(DbContextOptions<ApplicationContext>)));
-
-                    if (dbContextDescriptor != null)
-                    {
-                        services.Remove(dbContextDescriptor);
-                    }
-
-                    services.AddDbContextPool<ApplicationContext>(options =>
-                    {
-                        options.UseInMemoryDatabase(Guid.NewGuid().ToString());
-                    });
+                    services.ConfigTestDbContext();
                 });
             });
 
@@ -36,6 +25,24 @@ namespace MeetUp.IdentityService.Tests.IntegrationTests
             webHost.ConfigUserManagerFactoryAsync().Wait();
 
             return webHost;
+        }
+
+        private static IServiceCollection ConfigTestDbContext(this IServiceCollection services)
+        {
+            var dbContextDescriptor = services.SingleOrDefault(d =>
+                        d.ServiceType.Equals(typeof(DbContextOptions<ApplicationContext>)));
+
+            if (dbContextDescriptor != null)
+            {
+                services.Remove(dbContextDescriptor);
+            }
+
+            services.AddDbContextPool<ApplicationContext>(options =>
+            {
+                options.UseInMemoryDatabase(Guid.NewGuid().ToString());
+            });
+
+            return services;
         }
 
         private static async Task ConfigUserManagerFactoryAsync(this WebApplicationFactory<Program> webHost)

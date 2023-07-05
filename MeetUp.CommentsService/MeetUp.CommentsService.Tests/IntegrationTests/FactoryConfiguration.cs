@@ -1,11 +1,9 @@
 ﻿using MeetUp.CommentsService.Infrastructure;
 using MeetUp.CommentsService.Infrastructure.Contracts;
-using MeetUp.Kafka.Contracts;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Moq;
 
 namespace MeetUp.CommentsService.Tests.IntegrationTests
 {
@@ -49,14 +47,9 @@ namespace MeetUp.CommentsService.Tests.IntegrationTests
         {
             var context = webHost.Services.CreateScope().ServiceProvider.GetService<IRepositoryManager>();
 
-            foreach (var category in DataFactory.GetAllCategoryEntity())
+            foreach (var category in DataFactory.GetCommentEntities())
             {
                 await context.Comments.AddAsync(category);
-            }
-
-            foreach (var eventEntity in DataFactory.GetEvents())
-            {
-                await context.Events.AddAsync(eventEntity);
             }
 
             await context.SaveChangesAsync();
