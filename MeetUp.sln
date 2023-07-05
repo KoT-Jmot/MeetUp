@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.IdentityService.Api"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D1638F35-31D7-4023-943B-C8DE7544697F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.IdentityService.Domain", "MeetUp.IdentityService\MeetUp.IdentityService.Domain\MeetUp.IdentityService.Domain.csproj", "{D51F5619-5DA1-4F7A-8453-5AC57C23636D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.ЕventsService", "MeetUp.ЕventsService", "{A149CCE5-E6A5-4E0E-800D-27B5C8540196}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.EventsService.Application", "MeetUp.ЕventsService\MeetUp.EventsService.Application\MeetUp.EventsService.Application.csproj", "{43A676F3-3CC5-480C-B7E5-EC402AF0B74D}"
@@ -43,11 +41,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.HangFireSerivce", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.HangFireSerivce.Api", "MeetUp.HangFireSerivce\MeetUp.HangFireSerivce.Api\MeetUp.HangFireSerivce.Api.csproj", "{4E8C6EF2-B990-4D0A-891D-379901EFC729}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.EventsService.Tests", "MeetUp.ЕventsService\MeetUp.EventsService.Tests\MeetUp.EventsService.Tests.csproj", "{91C81B6B-B29A-4150-BF69-C9D24C986C32}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.HangFireSerivce.Application", "MeetUp.HangFireSerivce\MeetUp.HangFireSerivce.Application\MeetUp.HangFireSerivce.Application.csproj", "{AC476503-C4C2-4409-8580-8423DDA83A61}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.HangFireSerivce.Infrastructure", "MeetUp.HangFireSerivce\MeetUp.HangFireSerivce.Infrastructure\MeetUp.HangFireSerivce.Infrastructure.csproj", "{5AE26168-8CA4-482A-B864-77ED9CA6E31F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.EventsService.Tests", "MeetUp.ЕventsService\MeetUp.EventsService.Tests\MeetUp.EventsService.Tests.csproj", "{91C81B6B-B29A-4150-BF69-C9D24C986C32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.IdentityService.Tests", "MeetUp.IdentityService\MeetUp.IdentityService.Tests\MeetUp.IdentityService.Tests.csproj", "{7AC57948-0EF4-4865-8BF8-2F6CF51961BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +71,6 @@ Global
 		{D1638F35-31D7-4023-943B-C8DE7544697F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1638F35-31D7-4023-943B-C8DE7544697F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1638F35-31D7-4023-943B-C8DE7544697F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D51F5619-5DA1-4F7A-8453-5AC57C23636D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D51F5619-5DA1-4F7A-8453-5AC57C23636D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D51F5619-5DA1-4F7A-8453-5AC57C23636D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D51F5619-5DA1-4F7A-8453-5AC57C23636D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43A676F3-3CC5-480C-B7E5-EC402AF0B74D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43A676F3-3CC5-480C-B7E5-EC402AF0B74D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43A676F3-3CC5-480C-B7E5-EC402AF0B74D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -123,6 +119,10 @@ Global
 		{91C81B6B-B29A-4150-BF69-C9D24C986C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91C81B6B-B29A-4150-BF69-C9D24C986C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91C81B6B-B29A-4150-BF69-C9D24C986C32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC57948-0EF4-4865-8BF8-2F6CF51961BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC57948-0EF4-4865-8BF8-2F6CF51961BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC57948-0EF4-4865-8BF8-2F6CF51961BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC57948-0EF4-4865-8BF8-2F6CF51961BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,7 +131,6 @@ Global
 		{EF609655-9931-4193-990A-3F9B71DE6157} = {B0AC178F-9264-467E-8067-64CBC64E5FDA}
 		{81773A30-A62C-4E78-89E1-DE58EFF3790D} = {B0AC178F-9264-467E-8067-64CBC64E5FDA}
 		{10A8FACA-81FE-4C07-96DA-4537B4DA07C3} = {B0AC178F-9264-467E-8067-64CBC64E5FDA}
-		{D51F5619-5DA1-4F7A-8453-5AC57C23636D} = {B0AC178F-9264-467E-8067-64CBC64E5FDA}
 		{43A676F3-3CC5-480C-B7E5-EC402AF0B74D} = {A149CCE5-E6A5-4E0E-800D-27B5C8540196}
 		{B3038F2A-4D4C-450A-89CF-98948DB50BBB} = {A149CCE5-E6A5-4E0E-800D-27B5C8540196}
 		{3AE4BC5A-7598-481F-A895-4866F2DB07AE} = {A149CCE5-E6A5-4E0E-800D-27B5C8540196}
@@ -144,6 +143,7 @@ Global
 		{AC476503-C4C2-4409-8580-8423DDA83A61} = {2FA5321C-1061-4757-9AB7-5ED2D5C67836}
 		{5AE26168-8CA4-482A-B864-77ED9CA6E31F} = {2FA5321C-1061-4757-9AB7-5ED2D5C67836}
 		{91C81B6B-B29A-4150-BF69-C9D24C986C32} = {A149CCE5-E6A5-4E0E-800D-27B5C8540196}
+		{7AC57948-0EF4-4865-8BF8-2F6CF51961BA} = {B0AC178F-9264-467E-8067-64CBC64E5FDA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90F4CEF7-763E-4A1B-8539-EA3742745122}
