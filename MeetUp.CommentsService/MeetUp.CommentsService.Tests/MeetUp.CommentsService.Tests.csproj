@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -29,9 +29,6 @@
   <ItemGroup>
     <Folder Include="IntegrationTests\" />
     <Folder Include="UnitTests\ControllersTests\" />
-    <Folder Include="UnitTests\MappingTests\" />
-    <Folder Include="UnitTests\ServicesTests\" />
-    <Folder Include="UnitTests\ValidationTests\" />
   </ItemGroup>
 
 </Project>
