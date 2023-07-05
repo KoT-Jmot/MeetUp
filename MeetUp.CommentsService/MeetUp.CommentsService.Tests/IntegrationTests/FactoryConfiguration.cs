@@ -1,9 +1,13 @@
-﻿using MeetUp.CommentsService.Infrastructure;
+﻿using Grpc.Net.Client;
+using MeetUp.CommentsService.Application.RequestFeatures;
+using MeetUp.CommentsService.Infrastructure;
 using MeetUp.CommentsService.Infrastructure.Contracts;
+using MeetUpGrpc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Moq;
 
 namespace MeetUp.CommentsService.Tests.IntegrationTests
 {
@@ -40,9 +44,10 @@ namespace MeetUp.CommentsService.Tests.IntegrationTests
             {
                 options.UseInMemoryDatabase(Guid.NewGuid().ToString());
             });
-
+            
             return services;
         }
+
         private static async Task ConfigRpositoryManagerFactoryAsync(this WebApplicationFactory<Program> webHost)
         {
             var context = webHost.Services.CreateScope().ServiceProvider.GetService<IRepositoryManager>();
