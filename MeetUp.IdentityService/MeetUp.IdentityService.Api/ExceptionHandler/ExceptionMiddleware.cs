@@ -1,4 +1,5 @@
 ﻿using MeetUp.IdentityService.Application.Utils.Exceptions;
+using System.ComponentModel.DataAnnotations;
 
 namespace MeetUp.IdentityService.Api.ExceptionHandler
 {
@@ -33,7 +34,7 @@ namespace MeetUp.IdentityService.Api.ExceptionHandler
             HttpContext context,
             Exception exception)
         {
-            context.Response.ContentType = "application/json";
+            context.Response.ContentType = "application/json; charset=utf-8";
             context.Response.StatusCode = GetStatusCode(exception);
 
             await context.Response.WriteAsync(new ErrorDetails
@@ -51,6 +52,7 @@ namespace MeetUp.IdentityService.Api.ExceptionHandler
                 OperationCanceledException => StatusCodes.Status400BadRequest,
                 LoginUserException => StatusCodes.Status422UnprocessableEntity,
                 RegistrationUserException => StatusCodes.Status422UnprocessableEntity,
+                FluentValidation.ValidationException => StatusCodes.Status422UnprocessableEntity,
                 _ => StatusCodes.Status500InternalServerError,
             };
         }

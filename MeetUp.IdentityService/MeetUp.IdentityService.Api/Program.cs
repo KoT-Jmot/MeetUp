@@ -18,7 +18,12 @@ builder.Host.UseSerilog();
 
 services.InjectConfigurations(configuration);
 
-var app = await builder.Build().ConfigureMigrationAsync();
+var app = builder.Build();
+
+if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("INTEGRATION_TEST")))
+{
+    await app.ConfigureMigrationAsync();
+}
 
 app.UseMiddleware<ExceptionMiddleware>();
 
@@ -29,3 +34,5 @@ app.UseRouting();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
