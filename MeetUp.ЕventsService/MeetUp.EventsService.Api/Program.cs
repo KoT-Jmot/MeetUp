@@ -3,6 +3,7 @@ using MeetUp.EventsService.Application.Services;
 using MeetUp.EventsService.Api.Extensions;
 using MeetUp.EventsService.Api.Features;
 using Serilog;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +20,12 @@ builder.Host.UseSerilog();
 
 services.InjectConfiguration(configuration);
 
-var app = await builder.Build().ConfigureMigrationAsync();
+var app = builder.Build();
+
+if (Environment.GetEnvironmentVariable("INTEGRATION_TEST").IsNullOrEmpty())
+{
+    await app.ConfigureMigrationAsync();
+}
 
 app.UseMiddleware<ExceptionMiddleware>();
 
@@ -30,3 +36,5 @@ app.UseRouting();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

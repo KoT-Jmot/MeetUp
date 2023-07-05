@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.HangFireSerivce", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.HangFireSerivce.Api", "MeetUp.HangFireSerivce\MeetUp.HangFireSerivce.Api\MeetUp.HangFireSerivce.Api.csproj", "{4E8C6EF2-B990-4D0A-891D-379901EFC729}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.EventsService.Tests", "MeetUp.ЕventsService\MeetUp.EventsService.Tests\MeetUp.EventsService.Tests.csproj", "{91C81B6B-B29A-4150-BF69-C9D24C986C32}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.HangFireSerivce.Application", "MeetUp.HangFireSerivce\MeetUp.HangFireSerivce.Application\MeetUp.HangFireSerivce.Application.csproj", "{AC476503-C4C2-4409-8580-8423DDA83A61}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.HangFireSerivce.Infrastructure", "MeetUp.HangFireSerivce\MeetUp.HangFireSerivce.Infrastructure\MeetUp.HangFireSerivce.Infrastructure.csproj", "{5AE26168-8CA4-482A-B864-77ED9CA6E31F}"
@@ -113,6 +115,10 @@ Global
 		{5AE26168-8CA4-482A-B864-77ED9CA6E31F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AE26168-8CA4-482A-B864-77ED9CA6E31F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AE26168-8CA4-482A-B864-77ED9CA6E31F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91C81B6B-B29A-4150-BF69-C9D24C986C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91C81B6B-B29A-4150-BF69-C9D24C986C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91C81B6B-B29A-4150-BF69-C9D24C986C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91C81B6B-B29A-4150-BF69-C9D24C986C32}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7AC57948-0EF4-4865-8BF8-2F6CF51961BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7AC57948-0EF4-4865-8BF8-2F6CF51961BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AC57948-0EF4-4865-8BF8-2F6CF51961BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -136,6 +142,7 @@ Global
 		{4E8C6EF2-B990-4D0A-891D-379901EFC729} = {2FA5321C-1061-4757-9AB7-5ED2D5C67836}
 		{AC476503-C4C2-4409-8580-8423DDA83A61} = {2FA5321C-1061-4757-9AB7-5ED2D5C67836}
 		{5AE26168-8CA4-482A-B864-77ED9CA6E31F} = {2FA5321C-1061-4757-9AB7-5ED2D5C67836}
+		{91C81B6B-B29A-4150-BF69-C9D24C986C32} = {A149CCE5-E6A5-4E0E-800D-27B5C8540196}
 		{7AC57948-0EF4-4865-8BF8-2F6CF51961BA} = {B0AC178F-9264-467E-8067-64CBC64E5FDA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
