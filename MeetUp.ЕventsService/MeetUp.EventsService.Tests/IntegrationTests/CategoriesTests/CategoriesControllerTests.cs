@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.Text;
 
-namespace MeetUp.EventsService.Tests.IntegrationTests.CategoriesController
+namespace MeetUp.EventsService.Tests.IntegrationTests.CategoriesTests
 {
     public class CategoriesControllerTests
     {

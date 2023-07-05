@@ -41,8 +41,6 @@ namespace MeetUp.EventsService.Tests.UnitTests.ValidationTests
                 CategoryId = categoryId
             };
 
-            var a = _eventValidator.Validate(eventDto);
-
             Assert.Equal(isValid, _eventValidator.Validate(eventDto).IsValid);
         }
     }
