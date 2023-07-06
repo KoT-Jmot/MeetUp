@@ -17,7 +17,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ServicesTests
                               .ReturnsAsync(DataFactory.GetCommentEntity());
 
             repositoryManager.Setup(r => r.Comments.GetAll(It.IsAny<bool>()))
-                             .Returns(DataFactory.GetCommentEntities().BuildMock());
+                             .Returns(DataFactory.GetComments().BuildMock());
 
             repositoryManager.Setup(r => r.Comments.GetCommentByIdAndUserIdAsync(
                               DataFactory.GetCommentEntity().UserId,

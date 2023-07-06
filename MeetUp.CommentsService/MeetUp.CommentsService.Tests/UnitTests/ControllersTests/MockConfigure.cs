@@ -18,7 +18,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ControllersTests
             commentService.Setup(r => r.GetAllCommentsAsync(
                            It.IsAny<CommentQueryDto>(),
                            It.IsAny<CancellationToken>()))
-                          .ReturnsAsync(DataFactory.GetAllOutputCommentsDto());
+                          .ReturnsAsync(DataFactory.GetOutputCommentDtos());
 
             commentService.Setup(r => r.GetCommentByIdAsync(
                            DataFactory.GetCommentEntity().Id,

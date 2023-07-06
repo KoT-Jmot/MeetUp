@@ -52,7 +52,7 @@ namespace MeetUp.CommentsService.Tests.IntegrationTests
         {
             var context = webHost.Services.CreateScope().ServiceProvider.GetService<IRepositoryManager>();
 
-            foreach (var category in DataFactory.GetCommentEntities())
+            foreach (var category in DataFactory.GetComments())
             {
                 await context.Comments.AddAsync(category);
             }

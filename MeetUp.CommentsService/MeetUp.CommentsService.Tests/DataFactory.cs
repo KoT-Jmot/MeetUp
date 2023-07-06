@@ -21,7 +21,7 @@ namespace MeetUp.CommentsService.Tests
             };
         }
 
-        public static IEnumerable<Comment> GetCommentEntities()
+        public static IEnumerable<Comment> GetComments()
         {
             return new List<Comment>
             {
@@ -82,7 +82,7 @@ namespace MeetUp.CommentsService.Tests
             };
         }
 
-        public static PagedList<OutputCommentDto> GetAllOutputCommentsDto()
+        public static PagedList<OutputCommentDto> GetOutputCommentDtos()
         {
             var outputComments = new List<OutputCommentDto>()
             {
