@@ -74,7 +74,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public async Task CreateCommentByUserIdAsync_WhenEventDoNotExists_ShouldReturnEntityNotFoundException()
+        public async Task CreateCommentByUserIdAsync_WhenEventDoesNotExist_ShouldReturnEntityNotFoundException()
         {
             //Arrange
             var commentDto = new CommentDto
@@ -106,7 +106,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public async Task DeleteCommentByIdAndUserIdAsync_WhenCommentDoNotExists_ShouldReturnEntityNotFoundException()
+        public async Task DeleteCommentByIdAndUserIdAsync_WhenCommentDoesNotExist_ShouldReturnEntityNotFoundException()
         {
             //Arrange
             var comment = DataFactory.GetCommentEntity();
