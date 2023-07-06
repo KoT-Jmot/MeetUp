@@ -30,7 +30,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
         }
 
         [Fact]
-        public async Task GetEventByIdAsync_WhenEventExists_ShouldReturnSuccessResult()
+        public async Task GetEventByIdAsync_WhenEventExists_ShouldReturnOutputEventDto()
         {
             //Arrange
             var eventEntity = EventDataFactory.GetEventEntity();
@@ -44,17 +44,17 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
         }
 
         [Fact]
-        public async Task GetEventByIdAsync_WhenEventDoNotExists_ShouldReturnEntityNotFoundException()
+        public async Task GetEventByIdAsync_WhenEventDoesNotExist_ShouldReturnEntityNotFoundException()
         {
             //Arrange
             var eventEntity = EventDataFactory.GetEventEntity();
             var eventId = eventEntity.Id;
 
             _repositoryManager.Setup(r => r.Events.GetByIdAsync(
-                              EventDataFactory.GetEventEntity().Id,
-                              It.IsAny<bool>(),
-                              It.IsAny<CancellationToken>()))
-                             .ReturnsAsync(default(Event));
+                               EventDataFactory.GetEventEntity().Id,
+                               It.IsAny<bool>(),
+                               It.IsAny<CancellationToken>()))
+                              .ReturnsAsync(default(Event));
 
             //Act
             var getEventByIdAsyncProcess = _eventService.GetEventByIdAsync(eventId, CancellationToken.None);
@@ -64,7 +64,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
         }
 
         [Fact]
-        public async Task GetAllEventsAsync_WithFiltration_ShouldReturnSuccessResult()
+        public async Task GetAllEventsAsync_WithFiltration_ShouldReturnListOfOutputEventDto()
         {
             //Arrange
             var eventQuery = EventDataFactory.GetEventQuery();
@@ -79,7 +79,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
         }
 
         [Fact]
-        public async Task CreateEventBySponserIdAsync_WhenCategoryExists_ShouldReturnSuccessResult()
+        public async Task CreateEventBySponserIdAsync_WhenCategoryExists_ShouldReturnCreatedEventId()
         {
             //Arrange
             var sponserId = EventDataFactory.GetUserId;
@@ -100,7 +100,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
         }
 
         [Fact]
-        public async Task CreateEventBySponserIdAsync_WhenCategoryDoNotExists_ShouldReturnEntityNotFoundException()
+        public async Task CreateEventBySponserIdAsync_WhenCategoryDoesNotExist_ShouldReturnEntityNotFoundException()
         {
             //Arrange
             var sponserId = EventDataFactory.GetUserId;
@@ -137,11 +137,10 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
         }
 
         [Fact]
-        public async Task DeleteEventByIdAndSponserIdAsync_WhenEventDoNotExists_ShouldReturnEntityNotFoundException()
+        public async Task DeleteEventByIdAndSponserIdAsync_WhenEventDoesNotExist_ShouldReturnEntityNotFoundException()
         {
             //Arrange
             var eventEntity = EventDataFactory.GetEventEntity();
-            var prducerKey = "deleteComments";
 
             _repositoryManager.Setup(r => r.Events.GetEventByIdAndUserIdAsync(
                                eventEntity.Id,
@@ -158,7 +157,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
         }
 
         [Fact]
-        public async Task UpdateEventByIdAndSponserIdAsync_WhenAllIsOk_ShouldReturnSuccessResult()
+        public async Task UpdateEventByIdAndSponserIdAsync_WhenAllIsOk_ShouldReturnUpdatedEventId()
         {
             //Arrange
             var eventEntity = EventDataFactory.GetEventEntity();
@@ -177,7 +176,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
         }
 
         [Fact]
-        public async Task UpdateEventByIdAndSponserIdAsync_WhenCategoryDoNotExists_ShouldReturnEntityNotFoundException()
+        public async Task UpdateEventByIdAndSponserIdAsync_WhenCategoryDoesNotExist_ShouldReturnEntityNotFoundException()
         {
             //Arrange
             var eventEntity = EventDataFactory.GetEventEntity();
@@ -202,7 +201,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
         }
 
         [Fact]
-        public async Task UpdateEventByIdAndSponserIdAsync_WhenEventDoNotExists_ShouldReturnEntityNotFoundException()
+        public async Task UpdateEventByIdAndSponserIdAsync_WhenEventDoesNotExist_ShouldReturnEntityNotFoundException()
         {
             //Arrange
             var eventEntity = EventDataFactory.GetEventEntity();

@@ -19,9 +19,7 @@ namespace MeetUp.EventsService.Tests.IntegrationTests.EventsTests
         [InlineData("/event", StatusCodes.Status200OK)]
         [InlineData("/event/1789b1c3-34a2-4f4a-7bbf-08db683498b1", StatusCodes.Status200OK)]
         [InlineData("/event/1789b1c3-34a2-4f4a-7bbf-08db683498b0", StatusCodes.Status422UnprocessableEntity)]
-        public async Task GetEventsAsync_SendRequest_ShouldReturnOk(
-            string url,
-            int statusCode)
+        public async Task GetEventsAsync_SendRequest_ShouldReturnCorrectStatusCode(string url, int statusCode)
         {
             // Arrange
             var resultContentType = "application/json; charset=utf-8";
@@ -61,9 +59,7 @@ namespace MeetUp.EventsService.Tests.IntegrationTests.EventsTests
         [Theory]
         [InlineData("/event/1789b1c3-34a2-4f4a-7bbf-08db683498b1", StatusCodes.Status204NoContent)]
         [InlineData("/event/1789b1c3-34a2-4f4a-7bbf-08db683498b2", StatusCodes.Status422UnprocessableEntity)]
-        public async Task DeleteCategoryAsync_SendRequest_ShouldReturnCorrectStatusCode(
-            string url,
-            int statusCode)
+        public async Task DeleteCategoryAsync_SendRequest_ShouldReturnCorrectStatusCode(string url, int statusCode)
         {
             // Arrange
             _client.DefaultRequestHeaders.Add("claims_UserId", DataFactory.GetUserId);
