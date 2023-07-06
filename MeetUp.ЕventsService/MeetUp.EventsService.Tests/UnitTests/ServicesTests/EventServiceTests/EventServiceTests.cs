@@ -57,10 +57,10 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.EventServiceTests
                              .ReturnsAsync(default(Event));
 
             //Act
-            var GetEventByIdAsyncProcess = _eventService.GetEventByIdAsync(eventId, CancellationToken.None);
+            var getEventByIdAsyncProcess = _eventService.GetEventByIdAsync(eventId, CancellationToken.None);
 
             //Assert
-            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await GetEventByIdAsyncProcess);
+            await Assert.ThrowsAsync<EntityNotFoundException>(async () => await getEventByIdAsyncProcess);
         }
 
         [Fact]
