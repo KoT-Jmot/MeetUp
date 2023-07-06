@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MeetUp.IdentityService.Application.DTOs.InputDto;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -62,13 +63,13 @@ namespace MeetUp.IdentityService.Tests.IntegrationTests
             // Arrange
             string url = "/account/SignIn";
 
-            var formData = new Dictionary<string, string>
+            var data = new UserForLoginDto
             {
-                { "Email", email },
-                { "Password", password }
+                Email = email,
+                Password = password
             };
 
-            var jsonData = JsonConvert.SerializeObject(formData);
+            var jsonData = JsonConvert.SerializeObject(data);
 
             HttpContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
@@ -93,15 +94,15 @@ namespace MeetUp.IdentityService.Tests.IntegrationTests
             // Arrange
             string url = "/account/SignUp";
 
-            var formData = new Dictionary<string, string>
+            var data = new UserForRegistrationDto
             {
-                { "UserName", userName },
-                { "Email", email },
-                { "PhoneNumber", phoneNumber },
-                { "Password", password }
+                UserName = userName,
+                Email = email,
+                PhoneNumber = phoneNumber,
+                Password = password
             };
 
-            var jsonData = JsonConvert.SerializeObject(formData);
+            var jsonData = JsonConvert.SerializeObject(data);
 
             HttpContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 

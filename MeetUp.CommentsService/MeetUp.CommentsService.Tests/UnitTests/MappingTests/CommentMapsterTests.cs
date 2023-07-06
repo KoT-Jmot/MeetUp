@@ -11,6 +11,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.MappingTests
             // Arrange
             var config = new TypeAdapterConfig();
             var register = new CommentsMapper();
+
             register.Register(config);
 
             // Act

@@ -1,13 +1,9 @@
-﻿using Grpc.Net.Client;
-using MeetUp.CommentsService.Application.RequestFeatures;
-using MeetUp.CommentsService.Infrastructure;
+﻿using MeetUp.CommentsService.Infrastructure;
 using MeetUp.CommentsService.Infrastructure.Contracts;
-using MeetUpGrpc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Moq;
 
 namespace MeetUp.CommentsService.Tests.IntegrationTests
 {
@@ -52,9 +48,9 @@ namespace MeetUp.CommentsService.Tests.IntegrationTests
         {
             var context = webHost.Services.CreateScope().ServiceProvider.GetService<IRepositoryManager>();
 
-            foreach (var category in DataFactory.GetComments())
+            foreach (var comment in DataFactory.GetComments())
             {
-                await context.Comments.AddAsync(category);
+                await context.Comments.AddAsync(comment);
             }
 
             await context.SaveChangesAsync();

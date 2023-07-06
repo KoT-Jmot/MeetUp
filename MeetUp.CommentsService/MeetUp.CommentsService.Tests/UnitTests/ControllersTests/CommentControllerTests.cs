@@ -13,6 +13,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ControllersTests
         public CommentControllerTests()
         {
             _commentsService = MockConfigure.CreateCommentService();
+
             _commentsController = new CommentsController(_commentsService.Object);
             _commentsController.CreateCommentsControllerRequestMock();
         }
@@ -28,7 +29,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ControllersTests
 
             //Assert
             Assert.NotNull(result);
-            _commentsService.Verify(r => r.GetAllCommentsAsync(commentQueryDto, It.IsAny<CancellationToken>()));
+            _commentsService.Verify(r => r.GetAllCommentsAsync(commentQueryDto, CancellationToken.None));
         }
 
         [Fact]
@@ -42,7 +43,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ControllersTests
 
             //Assert
             Assert.NotNull(result);
-            _commentsService.Verify(r => r.GetCommentByIdAsync(commentEntity.Id, It.IsAny<CancellationToken>()));
+            _commentsService.Verify(r => r.GetCommentByIdAsync(commentEntity.Id, CancellationToken.None));
         }
 
         [Fact]
@@ -56,7 +57,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ControllersTests
 
             //Assert
             Assert.NotNull(result);
-            _commentsService.Verify(r => r.CreateCommentByUserIdAsync(DataFactory.GetUserId, commentDto, It.IsAny<CancellationToken>()));
+            _commentsService.Verify(r => r.CreateCommentByUserIdAsync(DataFactory.GetUserId, commentDto, CancellationToken.None));
         }
 
         [Fact]
@@ -70,7 +71,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ControllersTests
 
             //Assert
             Assert.NotNull(result);
-            _commentsService.Verify(r => r.DeleteCommentByIdAndUserIdAsync(DataFactory.GetUserId, commentId, It.IsAny<CancellationToken>()));
+            _commentsService.Verify(r => r.DeleteCommentByIdAndUserIdAsync(DataFactory.GetUserId, commentId, CancellationToken.None));
         }
     }
 }

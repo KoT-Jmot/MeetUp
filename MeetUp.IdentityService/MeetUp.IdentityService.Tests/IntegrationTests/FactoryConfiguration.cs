@@ -49,7 +49,7 @@ namespace MeetUp.IdentityService.Tests.IntegrationTests
         {
             var userManager = webHost.Services.CreateScope().ServiceProvider.GetService<UserManager<IdentityUser>>();
 
-            foreach (var user in DataFactory.GetAllUsersEntity())
+            foreach (var user in DataFactory.GetUsers())
             {
                 await userManager.CreateAsync(user, DataFactory.UserPassword);
             }

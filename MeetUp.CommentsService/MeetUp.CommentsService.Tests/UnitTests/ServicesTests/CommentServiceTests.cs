@@ -2,7 +2,6 @@
 using MeetUp.CommentsService.Application.Contracts;
 using MeetUp.CommentsService.Application.DTOs.InputDto;
 using MeetUp.CommentsService.Application.Hubs;
-using MeetUp.CommentsService.Application.Services;
 using MeetUp.CommentsService.Infrastructure.Contracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.SignalR;
@@ -32,7 +31,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public async Task GetCommentByIdAsync_WhenCommentExists_ShouldReturnSuccessResult()
+        public async Task GetCommentByIdAsync_WhenCommentExists_ShouldReturnOutputCommentDto()
         {
             //Arrange
             var commentId = DataFactory.GetCommentEntity().Id;
@@ -45,7 +44,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public async Task GetAllCommentsAsync_WhenCommentExists_ShouldReturnSuccessResult()
+        public async Task GetAllCommentsAsync_WhenCommentExists_ShouldReturnListOfOutputCommentDto()
         {
             //Arrange
             var commentQuery = DataFactory.GetCommentQueryDto();
@@ -60,7 +59,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public async Task CreateCommentByUserIdAsync_WhenEventExists_ShouldReturnSuccessResult()
+        public async Task CreateCommentByUserIdAsync_WhenEventExists_ShouldReturnCreatedCommentId()
         {
             //Arrange
             var commentDto = DataFactory.GetCommentDto();
@@ -70,8 +69,8 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ServicesTests
             var result = await _commentService.CreateCommentByUserIdAsync(userId, commentDto, CancellationToken.None);
 
             //Assert
-            _repositoryManager.Verify(lw => lw.Comments.AddAsync(It.IsAny<Comment>(), CancellationToken.None));
             Assert.NotEmpty(result.ToString());
+            _repositoryManager.Verify(lw => lw.Comments.AddAsync(It.IsAny<Comment>(), CancellationToken.None));
         }
 
         [Fact]

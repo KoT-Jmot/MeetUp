@@ -11,6 +11,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests.MappingTests
             // Arrange
             var config = new TypeAdapterConfig();
             var register = new IdentityUserMapper();
+
             register.Register(config);
 
             // Act

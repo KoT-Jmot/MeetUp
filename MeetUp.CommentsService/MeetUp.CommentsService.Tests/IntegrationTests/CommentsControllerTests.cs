@@ -1,7 +1,4 @@
-﻿using MeetUp.CommentsService.Application.DTOs.InputDto;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using System.Text;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace MeetUp.CommentsService.Tests.IntegrationTests
 {
@@ -20,7 +17,7 @@ namespace MeetUp.CommentsService.Tests.IntegrationTests
         [InlineData("/comment", StatusCodes.Status200OK)]
         [InlineData("/comment/c7264143-e47a-42e4-b97a-29d02088282a", StatusCodes.Status200OK)]
         [InlineData("/comment/c7264143-e47a-42e4-b97a-29d02088282b", StatusCodes.Status422UnprocessableEntity)]
-        public async Task GetCategoriesAsync_SendRequest_ShouldReturnOk(
+        public async Task GetCategoriesAsync_SendRequest_ShouldReturnCorrectStatusCodes(
             string url,
             int statusCode)
         {
@@ -38,7 +35,7 @@ namespace MeetUp.CommentsService.Tests.IntegrationTests
         [Theory]
         [InlineData("/comment/c7264143-e47a-42e4-b97a-29d02088282a", StatusCodes.Status204NoContent)]
         [InlineData("/comment/c7264143-e47a-42e4-b97a-29d02088282b", StatusCodes.Status422UnprocessableEntity)]
-        public async Task DeleteCommentByIdAsync_SendRequest_ShouldReturnOk(
+        public async Task DeleteCommentByIdAsync_SendRequest_ShouldReturnCorrectStatusCodes(
             string url,
             int statusCode)
         {

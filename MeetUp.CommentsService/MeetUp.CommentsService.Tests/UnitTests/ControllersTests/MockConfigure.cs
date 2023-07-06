@@ -1,7 +1,6 @@
 ﻿using MeetUp.CommentsService.Api.Controllers;
 using MeetUp.CommentsService.Application.Contracts;
 using MeetUp.CommentsService.Application.DTOs.InputDto;
-using MeetUp.CommentsService.Application.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -13,7 +12,6 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ControllersTests
         public static Mock<ICommentService> CreateCommentService()
         {
             var commentService = new Mock<ICommentService>();
-
 
             commentService.Setup(r => r.GetAllCommentsAsync(
                            It.IsAny<CommentQueryDto>(),
