@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace MeetUp.Gateway.Tests.IntegrationTests
 {
@@ -8,7 +9,7 @@ namespace MeetUp.Gateway.Tests.IntegrationTests
 
         public GatewayTests()
         {
-            var webHost = FactoryConfiguration.WebApplicationFactoryConfig();
+            var webHost = new WebApplicationFactory<Program>().WithWebHostBuilder(_ => { });
 
             _client = webHost.CreateClient();
         }
