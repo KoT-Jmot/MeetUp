@@ -11,10 +11,24 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ControllersTests
         {
             var accountService = new Mock<IAccountService>();
 
-            accountService.Setup(r => r.SignUpAsync(It.IsAny<UserForRegistrationDto>(), It.IsAny<CancellationToken>())).ReturnsAsync(Guid.NewGuid().ToString());
-            accountService.Setup(r => r.SignInAsync(It.IsAny<UserForLoginDto>(), It.IsAny<CancellationToken>())).ReturnsAsync(Guid.NewGuid().ToString());
-            accountService.Setup(r => r.GetUserByEmail(It.IsAny<string>())).ReturnsAsync(DataFactory.GetOutputUserDto());
-            accountService.Setup(r => r.GetAllUsersAsync(It.IsAny<UserQueryDto>(), It.IsAny<CancellationToken>())).ReturnsAsync(DataFactory.GetAllOutputUsersDto());
+            accountService.Setup(r => r.SignUpAsync(
+                           It.IsAny<UserForRegistrationDto>(),
+                           It.IsAny<CancellationToken>()))
+                          .ReturnsAsync(Guid.NewGuid().ToString());
+
+            accountService.Setup(r => r.SignInAsync(
+                           It.IsAny<UserForLoginDto>(),
+                           It.IsAny<CancellationToken>()))
+                          .ReturnsAsync(Guid.NewGuid().ToString());
+
+            accountService.Setup(r => r.GetUserByEmail(
+                           It.IsAny<string>()))
+                          .ReturnsAsync(DataFactory.GetOutputUserDto());
+
+            accountService.Setup(r => r.GetAllUsersAsync(
+                           It.IsAny<UserQueryDto>(),
+                           It.IsAny<CancellationToken>()))
+                          .ReturnsAsync(DataFactory.GetOutputUsers());
 
             return accountService;
         }

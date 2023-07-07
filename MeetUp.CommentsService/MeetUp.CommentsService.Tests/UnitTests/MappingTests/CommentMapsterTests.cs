@@ -1,16 +1,16 @@
-﻿using MeetUp.IdentityService.Application.Mapster;
+﻿using MeetUp.CommentsService.Application.Mapster;
 using Mapster;
 
-namespace MeetUp.IdentityService.Tests.UnitTests.MappingTests
+namespace MeetUp.CommentsService.Tests.UnitTests.MappingTests
 {
-    public class UserMapsterTests
+    public class CommentMapsterTests
     {
         [Fact]
         public void TestMapping()
         {
             // Arrange
             var config = new TypeAdapterConfig();
-            var register = new IdentityUserMapper();
+            var register = new CommentsMapper();
 
             register.Register(config);
 

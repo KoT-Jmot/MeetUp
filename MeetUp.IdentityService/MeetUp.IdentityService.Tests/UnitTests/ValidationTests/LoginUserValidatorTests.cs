@@ -14,14 +14,14 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ValidationTests
         }
 
         [Theory]
+        [InlineData("", "aaa111aaa", false)]
+        [InlineData("test", "aaa111aaa", false)]
+        [InlineData("test@gmail.com", "a1a", false)]
         [InlineData("test@gmail.com","aaa111aaa", true)]
         [InlineData("test@gmail.com", "aaaaaaa1", true)]
-        [InlineData("", "aaa111aaa", false)]
-        [InlineData("test@gmail.com", "jnjoxzdgcbqtiiejtklefhdbcwpgrgmsmlzkhbzxgmwfrseld11", false)] // 51 symbol in password
         [InlineData("test@gmail.com", "aaaaaaaa", false)]
         [InlineData("test@gmail.com", "11111111", false)]
-        [InlineData("test@gmail.com", "a1a", false)]
-        [InlineData("test", "aaa111aaa", false)]
+        [InlineData("test@gmail.com", "jnjoxzdgcbqtiiejtklefhdbcwpgrgmsmlzkhbzxgmwfrseld11", false)] // 51 symbol in password
         public void UserForLoginDtoValidatorTests(
             string email,
             string password,

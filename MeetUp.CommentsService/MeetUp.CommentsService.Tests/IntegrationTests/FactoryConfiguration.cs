@@ -1,12 +1,11 @@
-﻿using MeetUp.IdentityService.Infrastructure;
-using Microsoft.AspNetCore.Identity;
+﻿using MeetUp.CommentsService.Infrastructure;
+using MeetUp.CommentsService.Infrastructure.Contracts;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MeetUp.IdentityService.Tests.IntegrationTests
+namespace MeetUp.CommentsService.Tests.IntegrationTests
 {
     public static class FactoryConfiguration
     {
@@ -22,7 +21,7 @@ namespace MeetUp.IdentityService.Tests.IntegrationTests
 
             ConfigEnvironment();
 
-            webHost.ConfigUserManagerFactoryAsync().Wait();
+            webHost.ConfigRpositoryManagerFactoryAsync().Wait();
 
             return webHost;
         }
@@ -41,24 +40,25 @@ namespace MeetUp.IdentityService.Tests.IntegrationTests
             {
                 options.UseInMemoryDatabase(Guid.NewGuid().ToString());
             });
-
+            
             return services;
         }
 
-        private static async Task ConfigUserManagerFactoryAsync(this WebApplicationFactory<Program> webHost)
+        private static async Task ConfigRpositoryManagerFactoryAsync(this WebApplicationFactory<Program> webHost)
         {
-            var userManager = webHost.Services.CreateScope().ServiceProvider.GetService<UserManager<IdentityUser>>();
+            var context = webHost.Services.CreateScope().ServiceProvider.GetService<IRepositoryManager>();
 
-            foreach (var user in DataFactory.GetUsers())
+            foreach (var comment in DataFactory.GetComments())
             {
-                await userManager.CreateAsync(user, DataFactory.UserPassword);
+                await context.Comments.AddAsync(comment);
             }
+
+            await context.SaveChangesAsync();
         }
 
         private static void ConfigEnvironment()
         {
             Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
-            Environment.SetEnvironmentVariable("SECRET", "MeetUpIdentityService");
             Environment.SetEnvironmentVariable("INTEGRATION_TEST", "True");
         }
     }

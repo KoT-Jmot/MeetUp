@@ -3,6 +3,7 @@ using MeetUp.CommentsService.Api.ExceptionHandler;
 using MeetUp.CommentsService.Api.Extensions;
 using MeetUp.CommentsService.Api.Features;
 using MeetUp.CommentsService.Application.Hubs;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System.Reflection;
 
@@ -31,7 +32,12 @@ services.ConfigureMapster()
         .ConfigureSignalR()
         .ConfigureServices();
 
-var app = await builder.Build().ConfigureMigrationAsync();
+var app = builder.Build();
+
+if (Environment.GetEnvironmentVariable("INTEGRATION_TEST").IsNullOrEmpty())
+{
+    await app.ConfigureMigrationAsync();
+}
 
 app.UseMiddleware<ExceptionMiddleware>();
 
@@ -41,3 +47,5 @@ app.MapHub<CommentsHub>("/chat");
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

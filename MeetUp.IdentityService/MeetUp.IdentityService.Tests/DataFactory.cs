@@ -3,10 +3,12 @@ using MeetUp.IdentityService.Application.DTOs.OutputDto;
 using MeetUp.IdentityService.Application.RequestFeatures;
 using Microsoft.AspNetCore.Identity;
 
-namespace MeetUp.IdentityService.Tests.UnitTests
+namespace MeetUp.IdentityService.Tests
 {
     public static class DataFactory
     {
+        public static string UserPassword = "aaa111aaa";
+
         public static UserForRegistrationDto GetUserForRegistrationDto()
         {
             return new UserForRegistrationDto
@@ -48,7 +50,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests
             };
         }
 
-        public static IEnumerable<IdentityUser> GetAllUsersEntity()
+        public static IEnumerable<IdentityUser> GetUsers()
         {
             return new List<IdentityUser>
             {
@@ -75,7 +77,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests
                 }
             };
         }
-        public static PagedList<OutputUserDto> GetAllOutputUsersDto()
+        public static PagedList<OutputUserDto> GetOutputUsers()
         {
             var outputUsers = new List<OutputUserDto>()
             {
