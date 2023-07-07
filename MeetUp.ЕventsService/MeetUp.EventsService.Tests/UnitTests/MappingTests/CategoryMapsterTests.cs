@@ -11,6 +11,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.MappingTests
             // Arrange
             var config = new TypeAdapterConfig();
             var register = new CategoriesMapper();
+
             register.Register(config);
 
             // Act

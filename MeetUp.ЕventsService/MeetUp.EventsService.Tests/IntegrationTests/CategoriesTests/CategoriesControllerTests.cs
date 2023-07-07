@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MeetUp.EventsService.Application.DTOs.InputDto.CategoryDto;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -19,9 +20,7 @@ namespace MeetUp.EventsService.Tests.IntegrationTests.CategoriesTests
         [InlineData("/category", StatusCodes.Status200OK)]
         [InlineData("/category/2789b1c3-34e5-4f4a-7bbf-08db683498b1", StatusCodes.Status200OK)]
         [InlineData("/category/2789b1c3-34e5-4f4a-7bbf-08db683498b2", StatusCodes.Status422UnprocessableEntity)]
-        public async Task GetCategoriesAsync_SendRequest_ShouldReturnOk(
-            string url,
-            int statusCode)
+        public async Task GetCategoriesAsync_SendRequest_ShouldReturnOk(string url, int statusCode)
         {
             // Arrange
             var resultContentType = "application/json; charset=utf-8";
@@ -38,19 +37,13 @@ namespace MeetUp.EventsService.Tests.IntegrationTests.CategoriesTests
         [InlineData("", StatusCodes.Status422UnprocessableEntity)]
         [InlineData("First", StatusCodes.Status422UnprocessableEntity)]
         [InlineData("uwu", StatusCodes.Status201Created)]
-        public async Task CreateCategoryAsync_SendRequest_ShouldReturnCorrectStatusCode(
-            string name,
-            int statusCode)
+        public async Task CreateCategoryAsync_SendRequest_ShouldReturnCorrectStatusCode(string name,int statusCode)
         {
             // Arrange
             string url = "/category";
             var resultContentType = "application/json; charset=utf-8";
 
-            var formData = new Dictionary<string, string>
-            {
-                { "Name", name }
-            };
-
+            var formData = new CategoryDto { Name = name };
             var jsonData = JsonConvert.SerializeObject(formData);
 
             HttpContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -91,11 +84,7 @@ namespace MeetUp.EventsService.Tests.IntegrationTests.CategoriesTests
             // Arrange
             var resultContentType = "application/json; charset=utf-8";
 
-            var formData = new Dictionary<string, string>
-            {
-                { "Name", name }
-            };
-
+            var formData = new CategoryDto { Name = name };
             var jsonData = JsonConvert.SerializeObject(formData);
 
             HttpContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");

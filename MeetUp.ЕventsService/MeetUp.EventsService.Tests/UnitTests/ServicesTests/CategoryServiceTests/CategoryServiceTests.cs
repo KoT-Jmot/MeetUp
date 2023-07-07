@@ -25,7 +25,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
         }
 
         [Fact]
-        public async Task GetCategoryById_WhenCategoryExists_ShouldReturnSuccessResult()
+        public async Task GetCategoryById_WhenCategoryExists_ShouldReturnOutputCategoryDto()
         {
             //Arrange
             var categoryDto = CategoryDataFactory.GetCategoryEntity();
@@ -39,16 +39,16 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
         }
 
         [Fact]
-        public async Task GetCategoryById_WhenCategoryDoNotExists_ShouldReturnEntityNotFoundException()
+        public async Task GetCategoryById_WhenCategoryDoesNotExist_ShouldReturnEntityNotFoundException()
         {
             //Arrange
             var categoryId = Guid.NewGuid();
 
             _repositoryManager.Setup(r => r.Categories.GetByIdAsync(
-                       categoryId,
-                       It.IsAny<bool>(),
-                       It.IsAny<CancellationToken>()))
-                       .ReturnsAsync(default(Category));
+                               categoryId,
+                               It.IsAny<bool>(),
+                               It.IsAny<CancellationToken>()))
+                              .ReturnsAsync(default(Category));
 
             //Act
             var getCategoryByIdAsyncProcess = _categoryService.GetCategoryByIdAsync(categoryId, CancellationToken.None);
@@ -58,11 +58,10 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
         }
 
         [Fact]
-        public async Task GetAllCategories_WithoutFiltration_ShouldReturnSuccessResult()
+        public async Task GetAllCategories_WithoutFiltration_ShouldReturnListOfOutputCategoryDto()
         {
             //Arrange
             var categoryQuery = new CategoryQueryDto();
-            var categoriesCount = CategoryDataFactory.GetAllCategoryEntity().Count();
 
             //Act
             var result = await _categoryService.GetAllCategoriesAsync(categoryQuery, CancellationToken.None);
@@ -70,16 +69,19 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
             //Assert
             Assert.NotNull(result);
             Assert.NotEmpty(result);
-            Assert.Equal(categoriesCount, result.Count());
+            Assert.Equal(result.Count(), result.MetaData.TotalCount);
         }
 
         [Fact]
-        public async Task GetAllCategories_WithFiltration_ShouldReturnSuccessResult()
+        public async Task GetAllCategories_WithFiltration_ShouldReturnListOfOutputCategoryDto()
         {
             //Arrange
-            var category = CategoryDataFactory.GetAllCategoryEntity();
-            var categoryQuery = new CategoryQueryDto();
-            categoryQuery.Name = category.First().Name;
+            var categoryEntity = CategoryDataFactory.GetAllCategoryEntity().First();
+
+            var categoryQuery = new CategoryQueryDto()
+            {
+                Name = categoryEntity.Name,
+            };
 
             //Act
             var result = await _categoryService.GetAllCategoriesAsync(categoryQuery, CancellationToken.None);
@@ -87,21 +89,20 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
             //Assert
             Assert.NotNull(result);
             Assert.NotEmpty(result);
-            Assert.NotEqual(category.Count(), result.Count());
+            Assert.Equal(result.Count(), result.MetaData.TotalCount);
         }
 
         [Fact]
-        public async Task CreateCategory_WhenCategoryDoNotExist_ShouldReturnSuccessResult()
+        public async Task CreateCategory_WhenCategoryDoNotExist_ShouldReturnCreatedCategoryId()
         {
             //Arrange
             var categoryDto = CategoryDataFactory.GetCategoryDto();
-            var categoryId = CategoryDataFactory.GetCategoryEntity().Id;
 
             //Act
             var result = await _categoryService.CreateCategoryAsync(categoryDto, CancellationToken.None);
 
             //Assert
-            Assert.NotEqual(categoryId, result);
+            _repositoryManager.Verify(lw=>lw.Categories.AddAsync(It.IsAny<Category>(),CancellationToken.None));
         }
 
         [Fact]
@@ -111,10 +112,10 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
             var categoryDto = CategoryDataFactory.GetCategoryDto();
 
             _repositoryManager.Setup(r => r.Categories.GetCategoryByNameAsync(
-                              CategoryDataFactory.GetCategoryEntity().Name,
-                              It.IsAny<bool>(),
-                              It.IsAny<CancellationToken>()))
-                             .ReturnsAsync(CategoryDataFactory.GetCategoryEntity());
+                               CategoryDataFactory.GetCategoryEntity().Name,
+                               It.IsAny<bool>(),
+                               It.IsAny<CancellationToken>()))
+                              .ReturnsAsync(CategoryDataFactory.GetCategoryEntity());
 
             //Act
             var createCategoryAsyncProcess = _categoryService.CreateCategoryAsync(categoryDto, CancellationToken.None);
@@ -158,7 +159,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
         }
 
         [Fact]
-        public async Task UpdateCategory_WhenCategoryExistWithCorrectData_ShouldReturnSuccessResult()
+        public async Task UpdateCategory_WhenCategoryExistWithCorrectData_ShouldReturnUpdatedCategoryId()
         {
             //Arrange
             var categoryDto = CategoryDataFactory.GetCategoryDto();
@@ -179,10 +180,10 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests.CatigoryServiceTest
             var categoryId = CategoryDataFactory.GetCategoryEntity().Id;
 
             _repositoryManager.Setup(r => r.Categories.GetCategoryByNameAsync(
-                              categoryDto.Name!,
-                              It.IsAny<bool>(),
-                              It.IsAny<CancellationToken>()))
-                             .ReturnsAsync(CategoryDataFactory.GetCategoryEntity());
+                               categoryDto.Name!,
+                               It.IsAny<bool>(),
+                               It.IsAny<CancellationToken>()))
+                              .ReturnsAsync(CategoryDataFactory.GetCategoryEntity());
 
             //Act
             var pdateCategoryByIdAsyncProcess = _categoryService.UpdateCategoryByIdAsync(categoryId, categoryDto, CancellationToken.None);

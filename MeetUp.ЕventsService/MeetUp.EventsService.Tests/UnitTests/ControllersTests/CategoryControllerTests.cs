@@ -17,7 +17,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         }
 
         [Fact]
-        public async Task GetAllCategoriesAsync_WithCorrectData_ShouldReturnSuccessResult()
+        public async Task GetAllCategoriesAsync_WithCorrectData_ShouldReturnSuccessfulActionResult()
         {
             //Arrange
             var categoryQuery = new CategoryQueryDto();
@@ -31,7 +31,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         }
 
         [Fact]
-        public async Task GetCategoryByIdAsync_WithCorrectData_ShouldReturnSuccessResult()
+        public async Task GetCategoryByIdAsync_WithCorrectData_ShouldReturnSuccessfulActionResult()
         {
             //Arrange
             var categoryId = CategoryDataFactory.GetCategoryEntity().Id;
@@ -45,7 +45,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         }
 
         [Fact]
-        public async Task CreateCategoryAsync_WithCorrectData_ShouldReturnSuccessResult()
+        public async Task CreateCategoryAsync_WithCorrectData_ShouldReturnSuccessfulActionResult()
         {
             //Arrange
             var categoryDto = CategoryDataFactory.GetCategoryDto();
@@ -59,7 +59,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         }
 
         [Fact]
-        public async Task DeleteCategoryAsync_WithCorrectData_ShouldReturnSuccessResult()
+        public async Task DeleteCategoryAsync_WithCorrectData_ShouldReturnSuccessfulActionResult()
         {
             //Arrange
             var categoryId = Guid.NewGuid();
@@ -72,7 +72,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         }
 
         [Fact]
-        public async Task UpdateCategoryAsync_WithCorrectData_ShouldReturnSuccessResult()
+        public async Task UpdateCategoryAsync_WithCorrectData_ShouldReturnSuccessfulActionResult()
         {
             //Arrange
             var categoryId = Guid.NewGuid();

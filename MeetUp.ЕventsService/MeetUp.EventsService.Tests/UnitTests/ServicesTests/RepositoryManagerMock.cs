@@ -12,10 +12,10 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests
             var repositoryManager = new Mock<IRepositoryManager>();
 
             repositoryManager.Setup(r => r.Categories.GetByIdAsync(
-                               CategoryDataFactory.GetCategoryEntity().Id,
-                               It.IsAny<bool>(),
-                               It.IsAny<CancellationToken>()))
-                              .ReturnsAsync(CategoryDataFactory.GetCategoryEntity());
+                              CategoryDataFactory.GetCategoryEntity().Id,
+                              It.IsAny<bool>(),
+                              It.IsAny<CancellationToken>()))
+                             .ReturnsAsync(CategoryDataFactory.GetCategoryEntity());
 
             repositoryManager.Setup(r => r.Categories.GetAll(It.IsAny<bool>()))
                              .Returns(CategoryDataFactory.GetAllCategoryEntity().BuildMock());
@@ -43,17 +43,17 @@ namespace MeetUp.EventsService.Tests.UnitTests.ServicesTests
                              .Returns(EventDataFactory.GetEvents().BuildMock());
 
             repositoryManager.Setup(r => r.Categories.GetByIdAsync(
-                               CategoryDataFactory.GetCategoryEntity().Id,
-                               It.IsAny<bool>(),
-                               It.IsAny<CancellationToken>()))
-                              .ReturnsAsync(CategoryDataFactory.GetCategoryEntity());
+                              CategoryDataFactory.GetCategoryEntity().Id,
+                              It.IsAny<bool>(),
+                              It.IsAny<CancellationToken>()))
+                             .ReturnsAsync(CategoryDataFactory.GetCategoryEntity());
 
             repositoryManager.Setup(r => r.Events.GetEventByIdAndUserIdAsync(
-                               EventDataFactory.GetEventEntity().Id,
-                               EventDataFactory.GetEventEntity().SponsorId,
-                               It.IsAny<bool>(),
-                               It.IsAny<CancellationToken>()))
-                              .ReturnsAsync(EventDataFactory.GetEventEntity());
+                              EventDataFactory.GetEventEntity().Id,
+                              EventDataFactory.GetEventEntity().SponsorId,
+                              It.IsAny<bool>(),
+                              It.IsAny<CancellationToken>()))
+                             .ReturnsAsync(EventDataFactory.GetEventEntity());
 
             return repositoryManager;
         }

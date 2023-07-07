@@ -19,7 +19,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         }
 
         [Fact]
-        public async Task GetAllEventsAsync_WithCorrectData_ShouldReturnSuccessResult()
+        public async Task GetAllEventsAsync_WithCorrectData_ShouldReturnSuccessfulActionResult()
         {
             //Arrange
             var eventQueryDto = new EventQueryDto();
@@ -33,7 +33,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         }
 
         [Fact]
-        public async Task GetEventByIdAsync_WithCorrectData_ShouldReturnSuccessResult()
+        public async Task GetEventByIdAsync_WithCorrectData_ShouldReturnSuccessfulActionResult()
         {
             //Arrange
             var eventId = EventDataFactory.GetOutputEventDto().Id;
@@ -46,7 +46,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         }
 
         [Fact]
-        public async Task CreateEventAsync_WithCorrectData_ShouldReturnSuccessResult()
+        public async Task CreateEventAsync_WithCorrectData_ShouldReturnSuccessfulActionResult()
         {
             //Arrange
             var eventDto = EventDataFactory.GetEventDto();
@@ -60,7 +60,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         }
 
         [Fact]
-        public async Task DeleteEventByIdAsync_WithCorrectData_ShouldReturnSuccessResult()
+        public async Task DeleteEventByIdAsync_WithCorrectData_ShouldReturnSuccessfulActionResult()
         {
             //Arrange
             var eventEntity = EventDataFactory.GetEventEntity();
@@ -74,7 +74,7 @@ namespace MeetUp.EventsService.Tests.UnitTests.ControllersTests
         }
 
         [Fact]
-        public async Task UpdateProductAsync_WithCorrectData_ShouldReturnSuccessResult()
+        public async Task UpdateProductAsync_WithCorrectData_ShouldReturnSuccessfulActionResult()
         {
             //Arrange
             var eventDto = EventDataFactory.GetEventDto();
