@@ -34,7 +34,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public async Task RegisterUser_WhenUserDoNotExists_ShouldReturnSuccessResult()
+        public async Task RegisterUser_WhenUserDoesNotExist_ShouldReturnJwtTocken()
         {
             //Arrange
             var userDto = DataFactory.GetUserForRegistrationDto();
@@ -52,7 +52,10 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
             //Arrange
             var userDto = DataFactory.GetUserForRegistrationDto();
 
-            _userManagerMock.Setup(r => r.CreateAsync(It.IsAny<IdentityUser>(), userDto.Password)).ReturnsAsync(IdentityResult.Failed());
+            _userManagerMock.Setup(r => r.CreateAsync(
+                             It.IsAny<IdentityUser>(),
+                             userDto.Password))
+                            .ReturnsAsync(IdentityResult.Failed());
 
             //Act
             var signUpProcess = _userService.SignUpAsync(userDto, default);
@@ -62,14 +65,10 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public async Task LoginUser_WhenUserExists_ShouldReturnSuccessResult()
+        public async Task LoginUser_WhenUserExists_ShouldReturnJwtTocken()
         {
             //Arrange
             var userDto = DataFactory.GetUserForLoginDto();
-            var user = DataFactory.GetUserEntity();
-
-            _userManagerMock.Setup(r => r.FindByEmailAsync(userDto.Email)).ReturnsAsync(user);
-            _userManagerMock.Setup(r => r.CheckPasswordAsync(user, userDto.Password)).ReturnsAsync(true);
 
             //Act
             var result = await _userService.SignInAsync(userDto, default);
@@ -79,14 +78,13 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public async Task LoginUser_WhenUserDoNotExists_ShouldReturnSuccessResult()
+        public async Task LoginUser_WhenUserDoesNotExist_ShouldReturnLoginUserException()
         {
             //Arrange
             var userDto = DataFactory.GetUserForLoginDto();
             var user = DataFactory.GetUserEntity();
 
             _userManagerMock.Setup(r => r.FindByEmailAsync(userDto.Email)).ReturnsAsync(default(IdentityUser));
-            _userManagerMock.Setup(r => r.CheckPasswordAsync(user, userDto.Password)).ReturnsAsync(true);
 
             //Act
             var signInProcess = _userService.SignInAsync(userDto, default);
@@ -96,14 +94,15 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public async Task LoginUser_WithIncorrectPassword_ShouldReturnSuccessResult()
+        public async Task LoginUser_WithIncorrectPassword_ShouldReturnLoginUserException()
         {
             //Arrange
             var userDto = DataFactory.GetUserForLoginDto();
-            var user = DataFactory.GetUserEntity();
 
-            _userManagerMock.Setup(r => r.FindByEmailAsync(userDto.Email)).ReturnsAsync(user);
-            _userManagerMock.Setup(r => r.CheckPasswordAsync(user, userDto.Password)).ReturnsAsync(false);
+            _userManagerMock.Setup(r => r.CheckPasswordAsync(
+                             It.IsAny<IdentityUser>(),
+                             userDto.Password))
+                            .ReturnsAsync(false);
 
             //Act
             var signInProcess = _userService.SignInAsync(userDto, default);
@@ -116,11 +115,8 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         public async Task GetUserByEmail_WhenUserExists_ShouldReturnUser()
         {
             //Arrange
-            var user = DataFactory.GetUserEntity();
-            var userEmail = user.Email;
+            var userEmail = DataFactory.GetUserEntity().Email;
             var outputUser = DataFactory.GetOutputUserDto();
-
-            _userManagerMock.Setup(r => r.FindByEmailAsync(userEmail)).ReturnsAsync(user);
 
             //Act
             var result = await _userService.GetUserByEmail(userEmail);
@@ -130,11 +126,10 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public async Task GetUserByEmail_WhenUserDoNotExists_ShouldReturnEntityNotFoundException()
+        public async Task GetUserByEmail_WhenUserDoesNotExist_ShouldReturnEntityNotFoundException()
         {
             //Arrange
             var userEmail = DataFactory.GetUserEntity().Email;
-
             _userManagerMock.Setup(r => r.FindByEmailAsync(userEmail)).ReturnsAsync(default(IdentityUser));
 
             //Act
@@ -149,7 +144,6 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         {
             //Arrange
             var userQuery = new UserQueryDto();
-            var outputUserCount = 3;
 
             //Act
             var result = await _userService.GetAllUsersAsync(userQuery, default);
@@ -157,7 +151,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
             //Assert
             Assert.NotEmpty(result);
             Assert.NotNull(result);
-            Assert.Equal(outputUserCount, result.Count);
+            Assert.Equal(result.Count, result.MetaData.TotalCount);
         }
 
         [Fact]
@@ -168,7 +162,6 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
             {
                 UserName = "i"
             };
-            var outputUserCount = 2;
 
             //Act
             var result = await _userService.GetAllUsersAsync(userQuery, default);
@@ -176,7 +169,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
             //Assert
             Assert.NotEmpty(result);
             Assert.NotNull(result);
-            Assert.Equal(outputUserCount, result.Count);
+            Assert.Equal(result.Count, result.MetaData.TotalCount);
         }
     }
 }

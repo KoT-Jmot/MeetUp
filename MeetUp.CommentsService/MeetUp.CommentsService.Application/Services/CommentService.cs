@@ -128,7 +128,7 @@ namespace MeetUp.CommentsService.Application.Services
             return outputComment;
         }
 
-        private async Task<bool> IsEventExistAsync(Guid eventId)
+        protected virtual async Task<bool> IsEventExistAsync(Guid eventId)
         {
             var channel = GrpcChannel.ForAddress(_grpcUrl);
             var client = new Greeter.GreeterClient(channel);
