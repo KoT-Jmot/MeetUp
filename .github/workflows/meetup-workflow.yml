@@ -1,0 +1,14 @@
+name: meetup-actions-workflow
+on:
+  push:
+    branches: 
+      - master
+      
+jobs:
+  meetup-testing:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test forst jobs
+      run: echo "Hello world!"
+    
+  
