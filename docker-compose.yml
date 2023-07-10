@@ -1,0 +1,67 @@
+version: '3.4'
+
+services:
+  meetup.gateway:
+    image: ${DOCKER_REGISTRY-}meetupgateway
+    build:
+      context: .
+      dockerfile: MeetUp.Gateway/MeetUp.Gateway/Dockerfile
+
+  meetup.identityservice.api:
+    image: ${DOCKER_REGISTRY-}meetupidentityserviceapi
+    build:
+      context: .
+      dockerfile: MeetUp.IdentityService/MeetUp.IdentityService.Api/Dockerfile
+    depends_on:
+      - elasticsearch
+      - meetupDb
+
+  meetup.eventsservice.api:
+    image: ${DOCKER_REGISTRY-}meetupeventsserviceapi
+    build:
+      context: .
+      dockerfile: MeetUp.ЕventsService/MeetUp.EventsService.Api/Dockerfile
+    depends_on:
+      - elasticsearch
+      - meetupDb
+
+  meetup.commentsservice.api:
+    image: ${DOCKER_REGISTRY-}meetupcommentsserviceapi
+    build:
+      context: .
+      dockerfile: MeetUp.CommentsService/MeetUp.CommentsService.Api/Dockerfile
+    depends_on:
+      - elasticsearch
+      - commentDb
+
+  meetup.hangfireserivce.api:
+    image: ${DOCKER_REGISTRY-}meetuphangfireserivceapi
+    build:
+      context: .
+      dockerfile: MeetUp.HangFireSerivce/MeetUp.HangFireSerivce.Api/Dockerfile
+    depends_on:
+      - elasticsearch
+      - meetupDb
+
+  meetupDb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+
+  commentDb:
+    image: postgres
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.1
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.16.1
+    depends_on:
+      - elasticsearch
+
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:3.8
+
+  kafka:
+    image: docker.io/bitnami/kafka:3.4
+    depends_on:
+      - zookeeper
+

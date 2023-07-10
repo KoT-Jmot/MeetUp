@@ -1,0 +1,14 @@
+syntax = "proto3";
+option csharp_namespace = "MeetUpGrpc";
+
+service Greeter {
+  rpc EventExist(EventRequest) returns (EventReply);
+}
+
+message EventRequest {
+  string eventId = 1;
+}
+
+message EventReply {
+  bool message = 1;
+}
