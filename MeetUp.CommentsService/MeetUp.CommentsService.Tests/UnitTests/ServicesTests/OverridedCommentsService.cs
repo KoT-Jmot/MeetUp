@@ -21,7 +21,7 @@ namespace MeetUp.CommentsService.Tests.UnitTests.ServicesTests
 
         protected override Task<bool> IsEventExistAsync(Guid eventId)
         {
-            return Task.Run(() => eventId == Guid.Empty);
+            return Task.Run(() => eventId != Guid.Empty);
         }
     }
 }
