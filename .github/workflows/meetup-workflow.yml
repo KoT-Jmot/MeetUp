@@ -29,11 +29,11 @@ jobs:
 
       - name: Restore dependencies
         run: |
-          ${{ matrix.microservice }}
+          cd ${{ matrix.microservice }}
           dotnet restore
 
       - name: Build and test
         run: |
-          ${{ matrix.microservice }}
+          cd ${{ matrix.microservice }}
           dotnet build --configuration Release --no-restore
           dotnet test --configuration Release --no-build
