@@ -2,9 +2,9 @@ name: meetup-actions-workflow
 
 on:
   push:
-    branches: [ KoT-Jmot-patch-1 ]
+    branches: [ master ]
   pull_request:
-    branches: [ KoT-Jmot-patch-1 ]
+    branches: [ master ]
 
 jobs:
   build-and-test:
@@ -12,9 +12,11 @@ jobs:
     strategy:
       matrix:
         microservice:
-          - Identity
-          - Words
-          - Achievements
+          - MeetUp.CommentsService
+          - MeetUp.Gateway
+          - MeetUp.HangFireSerivce
+          - MeetUp.IdentityService
+          - MeetUp.ЕventsService
 
     steps:
       - name: Checkout code
@@ -27,11 +29,11 @@ jobs:
 
       - name: Restore dependencies
         run: |
-          cd src/Services/${{ matrix.microservice }}
+          cd ${{ matrix.microservice }}
           dotnet restore
 
       - name: Build and test
         run: |
-          cd src/Services/${{ matrix.microservice }}
+          cd ${{ matrix.microservice }}
           dotnet build --configuration Release --no-restore
           dotnet test --configuration Release --no-build
