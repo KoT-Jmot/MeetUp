@@ -13,10 +13,10 @@ jobs:
       matrix:
         microservice:
           - MeetUp.CommentsService/MeetUp.CommentsService.Api
-          - MeetUp.Gateway
-          - MeetUp.HangFireSerivce
-          - MeetUp.IdentityService
-          - MeetUp.ЕventsService
+          - MeetUp.Gateway/MeetUp.Gateway
+          - MeetUp.HangFireSerivce/MeetUp.HangFireSerivce.Api
+          - MeetUp.IdentityService/MeetUp.IdentityService.Api
+          - MeetUp.ЕventsService/MeetUp.ЕventsService.Api
 
     steps:
       - name: Checkout code
