@@ -16,7 +16,7 @@ jobs:
           - MeetUp.Gateway/MeetUp.Gateway
           - MeetUp.HangFireSerivce/MeetUp.HangFireSerivce.Api
           - MeetUp.IdentityService/MeetUp.IdentityService.Api
-          - MeetUp.ЕventsService/MeetUp.ЕventsService.Api
+          - MeetUp.ЕventsService/MeetUp.EventsService.Api       
 
     steps:
       - name: Checkout code
