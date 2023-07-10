@@ -2,7 +2,7 @@ name: meetup-actions-workflow
 on:
   push:
     branches: 
-      - master
+      - KoT-Jmot-patch-1
       
 jobs:
   meetup-testing:
