@@ -17,6 +17,12 @@ jobs:
           - MeetUp.HangFireSerivce/MeetUp.HangFireSerivce.Api
           - MeetUp.IdentityService/MeetUp.IdentityService.Api
           - MeetUp.ЕventsService/MeetUp.EventsService.Api    
+        microserviceTests:
+          - MeetUp.CommentsService/MeetUp.CommentsService.Tests
+          - MeetUp.Gateway/MeetUp.Gateway.Tests
+          - MeetUp.HangFireSerivce/MeetUp.HangFireService.Tests
+          - MeetUp.IdentityService/MeetUp.IdentityService.Tests
+          - MeetUp.ЕventsService/MeetUp.EventsService.Tests
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -38,9 +44,9 @@ jobs:
           
       - name: Restore dependencies Tests
         run: |
-          cd MeetUp.ЕventsService/MeetUp.EventsService.Tests
+          cd ${{ matrix.microserviceTests }}
           dotnet restore
       - name: Test
         run : |
-          cd MeetUp.ЕventsService/MeetUp.EventsService.Tests
+          cd ${{ matrix.microserviceTests }}
           dotnet test --configuration Release --no-restore
