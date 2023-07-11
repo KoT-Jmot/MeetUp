@@ -28,7 +28,7 @@ jobs:
           dotnet-version: '7.0.100'
           
       - name: Install SQL Server
-        uses: Particular/install-sql-server-action@v1.0.0
+        uses: Particular/install-sql-server-action@latest
         with:
           connection-string-env-var: 'Server=localhost;Database=HangFire;Password=My_secret_p@ssword;User ID=SA;TrustServerCertificate=True;Trusted_Connection=True;MultipleActiveResultSets=True'
 
