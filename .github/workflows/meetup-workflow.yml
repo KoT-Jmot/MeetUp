@@ -12,11 +12,11 @@ jobs:
     strategy:
       matrix:
         microservice:
-          - MeetUp.CommentsService
-          - MeetUp.Gateway
-          - MeetUp.HangFireSerivce
-          - MeetUp.IdentityService
-          - MeetUp.ЕventsService    
+          - MeetUp.CommentsService\MeetUp.CommentsService
+          - MeetUp.Gateway\MeetUp.Gateway
+          - MeetUp.HangFireSerivce\MeetUp.HangFireSerivce
+          - MeetUp.IdentityService\MeetUp.IdentityService
+          - MeetUp.ЕventsService\MeetUp.ЕventsService    
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -28,23 +28,19 @@ jobs:
 
       - name: Restore dependencies Api
         run: |
-          cd ${{ matrix.microservice }}
           cd ${{ matrix.microservice }}.Api
           dotnet restore
 
       - name: Build
         run: |
-          cd ${{ matrix.microservice }}
           cd ${{ matrix.microservice }}.Api
           dotnet build --configuration Release --no-restore
           
       - name: Restore dependencies Tests
         run: |
-          cd ${{ matrix.microservice }}
           cd ${{ matrix.microservice }}.Tests
           dotnet restore
       - name: Test
         run : |
-          cd ${{ matrix.microservice }}
           cd ${{ matrix.microservice }}.Tests
           dotnet test --configuration Release --no-restore
