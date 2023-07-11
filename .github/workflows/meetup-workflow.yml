@@ -28,7 +28,7 @@ jobs:
 
       - name: Restore dependencies
         run: |
-          cd ${{ matrix.microserviceApi }}
+          cd MeetUp.ЕventsService/MeetUp.EventsService.Tests
           dotnet restore
 
       - name: Build
