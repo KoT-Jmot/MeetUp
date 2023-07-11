@@ -35,7 +35,7 @@ jobs:
 
       - name: Restore dependencies
         run: |
-          cd ${{ matrix.microservice }}
+          cd ${{ matrix.microserviceApi }}
           dotnet restore
 
       - name: Build
