@@ -11,12 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        microservice:
+        microserviceApi:
           - MeetUp.CommentsService/MeetUp.CommentsService.Api
           - MeetUp.Gateway/MeetUp.Gateway
           - MeetUp.HangFireSerivce/MeetUp.HangFireSerivce.Api
           - MeetUp.IdentityService/MeetUp.IdentityService.Api
-          - MeetUp.ЕventsService/MeetUp.EventsService.Api       
+          - MeetUp.ЕventsService/MeetUp.EventsService.Api    
+        microserviceTests:
+          - MeetUp.CommentsService/MeetUp.CommentsService.Tests
+          - MeetUp.Gateway/MeetUp.Gateway.Tests
+          - MeetUp.HangFireSerivce/MeetUp.HangFireService.Tests
+          - MeetUp.IdentityService/MeetUp.IdentityService.Tests
+          - MeetUp.ЕventsService/MeetUp.EventsService.Tests   
 
     steps:
       - name: Checkout code
@@ -32,8 +38,11 @@ jobs:
           cd ${{ matrix.microservice }}
           dotnet restore
 
-      - name: Build and test
+      - name: Build
         run: |
-          cd ${{ matrix.microservice }}
+          cd ${{ matrix.microserviceApi }}
           dotnet build --configuration Release --no-restore
-          dotnet test --configuration Release --no-build
+      - name: Test
+        run : |
+          cd ${{ matrix.microserviceTests }}
+          dotnet test --no-build --verbosity normal
