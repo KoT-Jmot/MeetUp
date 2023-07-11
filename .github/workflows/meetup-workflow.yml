@@ -12,11 +12,11 @@ jobs:
     strategy:
       matrix:
         microservice:
-          - MeetUp.CommentsService\MeetUp.CommentsService
-          - MeetUp.Gateway\MeetUp.Gateway
-          - MeetUp.HangFireSerivce\MeetUp.HangFireSerivce
-          - MeetUp.IdentityService\MeetUp.IdentityService
-          - MeetUp.ЕventsService\MeetUp.ЕventsService    
+          - MeetUp.CommentsService/MeetUp.CommentsService
+          - MeetUp.Gateway/MeetUp.Gateway
+          - MeetUp.HangFireSerivce/MeetUp.HangFireSerivce
+          - MeetUp.IdentityService/MeetUp.IdentityService
+          - MeetUp.ЕventsService/MeetUp.ЕventsService    
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
