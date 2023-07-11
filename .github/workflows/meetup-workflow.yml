@@ -17,13 +17,6 @@ jobs:
           - MeetUp.HangFireSerivce/MeetUp.HangFireSerivce.Api
           - MeetUp.IdentityService/MeetUp.IdentityService.Api
           - MeetUp.ЕventsService/MeetUp.EventsService.Api    
-        microserviceTests:
-          - MeetUp.CommentsService/MeetUp.CommentsService.Tests
-          - MeetUp.Gateway/MeetUp.Gateway.Tests
-          - MeetUp.HangFireSerivce/MeetUp.HangFireService.Tests
-          - MeetUp.IdentityService/MeetUp.IdentityService.Tests
-          - MeetUp.ЕventsService/MeetUp.EventsService.Tests   
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -44,5 +37,5 @@ jobs:
           dotnet build --configuration Release --no-restore
       - name: Test
         run : |
-          cd ${{ matrix.microserviceTests }}
+          cd ${{ matrix.microserviceApi }}
           dotnet test --no-build --verbosity normal
