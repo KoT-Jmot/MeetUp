@@ -22,8 +22,7 @@ jobs:
           - MeetUp.Gateway/MeetUp.Gateway.Tests
           - MeetUp.HangFireSerivce/MeetUp.HangFireService.Tests
           - MeetUp.IdentityService/MeetUp.IdentityService.Tests
-          - MeetUp.ЕventsService/MeetUp.EventsService.Tests   
-
+          - MeetUp.ЕventsService/MeetUp.EventsService.Tests
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -33,7 +32,7 @@ jobs:
         with:
           dotnet-version: '7.0.100'
 
-      - name: Restore dependencies
+      - name: Restore dependencies Api
         run: |
           cd ${{ matrix.microserviceApi }}
           dotnet restore
@@ -42,7 +41,12 @@ jobs:
         run: |
           cd ${{ matrix.microserviceApi }}
           dotnet build --configuration Release --no-restore
+          
+      - name: Restore dependencies Tests
+        run: |
+          cd ${{ matrix.microserviceTests }}
+          dotnet restore
       - name: Test
         run : |
           cd ${{ matrix.microserviceTests }}
-          dotnet test --no-build --verbosity normal
+          dotnet test --configuration Release --no-restore
