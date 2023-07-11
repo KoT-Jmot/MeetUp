@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MeetUp.HangFireSerivce.Api\MeetUp.HangFireService.Api.csproj" />
+    <ProjectReference Include="..\MeetUp.HangFireService.Api\MeetUp.HangFireService.Api.csproj" />
   </ItemGroup>
 
 </Project>

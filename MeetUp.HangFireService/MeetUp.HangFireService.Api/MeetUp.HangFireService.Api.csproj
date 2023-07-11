@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MeetUp.HangFireSerivce.Application\MeetUp.HangFireService.Application.csproj" />
+    <ProjectReference Include="..\MeetUp.HangFireService.Application\MeetUp.HangFireService.Application.csproj" />
   </ItemGroup>
 
 </Project>
