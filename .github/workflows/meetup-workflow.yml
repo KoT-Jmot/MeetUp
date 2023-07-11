@@ -26,15 +26,20 @@ jobs:
         with:
           dotnet-version: '7.0.100'
 
-      - name: Restore dependencies
+      - name: Restore dependencies Api
         run: |
-          cd MeetUp.ЕventsService/MeetUp.EventsService.Tests
+          cd ${{ matrix.microserviceApi }}
           dotnet restore
 
       - name: Build
         run: |
           cd ${{ matrix.microserviceApi }}
           dotnet build --configuration Release --no-restore
+          
+      - name: Restore dependencies Tests
+        run: |
+          cd MeetUp.ЕventsService/MeetUp.EventsService.Tests
+          dotnet restore
       - name: Test
         run : |
           cd MeetUp.ЕventsService/MeetUp.EventsService.Tests
