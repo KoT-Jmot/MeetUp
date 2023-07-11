@@ -28,19 +28,23 @@ jobs:
 
       - name: Restore dependencies Api
         run: |
-          cd ${{ matrix.microservice }}\\${{ matrix.microservice }}.Api
+          cd ${{ matrix.microservice }}
+          cd ${{ matrix.microservice }}.Api
           dotnet restore
 
       - name: Build
         run: |
-          cd ${{ matrix.microservice }}\\${{ matrix.microservice }}.Api
+          cd ${{ matrix.microservice }}
+          cd ${{ matrix.microservice }}.Api
           dotnet build --configuration Release --no-restore
           
       - name: Restore dependencies Tests
         run: |
-          cd ${{ matrix.microservice }}\\${{ matrix.microservice }}.Tests
+          cd ${{ matrix.microservice }}
+          cd ${{ matrix.microservice }}.Tests
           dotnet restore
       - name: Test
         run : |
-          cd ${{ matrix.microservice }}\\${{ matrix.microservice }}.Tests
+          cd ${{ matrix.microservice }}
+          cd ${{ matrix.microservice }}.Tests
           dotnet test --configuration Release --no-restore
