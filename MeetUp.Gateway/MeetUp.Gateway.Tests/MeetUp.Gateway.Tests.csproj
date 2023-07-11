@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MeetUp.Gateway\MeetUp.Gateway.csproj" />
+    <ProjectReference Include="..\MeetUp.Gateway\MeetUp.Gateway.Api.csproj" />
   </ItemGroup>
 
 </Project>

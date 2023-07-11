@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.Kafka", "MeetUp.Mess
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.Gateway", "MeetUp.Gateway", "{9C9F3A21-A7EE-4063-9E12-9D57559B84AE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.Gateway", "MeetUp.Gateway\MeetUp.Gateway\MeetUp.Gateway.csproj", "{705CE489-4D12-415E-8FF5-577EF334EE84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.Gateway.Api", "MeetUp.Gateway\MeetUp.Gateway\MeetUp.Gateway.Api.csproj", "{705CE489-4D12-415E-8FF5-577EF334EE84}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeetUp.CommentsService", "MeetUp.CommentsService", "{BDE5C384-CA1E-43A9-B7B5-B602EFFFB1B4}"
 EndProject
@@ -49,10 +49,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.HangFireSerivce.Infr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.IdentityService.Tests", "MeetUp.IdentityService\MeetUp.IdentityService.Tests\MeetUp.IdentityService.Tests.csproj", "{7AC57948-0EF4-4865-8BF8-2F6CF51961BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.HangFireService.Tests", "MeetUp.HangFireSerivce\MeetUp.HangFireService.Tests\MeetUp.HangFireService.Tests.csproj", "{6F855349-3EE5-42DF-ABB5-8859D40D17FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.HangFireService.Tests", "MeetUp.HangFireSerivce\MeetUp.HangFireService.Tests\MeetUp.HangFireService.Tests.csproj", "{6F855349-3EE5-42DF-ABB5-8859D40D17FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.Gateway.Tests", "MeetUp.Gateway\MeetUp.Gateway.Tests\MeetUp.Gateway.Tests.csproj", "{4F37C1CB-5466-4C64-B3AE-A17836B271DC}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUp.CommentsService.Tests", "MeetUp.CommentsService\MeetUp.CommentsService.Tests\MeetUp.CommentsService.Tests.csproj", "{E27CD802-401B-4A99-97B4-64A06AB2E253}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.Gateway.Tests", "MeetUp.Gateway\MeetUp.Gateway.Tests\MeetUp.Gateway.Tests.csproj", "{4F37C1CB-5466-4C64-B3AE-A17836B271DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetUp.CommentsService.Tests", "MeetUp.CommentsService\MeetUp.CommentsService.Tests\MeetUp.CommentsService.Tests.csproj", "{E27CD802-401B-4A99-97B4-64A06AB2E253}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
