@@ -27,6 +27,9 @@ jobs:
         with:
           dotnet-version: '7.0.100'
 
+      - name: Set up SQL Server
+        uses: microsoft/sql-server-actions/setup-mssql@v1
+
       - name: Restore dependencies Api
         run: |
           cd ${{ matrix.microservice }}.Api
