@@ -32,6 +32,12 @@ namespace MeetUp.HangFireService.Tests.IntegrationTests
                 services.Remove(dbContextDescriptor);
             }
 
+
+            services.AddDbContextPool<HangFireContext>(options =>
+            {
+                options.UseInMemoryDatabase(Guid.NewGuid().ToString());
+            });
+
             return services;
         }
 
