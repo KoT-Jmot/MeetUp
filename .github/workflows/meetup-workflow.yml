@@ -38,4 +38,4 @@ jobs:
       - name: Test
         run : |
           cd MeetUp.ЕventsService/MeetUp.EventsService.Tests
-          dotnet test --no-build --verbosity normal
+          dotnet test --configuration Release --no-restore
