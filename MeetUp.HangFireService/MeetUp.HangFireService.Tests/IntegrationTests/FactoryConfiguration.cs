@@ -10,35 +10,11 @@ namespace MeetUp.HangFireService.Tests.IntegrationTests
     {
         public static WebApplicationFactory<Program> WebApplicationFactoryConfig()
         {
-            var webHost = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureTestServices(services =>
-                {
-                    services.ConfigTestDbContext();
-                });
-            });
+            var webHost = new WebApplicationFactory<Program>().WithWebHostBuilder(_ => { });
 
             ConfigEnvironment();
 
             return webHost;
-        }
-        private static IServiceCollection ConfigTestDbContext(this IServiceCollection services)
-        {
-            var dbContextDescriptor = services.SingleOrDefault(d =>
-                        d.ServiceType.Equals(typeof(DbContextOptions<HangFireContext>)));
-
-            if (dbContextDescriptor != null)
-            {
-                services.Remove(dbContextDescriptor);
-            }
-
-
-            services.AddDbContextPool<HangFireContext>(options =>
-            {
-                options.UseInMemoryDatabase(Guid.NewGuid().ToString());
-            });
-
-            return services;
         }
 
         private static void ConfigEnvironment()
