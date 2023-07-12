@@ -31,6 +31,10 @@ jobs:
         uses: potatoqualitee/mssqlsuite@v1.7
         with:
           install: sqlengine, sqlclient, sqlpackage, localdb
+          version: 2017
+          sa-password: My_secret_p@ssword
+          show-log: true
+          collation: Latin1_General_BIN
         
       - name: Restore dependencies Api
         run: |
