@@ -27,11 +27,11 @@ jobs:
         with:
           dotnet-version: '7.0.100'
           
-      - name: Install SQL Server
-        uses: Particular/install-sql-server-action@v1.0.0
+      - name: Install a SQL Server suite of tools
+        uses: potatoqualitee/mssqlsuite@v1.7
         with:
-          connection-string-env-var: "Server=localhost;Database=HangFire;Password=My_secret_p@ssword;User ID=SA;MultipleActiveResultSets=True;UseDefaultCredentials=True"
-      
+          install: sqlengine, sqlclient, sqlpackage, localdb
+        
       - name: Restore dependencies Api
         run: |
           cd ${{ matrix.microservice }}.Api
