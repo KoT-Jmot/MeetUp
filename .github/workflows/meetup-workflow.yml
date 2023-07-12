@@ -15,6 +15,7 @@ jobs:
         microservice:
           - MeetUp.CommentsService/MeetUp.CommentsService
           - MeetUp.Gateway/MeetUp.Gateway
+          - MeetUp.HangFireService/MeetUp.HangFireService
           - MeetUp.IdentityService/MeetUp.IdentityService
           - MeetUp.ЕventsService/MeetUp.EventsService
     steps:
