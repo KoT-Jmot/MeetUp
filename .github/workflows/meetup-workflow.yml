@@ -30,7 +30,7 @@ jobs:
       - name: Install SQL Server
         uses: Particular/install-sql-server-action@v1.0.0
         with:
-          connection-string-env-var: 'Server=localhost;Database=HangFire;Password=My_secret_p@ssword;User ID=SA;TrustServerCertificate=True;Trusted_Connection=False;MultipleActiveResultSets=True'
+          connection-string-env-var: 'Server=localhost,1433;Database=HangFire;Password=My_secret_p@ssword;User ID=SA;MultipleActiveResultSets=True'
       
       - name: Restore dependencies Api
         run: |
