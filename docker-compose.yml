@@ -5,7 +5,7 @@ services:
     image: meetupgateway
     build:
       context: .
-      dockerfile: MeetUp.Gateway/MeetUp.Gateway/Dockerfile
+      dockerfile: MeetUp.Gateway/MeetUp.Gateway.Api/Dockerfile
 
   meetup-identityservice-api:
     image: meetupidentityserviceapi
@@ -38,7 +38,7 @@ services:
     image: meetuphangfireserivceapi
     build:
       context: .
-      dockerfile: MeetUp.HangFireSerivce/MeetUp.HangFireSerivce.Api/Dockerfile
+      dockerfile: MeetUp.HangFireService/MeetUp.HangFireService.Api/Dockerfile
     depends_on:
       - elasticsearch
       - meetupdb

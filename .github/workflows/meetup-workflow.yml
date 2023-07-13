@@ -1,0 +1,47 @@
+name: meetup-actions-workflow
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        microservice:
+          - MeetUp.CommentsService/MeetUp.CommentsService
+          - MeetUp.Gateway/MeetUp.Gateway
+          - MeetUp.IdentityService/MeetUp.IdentityService
+          - MeetUp.ЕventsService/MeetUp.EventsService
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '7.0.100'
+  
+      - name: Restore dependencies Api
+        run: |
+          cd ${{ matrix.microservice }}.Api
+          dotnet restore
+
+      - name: Build
+        run: |
+          cd ${{ matrix.microservice }}.Api
+          dotnet build --configuration Release --no-restore
+          
+      - name: Restore dependencies Tests
+        run: |
+          cd ${{ matrix.microservice }}.Tests
+          dotnet restore
+          
+      - name: Test
+        run : |
+          cd ${{ matrix.microservice }}.Tests
+          dotnet test --configuration Release --no-restore
