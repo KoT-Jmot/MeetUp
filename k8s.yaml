@@ -1,0 +1,791 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: commentdb
+  name: commentdb
+spec:
+  ports:
+    - name: "5432"
+      port: 5432
+      targetPort: 80
+  selector:
+    io.kompose.service: commentdb
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: elasticsearch
+  name: elasticsearch
+spec:
+  ports:
+    - name: "9200"
+      port: 9200
+      targetPort: 9200
+  selector:
+    io.kompose.service: elasticsearch
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: kafka
+  name: kafka
+spec:
+  ports:
+    - name: "9092"
+      port: 9092
+      targetPort: 9092
+  selector:
+    io.kompose.service: kafka
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: kibana
+  name: kibana
+spec:
+  ports:
+    - name: "5601"
+      port: 5601
+      targetPort: 5601
+  selector:
+    io.kompose.service: kibana
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meetup-commentsservice-api
+  name: meetup-commentsservice-api
+spec:
+  ports:
+    - name: "10503"
+      port: 10503
+      targetPort: 80
+  selector:
+    io.kompose.service: meetup-commentsservice-api
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meetup-eventsservice-api
+  name: meetup-eventsservice-api
+spec:
+  ports:
+    - name: "10502"
+      port: 10502
+      targetPort: 80
+    - name: "10504"
+      port: 10504
+      targetPort: 443
+  selector:
+    io.kompose.service: meetup-eventsservice-api
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meetup-gateway
+  name: meetup-gateway
+spec:
+  ports:
+    - name: "6001"
+      port: 6001
+      targetPort: 80
+  selector:
+    io.kompose.service: meetup-gateway
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meetup-hangfireserivce-api
+  name: meetup-hangfireserivce-api
+spec:
+  ports:
+    - name: "10505"
+      port: 10505
+      targetPort: 80
+  selector:
+    io.kompose.service: meetup-hangfireserivce-api
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meetup-identityservice-api
+  name: meetup-identityservice-api
+spec:
+  ports:
+    - name: "10501"
+      port: 10501
+      targetPort: 80
+  selector:
+    io.kompose.service: meetup-identityservice-api
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meetupdb
+  name: meetupdb
+spec:
+  ports:
+    - name: "1433"
+      port: 1433
+      targetPort: 1433
+  selector:
+    io.kompose.service: meetupdb
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: zookeeper
+  name: zookeeper
+spec:
+  ports:
+    - name: "2181"
+      port: 2181
+      targetPort: 2181
+  selector:
+    io.kompose.service: zookeeper
+status:
+  loadBalancer: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: commentdb
+  name: commentdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: commentdb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.version: 1.29.0 (997957870)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meetup-elastic: "true"
+        io.kompose.service: commentdb
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_PASSWORD
+              value: password
+          image: postgres
+          name: meetup-commentsdatabase
+          ports:
+            - containerPort: 80
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/opt/postgresql
+              name: restate-sql-server
+      restartPolicy: Always
+      volumes:
+        - name: restate-sql-server
+          persistentVolumeClaim:
+            claimName: restate-sql-server
+status: {}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: restate-sql-server
+  name: restate-sql-server
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+status: {}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  creationTimestamp: null
+  name: meetup-elastic
+spec:
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              io.kompose.network/meetup-elastic: "true"
+  podSelector:
+    matchLabels:
+      io.kompose.network/meetup-elastic: "true"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: elasticsearch
+  name: elasticsearch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: elasticsearch
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.version: 1.29.0 (997957870)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meetup-elastic: "true"
+        io.kompose.service: elasticsearch
+    spec:
+      containers:
+        - env:
+            - name: ES_JAVA_OPTS
+              value: -Xms512m -Xmx512m
+            - name: discovery.type
+              value: single-node
+            - name: xpack.monitoring.enabled
+              value: "true"
+            - name: xpack.watcher.enabled
+              value: "false"
+          image: docker.elastic.co/elasticsearch/elasticsearch:7.16.1
+          name: meetup-elasticsearch
+          ports:
+            - containerPort: 9200
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: kafka
+  name: kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: kafka
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.version: 1.29.0 (997957870)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meetup-elastic: "true"
+        io.kompose.service: kafka
+    spec:
+      containers:
+        - env:
+            - name: ALLOW_PLAINTEXT_LISTENER
+              value: "yes"
+            - name: KAFKA_CFG_LISTENERS
+              value: PLAINTEXT://:9092
+            - name: KAFKA_CFG_ZOOKEEPER_CONNECT
+              value: zookeeper:2181
+            - name: KAFKA_ENABLE_KRAFT
+              value: "no"
+          image: docker.io/bitnami/kafka:3.4
+          name: meetup-kafka
+          ports:
+            - containerPort: 9092
+          resources: {}
+          volumeMounts:
+            - mountPath: /bitnami
+              name: kafka-data
+      restartPolicy: Always
+      volumes:
+        - name: kafka-data
+          persistentVolumeClaim:
+            claimName: kafka-data
+status: {}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: kafka-data
+  name: kafka-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: kibana
+  name: kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: kibana
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.version: 1.29.0 (997957870)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meetup-elastic: "true"
+        io.kompose.service: kibana
+    spec:
+      containers:
+        - env:
+            - name: ELASTICSEARCH_URL
+              value: http://localhost:9200
+          image: docker.elastic.co/kibana/kibana:7.16.1
+          name: meetup-kibana
+          ports:
+            - containerPort: 5601
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meetup-commentsservice-api
+  name: meetup-commentsservice-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: meetup-commentsservice-api
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.version: 1.29.0 (997957870)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meetup-elastic: "true"
+        io.kompose.service: meetup-commentsservice-api
+    spec:
+      containers:
+        - env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Docker
+            - name: ASPNETCORE_URLS
+              value: http://+:80
+          image: meetupcommentsserviceapi
+          imagePullPolicy: Never
+          name: meetup-commentsservice-api
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meetup-eventsservice-api
+  name: meetup-eventsservice-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: meetup-eventsservice-api
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.version: 1.29.0 (997957870)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meetup-elastic: "true"
+        io.kompose.service: meetup-eventsservice-api
+    spec:
+      containers:
+        - env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Docker
+            - name: ASPNETCORE_URLS
+              value: http://+:80
+          image: meetupeventsserviceapi
+          imagePullPolicy: Never
+          name: meetup-eventsservice-api
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meetup-gateway
+  name: meetup-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: meetup-gateway
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.version: 1.29.0 (997957870)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meetup-elastic: "true"
+        io.kompose.service: meetup-gateway
+    spec:
+      containers:
+        - env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Docker
+            - name: ASPNETCORE_URLS
+              value: http://+:80
+            - name: SECRET
+              value: MeetUpIdentityService
+          image: meetupgatewayapi
+          imagePullPolicy: Never
+          name: meetup-gateway
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meetup-hangfireserivce-api
+  name: meetup-hangfireserivce-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: meetup-hangfireserivce-api
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.version: 1.29.0 (997957870)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meetup-elastic: "true"
+        io.kompose.service: meetup-hangfireserivce-api
+    spec:
+      containers:
+        - env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Docker
+          image: meetuphangfireserviceapi
+          imagePullPolicy: Never
+          name: meetup-hangfireserivce-api
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meetup-identityservice-api
+  name: meetup-identityservice-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: meetup-identityservice-api
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.version: 1.29.0 (997957870)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meetup-elastic: "true"
+        io.kompose.service: meetup-identityservice-api
+    spec:
+      containers:
+        - env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Docker
+            - name: ASPNETCORE_URLS
+              value: http://+:80
+            - name: SECRET
+              value: MeetUpIdentityService
+          image: meetupidentityserviceapi
+          imagePullPolicy: Never
+          name: meetup-identityservice-api
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: meetupdb
+  name: meetupdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: meetupdb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.version: 1.29.0 (997957870)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meetup-elastic: "true"
+        io.kompose.service: meetupdb
+    spec:
+      containers:
+        - env:
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: SA_PASSWORD
+              value: My_secret_p@ssword
+          image: mcr.microsoft.com/mssql/server:2019-latest
+          name: meetup-database
+          ports:
+            - containerPort: 1433
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/opt/mssql
+              name: restate-sql-server
+      restartPolicy: Always
+      volumes:
+        - name: restate-sql-server
+          persistentVolumeClaim:
+            claimName: restate-sql-server
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.version: 1.29.0 (997957870)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: zookeeper
+  name: zookeeper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: zookeeper
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.version: 1.29.0 (997957870)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meetup-elastic: "true"
+        io.kompose.service: zookeeper
+    spec:
+      containers:
+        - env:
+            - name: ALLOW_ANONYMOUS_LOGIN
+              value: "yes"
+          image: docker.io/bitnami/zookeeper:3.8
+          name: meetup-zookeeper
+          ports:
+            - containerPort: 2181
+          resources: {}
+          volumeMounts:
+            - mountPath: /bitnami
+              name: zookeeper-data
+      restartPolicy: Always
+      volumes:
+        - name: zookeeper-data
+          persistentVolumeClaim:
+            claimName: zookeeper-data
+status: {}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: zookeeper-data
+  name: zookeeper-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+status: {}
+
