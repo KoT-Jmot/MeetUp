@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -13,7 +13,7 @@ spec:
   ports:
     - name: "5432"
       port: 5432
-      targetPort: 80
+      targetPort: 5432
   selector:
     io.kompose.service: commentdb
 status:
@@ -24,7 +24,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -45,7 +45,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -66,7 +66,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -87,7 +87,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -108,7 +108,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -132,7 +132,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -153,7 +153,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -174,7 +174,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -195,7 +195,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -216,7 +216,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -237,7 +237,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -253,7 +253,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
         kompose.version: 1.29.0 (997957870)
       creationTimestamp: null
       labels:
@@ -262,12 +262,16 @@ spec:
     spec:
       containers:
         - env:
+            - name: POSTGRES_DB
+              value: POSTGRES_USER
             - name: POSTGRES_PASSWORD
               value: password
-          image: postgres
+            - name: POSTGRES_USER
+              value: postgres
+          image: postgres:latest
           name: meetup-commentsdatabase
           ports:
-            - containerPort: 80
+            - containerPort: 5432
           resources: {}
           volumeMounts:
             - mountPath: /var/opt/postgresql
@@ -316,7 +320,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -331,7 +335,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
         kompose.version: 1.29.0 (997957870)
       creationTimestamp: null
       labels:
@@ -361,7 +365,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -377,7 +381,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
         kompose.version: 1.29.0 (997957870)
       creationTimestamp: null
       labels:
@@ -430,7 +434,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -445,7 +449,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
         kompose.version: 1.29.0 (997957870)
       creationTimestamp: null
       labels:
@@ -469,7 +473,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -484,7 +488,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
         kompose.version: 1.29.0 (997957870)
       creationTimestamp: null
       labels:
@@ -498,7 +502,7 @@ spec:
             - name: ASPNETCORE_URLS
               value: http://+:80
           image: meetupcommentsserviceapi
-          imagePullPolicy: Never
+          imagePullPolicy: Never 
           name: meetup-commentsservice-api
           ports:
             - containerPort: 80
@@ -511,7 +515,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -526,7 +530,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
         kompose.version: 1.29.0 (997957870)
       creationTimestamp: null
       labels:
@@ -540,7 +544,7 @@ spec:
             - name: ASPNETCORE_URLS
               value: http://+:80
           image: meetupeventsserviceapi
-          imagePullPolicy: Never
+          imagePullPolicy: Never 
           name: meetup-eventsservice-api
           ports:
             - containerPort: 80
@@ -554,7 +558,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -569,7 +573,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
         kompose.version: 1.29.0 (997957870)
       creationTimestamp: null
       labels:
@@ -585,7 +589,7 @@ spec:
             - name: SECRET
               value: MeetUpIdentityService
           image: meetupgatewayapi
-          imagePullPolicy: Never
+          imagePullPolicy: Never 
           name: meetup-gateway
           ports:
             - containerPort: 80
@@ -598,7 +602,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -613,7 +617,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
         kompose.version: 1.29.0 (997957870)
       creationTimestamp: null
       labels:
@@ -625,7 +629,7 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: Docker
           image: meetuphangfireserviceapi
-          imagePullPolicy: Never
+          imagePullPolicy: Never 
           name: meetup-hangfireserivce-api
           ports:
             - containerPort: 80
@@ -638,7 +642,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -653,7 +657,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
         kompose.version: 1.29.0 (997957870)
       creationTimestamp: null
       labels:
@@ -669,7 +673,7 @@ spec:
             - name: SECRET
               value: MeetUpIdentityService
           image: meetupidentityserviceapi
-          imagePullPolicy: Never
+          imagePullPolicy: Never 
           name: meetup-identityservice-api
           ports:
             - containerPort: 80
@@ -682,7 +686,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -698,7 +702,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
         kompose.version: 1.29.0 (997957870)
       creationTimestamp: null
       labels:
@@ -731,7 +735,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
     kompose.version: 1.29.0 (997957870)
   creationTimestamp: null
   labels:
@@ -747,7 +751,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.override.yml -f .\docker-compose.yml -o .\k8s.yaml
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f .\docker-compose.yml -f .\docker-compose.override.yml -o .\k8s.yaml
         kompose.version: 1.29.0 (997957870)
       creationTimestamp: null
       labels:
