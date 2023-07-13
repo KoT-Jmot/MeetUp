@@ -1,57 +1,46 @@
 version: '3.4'
 
 services:
-  meetup.gateway:
+  meetup-gateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - SECRET=MeetUpIdentityService
     ports:
       - "6001:80"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
       - elastic
 
-  meetup.identityservice.api:
+  meetup-identityservice-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - SECRET=MeetUpIdentityService
     ports:
       - "10501:80"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
       - elastic
  
-  meetup.eventsservice.api:
+  meetup-eventsservice-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
     ports:
       - "10502:80"
       - "10504:443"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
       - elastic
 
-  meetup.commentsservice.api:
+  meetup-commentsservice-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
     ports:
       - "10503:80"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     networks:
       - elastic
 
-  meetup.hangfireserivce.api:
+  meetup-hangfireserivce-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
     ports:
@@ -59,8 +48,8 @@ services:
     networks:
       - elastic
 
-  meetupDb:
-    container_name: MeetUp.DataBase
+  meetupdb:
+    container_name: MeetUp-DataBase
     ports:
       - 1433:1433
     environment:
@@ -71,8 +60,8 @@ services:
     networks:
       - elastic
 
-  commentDb:
-    container_name: MeetUp.CommentsDataBase
+  commentdb:
+    container_name: MeetUp-CommentsDataBase
     environment:
       POSTGRES_PASSWORD: password
     volumes:
@@ -83,7 +72,7 @@ services:
       - "5432:80"
 
   elasticsearch:
-    container_name: MeetUp.Elasticsearch
+    container_name: MeetUp-Elasticsearch
     ports:
       - 9200:9200
     environment:
@@ -95,16 +84,16 @@ services:
       - elastic
 
   kibana:
-    container_name: MeetUp.Kibana
+    container_name: MeetUp-Kibana
     ports:
       - 5601:5601
     environment:
-      - ELASTICSEARCH_URL =http://localhost:9200
+      - ELASTICSEARCH_URL=http://localhost:9200
     networks:
       - elastic
 
   zookeeper:
-    container_name: MeetUp.Zookeeper
+    container_name: MeetUp-Zookeeper
     ports:
       - "2181:2181"
     volumes:
@@ -115,7 +104,7 @@ services:
       - elastic
 
   kafka:
-    container_name: MeetUp.Kafka
+    container_name: MeetUp-Kafka
     ports:
       - "9092:9092"
     volumes:
