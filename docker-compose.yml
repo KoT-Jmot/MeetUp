@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   meetup-gateway:
-    image: meetupgateway
+    image: meetupgatewayapi
     build:
       context: .
       dockerfile: MeetUp.Gateway/MeetUp.Gateway.Api/Dockerfile
@@ -35,7 +35,7 @@ services:
       - commentdb
 
   meetup-hangfireserivce-api:
-    image: meetuphangfireserivceapi
+    image: meetuphangfireserviceapi
     build:
       context: .
       dockerfile: MeetUp.HangFireService/MeetUp.HangFireService.Api/Dockerfile
