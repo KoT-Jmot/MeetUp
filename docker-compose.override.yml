@@ -63,13 +63,15 @@ services:
   commentdb:
     container_name: MeetUp-CommentsDataBase
     environment:
-      POSTGRES_PASSWORD: password
+      POSTGRES_DB: "POSTGRES_USER"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
     volumes:
       - restate-sql-server:/var/opt/postgresql 
     networks:
       - elastic
     ports:
-      - "5432:80"
+      - "5432:5432"
 
   elasticsearch:
     container_name: MeetUp-Elasticsearch

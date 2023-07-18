@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   meetup-gateway:
-    image: meetupgateway
+    image: meetupgatewayapi
     build:
       context: .
       dockerfile: MeetUp.Gateway/MeetUp.Gateway.Api/Dockerfile
@@ -28,14 +28,14 @@ services:
   meetup-commentsservice-api:
     image: meetupcommentsserviceapi
     build:
-      context: ./meetupcommentsserviceapi
+      context: .
       dockerfile: MeetUp.CommentsService/MeetUp.CommentsService.Api/Dockerfile
     depends_on:
       - elasticsearch
       - commentdb
 
   meetup-hangfireserivce-api:
-    image: meetuphangfireserivceapi
+    image: meetuphangfireserviceapi
     build:
       context: .
       dockerfile: MeetUp.HangFireService/MeetUp.HangFireService.Api/Dockerfile
@@ -47,7 +47,7 @@ services:
     image: mcr.microsoft.com/mssql/server:2019-latest
 
   commentdb:
-    image: postgres
+    image: postgres:latest
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.16.1
