@@ -31,15 +31,6 @@ substitutions:
     _SERVICE_IMAGE    : northamerica-northeast1-docker.pkg.dev/${PROJECT_ID}/${_DOCKER_REGISTRY}/${_DOCKER_IMAGENAME}:${SHORT_SHA}
     _SERVICE_REGION   : northamerica-northeast1
     _SERVICE_PROJECT  : meetup
-    _SERVICE_NAME     : services[0]
+    _SERVICE_NAME     : meetupidentityserviceapi
     _DOCKER_REGISTRY  : meetup-docker-repo
-    _DOCKER_IMAGENAME : images[0]
-
-  images:
-    - meetupidentityserviceapi
-
-  services:
-    - meetupidentityserviceapi
-
-  paths:
-    - MeetUp.IdentityService/MeetUp.IdentityService.Api/Dockerfile
+    _DOCKER_IMAGENAME : meetupidentityserviceapi
