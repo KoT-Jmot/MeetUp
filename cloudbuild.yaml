@@ -5,7 +5,7 @@ steps:
 # Docker Build Image
   - name: gcr.io/cloud-builders/docker
     id  : BUILD
-    args: ['build', '-t', '$_SERVICE_IMAGE', '.', '-f', 'Dockerfile']
+    args: ['build', '-t', '$_SERVICE_IMAGE', '.', '-f', paths[0]]
 
 # Docker Push Image to Artifact Registry
   - name: gcr.io/cloud-builders/docker
@@ -30,7 +30,16 @@ images: # Display the image in the build results - Build Artifacts
 substitutions:
     _SERVICE_IMAGE    : northamerica-northeast1-docker.pkg.dev/${PROJECT_ID}/${_DOCKER_REGISTRY}/${_DOCKER_IMAGENAME}:${SHORT_SHA}
     _SERVICE_REGION   : northamerica-northeast1
-    _SERVICE_PROJECT  : astahov-prod
-    _SERVICE_NAME     : my-docker-app-prod
-    _DOCKER_REGISTRY  : astahov-docker-repo
-    _DOCKER_IMAGENAME : myapp-prod
+    _SERVICE_PROJECT  : meetup
+    _SERVICE_NAME     : services[0]
+    _DOCKER_REGISTRY  : meetup-docker-repo
+    _DOCKER_IMAGENAME : images[0]
+
+  images:
+    - meetupidentityserviceapi
+
+  services:
+    - meetupidentityserviceapi
+
+  paths:
+    - MeetUp.IdentityService/MeetUp.IdentityService.Api/Dockerfile
