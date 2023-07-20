@@ -20,7 +20,6 @@ steps:
       - services
       - update
       - $_SERVICE_NAME
-      - --network=cloudbuild
       - --project=$_SERVICE_PROJECT
       - --region=$_SERVICE_REGION
       - --image=$_SERVICE_IMAGE
