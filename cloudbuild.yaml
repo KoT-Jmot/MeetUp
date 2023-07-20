@@ -14,6 +14,10 @@ steps:
 
 # Docker Deploy image to Cloud Run
   - name: gcr.io/cloud-builders/gcloud
+    env:
+      - 'ASPNETCORE_ENVIRONMENT=Docker'
+      - 'ASPNETCORE_URLS=http://+:80'
+      - 'SECRET=MeetUpIdentityService'
     id  : DEPLOY
     args:
       - run
