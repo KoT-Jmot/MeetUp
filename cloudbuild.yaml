@@ -1,14 +1,7 @@
 #-----------------------------------------
 # CloudBuild Pipeline for Prod CloudRun
 #-----------------------------------------
-steps:
-
-options:
-  env:
-    - 'ASPNETCORE_URLS=http://+:80'
-    - 'ASPNETCORE_ENVIRONMENT=Docker'
-    - 'SECRET=MeetUpIdentityService'
-    
+steps:    
 # Docker Build Image
   - name: gcr.io/cloud-builders/docker
     id  : BUILD
@@ -30,7 +23,7 @@ options:
       - --project=$_SERVICE_PROJECT
       - --region=$_SERVICE_REGION
       - --image=$_SERVICE_IMAGE
-      - --update-env-vars ASPNETCORE_ENVIRONMENT=Docker,ASPNETCORE_URLS=http://+:80,SECRET=MeetUpIdentityService
+      - --set-env-vars=ASPNETCORE_ENVIRONMENT=Docker,ASPNETCORE_URLS=http://+:80,SECRET=MeetUpIdentityService
 
 images: # Display the image in the build results - Build Artifacts
 - $_SERVICE_IMAGE
