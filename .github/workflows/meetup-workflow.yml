@@ -17,6 +17,7 @@ jobs:
           - MeetUp.Gateway/MeetUp.Gateway
           - MeetUp.IdentityService/MeetUp.IdentityService
           - MeetUp.ЕventsService/MeetUp.EventsService
+          
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
