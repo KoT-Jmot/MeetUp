@@ -27,7 +27,6 @@ steps:
       - --project=$_SERVICE_PROJECT
       - --region=$_SERVICE_REGION
       - --image=$_SERVICE_IMAGE
-      - --port=80
 
 images: # Display the image in the build results - Build Artifacts
 - $_SERVICE_IMAGE
