@@ -2,6 +2,13 @@
 # CloudBuild Pipeline for Prod CloudRun
 #-----------------------------------------
 steps:
+
+options:
+  env:
+    - 'ASPNETCORE_URLS=http://+:80'
+    - 'ASPNETCORE_ENVIRONMENT=Docker'
+    - 'SECRET=MeetUpIdentityService'
+    
 # Docker Build Image
   - name: gcr.io/cloud-builders/docker
     id  : BUILD
@@ -14,19 +21,12 @@ steps:
 
 # Docker Deploy image to Cloud Run
   - name: gcr.io/cloud-builders/gcloud
-    env:
-      ASPNETCORE_ENVIRONMENT: Docker
-      ASPNETCORE_URLS: ""
-      SECRET: MeetUpIdentityService
     id  : DEPLOY
     args:
       - run
       - services
       - update
       - $_SERVICE_NAME
-      - $ASPNETCORE_URLS
-      - $ASPNETCORE_ENVIRONMENT
-      - $ASPNETCORE_URLS
       - --project=$_SERVICE_PROJECT
       - --region=$_SERVICE_REGION
       - --image=$_SERVICE_IMAGE
@@ -41,6 +41,3 @@ substitutions:
     _SERVICE_NAME     : meetupidentityserviceapi
     _DOCKER_REGISTRY  : meetup-docker-repo
     _DOCKER_IMAGENAME : meetupidentityserviceapi
-    ASPNETCORE_URLS : 'http://+:80'
-    ASPNETCORE_ENVIRONMENT: Docker
-    SECRET: MeetUpIdentityService
