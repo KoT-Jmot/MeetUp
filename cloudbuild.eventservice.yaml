@@ -3,14 +3,17 @@
 #-----------------------------------------
 steps:    
 # Docker Build Image
+  - name: Docker Build Image
     id  : BUILD
     args: ['build', '-t', '$_SERVICE_IMAGE', '.', '-f', 'MeetUp.ЕventsService/MeetUp.EventsService.Api/Dockerfile']
 
 # Docker Push Image to Artifact Registry
+  - name: Image to Artifact Registry
     id  : PUSH
     args: ['push', '$_SERVICE_IMAGE']
 
 # Docker Deploy image to Cloud Run
+  - name: Image to Cloud Run
     id  : DEPLOY
     args:
       - run
