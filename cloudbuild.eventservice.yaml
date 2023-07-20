@@ -3,17 +3,14 @@
 #-----------------------------------------
 steps:    
 # Docker Build Image
-  - name: gcr.io/cloud-builders/docker2
     id  : BUILD
     args: ['build', '-t', '$_SERVICE_IMAGE', '.', '-f', 'MeetUp.ЕventsService/MeetUp.EventsService.Api/Dockerfile']
 
 # Docker Push Image to Artifact Registry
-  - name: gcr.io/cloud-builders/docker2
     id  : PUSH
     args: ['push', '$_SERVICE_IMAGE']
 
 # Docker Deploy image to Cloud Run
-  - name: gcr.io/cloud-builders/gcloud2
     id  : DEPLOY
     args:
       - run
