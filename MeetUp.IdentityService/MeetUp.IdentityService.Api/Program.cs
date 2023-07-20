@@ -12,6 +12,8 @@ var configuration = new ConfigurationBuilder()
                    .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: false, reloadOnChange: true)
                    .Build();
 
+var a = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
 LoggerConfigurator.ConfigureLog(configuration);
 
 builder.Host.UseSerilog();
