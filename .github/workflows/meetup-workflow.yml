@@ -13,10 +13,10 @@ jobs:
     strategy:
       matrix:
         microservice:
-          #- MeetUp.CommentsService/MeetUp.CommentsService
-          #- MeetUp.Gateway/MeetUp.Gateway
+          - MeetUp.CommentsService/MeetUp.CommentsService
+          - MeetUp.Gateway/MeetUp.Gateway
           - MeetUp.IdentityService/MeetUp.IdentityService
-          #- MeetUp.ЕventsService/MeetUp.EventsService
+          - MeetUp.ЕventsService/MeetUp.EventsService
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -45,12 +45,4 @@ jobs:
         run : |
           cd ${{ matrix.microservice }}.Tests
           dotnet test --configuration Release --no-restore
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: deploy to google Cloud
-        run: ./cloudbuild.yaml
         
