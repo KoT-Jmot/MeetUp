@@ -52,5 +52,5 @@ jobs:
         uses: actions/checkout@v2
         
       - name: deploy to google Cloud
-        uses: ./cloudbuild.yaml
+        run: ./cloudbuild.yaml
         
