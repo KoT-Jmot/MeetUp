@@ -2,6 +2,8 @@
 # CloudBuild Pipeline for Prod CloudRun
 #-----------------------------------------
 steps:    
+  - name: Checkout code
+    uses: actions/checkout@v2
 # Docker Build Image
   - name: gcr.io/cloud-builders/docker
     id  : BUILD
