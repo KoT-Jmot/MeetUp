@@ -2,9 +2,9 @@ name: meetup-actions-workflow
 
 on:
   push:
-    branches: [ Cloud ]
+    branches: [ develop ]
   pull_request:
-    branches: [ Cloud ]
+    branches: [ develop ]
 
 jobs:
   build-and-test:
