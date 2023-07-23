@@ -312,8 +312,8 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:10500",
-    "HttpHandlerOptions": {
+    "BaseUrl": "https://meetuphangfireserviceapi-nwkathbrrq-uc.a.run.app",
+    "HttpsHandlerOptions": {
       "AllowAutoRedirect": true
     }
   }
