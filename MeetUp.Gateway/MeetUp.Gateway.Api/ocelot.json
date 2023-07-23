@@ -8,7 +8,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "meetupidentityserviceapi-nwkathbrrq-uc.a.run.app",
+          "Host": "https://meetupidentityserviceapi-nwkathbrrq-uc.a.run.app",
           "Port": 80
         }
       ],
