@@ -5,7 +5,7 @@
       "UpstreamPathTemplate": "/account",
       "UpstreamHttpMethod": [ "Get" ],
 
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "meetup-identityservice-api",
