@@ -5,10 +5,10 @@
       "UpstreamPathTemplate": "/account",
       "UpstreamHttpMethod": [ "Get" ],
 
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "https://meetupidentityserviceapi-nwkathbrrq-uc.a.run.app",
+          "Host": "meetup-identityservice-api",
           "Port": 80
         }
       ],
@@ -312,8 +312,8 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://meetuphangfireserviceapi-nwkathbrrq-uc.a.run.app",
-    "HttpsHandlerOptions": {
+    "BaseUrl": "http://localhost:10500",
+    "HttpHandlerOptions": {
       "AllowAutoRedirect": true
     }
   }
