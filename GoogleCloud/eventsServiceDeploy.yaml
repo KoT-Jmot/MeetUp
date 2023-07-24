@@ -20,7 +20,7 @@ steps:
       - --project=$_SERVICE_PROJECT
       - --region=$_SERVICE_REGION
       - --image=$_SERVICE_IMAGE
-      - --set-env-vars=ASPNETCORE_ENVIRONMENT=Docker,ASPNETCORE_URLS=http://+:80
+      - --set-env-vars=ASPNETCORE_ENVIRONMENT=Cloud,ASPNETCORE_URLS=http://+:80
 
 images: # Display the image in the build results - Build Artifacts
 - $_SERVICE_IMAGE
