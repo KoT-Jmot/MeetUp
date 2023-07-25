@@ -10,7 +10,7 @@ public class CacheService : ICacheService
     
     public CacheService()
     {
-        var redis = ConnectionMultiplexer.Connect("localhost:6379");
+        var redis = ConnectionMultiplexer.Connect("http://redis:6379");
         _cacheDb = redis.GetDatabase();
     }
     
