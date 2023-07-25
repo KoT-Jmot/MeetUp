@@ -1,10 +1,12 @@
-﻿using MeetUp.IdentityService.Infrastructure;
+﻿using MeetUp.IdentityService.Application.Contracts;
+using MeetUp.IdentityService.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
+using Moq;
 
 namespace MeetUp.IdentityService.Tests.IntegrationTests
 {
@@ -17,6 +19,17 @@ namespace MeetUp.IdentityService.Tests.IntegrationTests
                 builder.ConfigureTestServices(services =>
                 {
                     services.ConfigTestDbContext();
+                    
+                    var cacheService = services.SingleOrDefault(d =>
+                        d.ServiceType.Equals(typeof(ICacheService)));
+
+                    if (cacheService != null)
+                    {
+                        services.Remove(cacheService);
+                    }
+
+                    var mockCacheServvice = new Mock<ICacheService>();
+                    services.AddSingleton(mockCacheServvice.Object);
                 });
             });
 
