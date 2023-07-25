@@ -38,7 +38,9 @@ public class CacheService : ICacheService
         var exest = _cacheDb.KeyExists(key);
 
         if (exest)
+        {
             return _cacheDb.KeyDelete(key);
+        }
 
         return false;
     }

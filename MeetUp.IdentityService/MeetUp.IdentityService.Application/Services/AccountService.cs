@@ -13,7 +13,6 @@ using FluentValidation;
 using System.Text;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using static System.Guid;
 
 namespace MeetUp.IdentityService.Application.Services
 {
