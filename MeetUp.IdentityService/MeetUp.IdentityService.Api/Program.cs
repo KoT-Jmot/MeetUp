@@ -19,7 +19,7 @@ builder.Host.UseSerilog();
 services.InjectConfigurations(configuration);
 
 var app = builder.Build();
-
+//AHAHAH
 if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("INTEGRATION_TEST")))
 {
     await app.ConfigureMigrationAsync();
