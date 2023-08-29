@@ -73,6 +73,12 @@ services:
     ports:
       - "5432:5432"
 
+  redis:
+    container_name: Redis
+    ports:
+      - 6379:6379
+    restart: always
+
   elasticsearch:
     container_name: MeetUp-Elasticsearch
     ports:
