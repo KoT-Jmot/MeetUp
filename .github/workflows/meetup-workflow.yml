@@ -2,9 +2,9 @@ name: meetup-actions-workflow
 
 on:
   push:
-    branches: [ master ]
+    branches: [ develop ]
   pull_request:
-    branches: [ master ]
+    branches: [ develop ]
 
 jobs:
   build-and-test:
@@ -46,3 +46,4 @@ jobs:
         run : |
           cd ${{ matrix.microservice }}.Tests
           dotnet test --configuration Release --no-restore
+        

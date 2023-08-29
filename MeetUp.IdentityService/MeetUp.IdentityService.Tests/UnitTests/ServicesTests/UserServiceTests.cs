@@ -7,6 +7,7 @@ using MeetUp.IdentityService.Application.Utils;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity;
 using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 
 namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
@@ -18,6 +19,7 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
         private readonly Mock<UserManager<IdentityUser>> _userManagerMock;
         private readonly Mock<JWTConfig> _jwtConfigMock;
         private readonly Mock<IConfiguration> _configuration;
+        private readonly Mock<ICacheService> _cacheService;
         private readonly IAccountService _userService;
 
         public UserServiceTests()
@@ -27,10 +29,11 @@ namespace MeetUp.IdentityService.Tests.UnitTests.ServicesTests
             _configuration = new Mock<IConfiguration>();
             _jwtConfigMock = JwtConfigMock.Create(_configuration.Object);
             _userManagerMock = RepositoryManagerMock.Create();
+            _cacheService = new Mock<ICacheService>();
 
             Environment.SetEnvironmentVariable("SECRET", "MeetUpIdentityService");
 
-            _userService = new AccountService(_userManagerMock.Object, _jwtConfigMock.Object, _registrationUserValidatorMock.Object, _loginUserValidatorMock.Object);
+            _userService = new AccountService(_userManagerMock.Object, _jwtConfigMock.Object,_registrationUserValidatorMock.Object, _loginUserValidatorMock.Object, _cacheService.Object);
         }
 
         [Fact]

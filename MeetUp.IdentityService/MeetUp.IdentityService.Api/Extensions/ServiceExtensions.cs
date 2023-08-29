@@ -34,7 +34,8 @@ public static class ServiceExtensions
            this IServiceCollection services)
     {
         services.AddScoped<IAccountService, AccountService>();
-
+        services.AddScoped<ICacheService, CacheService>();
+        
         return services;
     }
 

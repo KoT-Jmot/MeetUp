@@ -1,53 +1,57 @@
 version: '3.4'
 
 services:
-  meetup.gateway:
-    image: ${DOCKER_REGISTRY-}meetupgateway
+  meetup-gateway:
+    image: meetupgatewayapi
     build:
       context: .
       dockerfile: MeetUp.Gateway/MeetUp.Gateway.Api/Dockerfile
 
-  meetup.identityservice.api:
-    image: ${DOCKER_REGISTRY-}meetupidentityserviceapi
+  meetup-identityservice-api:
+    image: meetupidentityserviceapi
     build:
       context: .
       dockerfile: MeetUp.IdentityService/MeetUp.IdentityService.Api/Dockerfile
     depends_on:
       - elasticsearch
-      - meetupDb
+      - meetupdb
+      - redis
 
-  meetup.eventsservice.api:
-    image: ${DOCKER_REGISTRY-}meetupeventsserviceapi
+  meetup-eventsservice-api:
+    image: meetupeventsserviceapi
     build:
       context: .
       dockerfile: MeetUp.ЕventsService/MeetUp.EventsService.Api/Dockerfile
     depends_on:
       - elasticsearch
-      - meetupDb
+      - meetupdb
 
-  meetup.commentsservice.api:
-    image: ${DOCKER_REGISTRY-}meetupcommentsserviceapi
+  meetup-commentsservice-api:
+    image: meetupcommentsserviceapi
     build:
       context: .
       dockerfile: MeetUp.CommentsService/MeetUp.CommentsService.Api/Dockerfile
     depends_on:
       - elasticsearch
-      - commentDb
+      - commentdb
 
-  meetup.hangfireserivce.api:
-    image: ${DOCKER_REGISTRY-}meetuphangfireserivceapi
+  meetup-hangfireserivce-api:
+    image: meetuphangfireserviceapi
     build:
       context: .
       dockerfile: MeetUp.HangFireService/MeetUp.HangFireService.Api/Dockerfile
     depends_on:
       - elasticsearch
-      - meetupDb
+      - meetupdb
 
-  meetupDb:
+  meetupdb:
     image: mcr.microsoft.com/mssql/server:2019-latest
 
-  commentDb:
-    image: postgres
+  commentdb:
+    image: postgres:latest
+
+  redis:
+    image: redis:latest
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.16.1

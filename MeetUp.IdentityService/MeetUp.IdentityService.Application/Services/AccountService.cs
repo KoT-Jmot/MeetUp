@@ -20,6 +20,7 @@ namespace MeetUp.IdentityService.Application.Services
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly JWTConfig _jwtConfig;
+        private readonly ICacheService _cacheService;
 
         private readonly IValidator<UserForRegistrationDto> _registrationUserValidator;
         private readonly IValidator<UserForLoginDto> _loginUserValidator;
@@ -28,12 +29,14 @@ namespace MeetUp.IdentityService.Application.Services
             UserManager<IdentityUser> userManager,
             JWTConfig jwtConfig,
             IValidator<UserForRegistrationDto> registrationUserValidator,
-            IValidator<UserForLoginDto> loginUserValidator)
+            IValidator<UserForLoginDto> loginUserValidator,
+            ICacheService cacheService)
         {
             _userManager = userManager;
             _jwtConfig = jwtConfig;
             _registrationUserValidator = registrationUserValidator;
             _loginUserValidator = loginUserValidator;
+            _cacheService = cacheService;
         }
 
         public async Task<string> SignInAsync(
@@ -51,7 +54,15 @@ namespace MeetUp.IdentityService.Application.Services
                 throw new LoginUserException();
             }
 
-                return await CreateTokenAsync(user);
+            var userInCache = _cacheService.GetData<IdentityUser>(user.Email);
+
+            if (userInCache is not null)
+            {
+                var expiryTime = DateTimeOffset.Now.AddSeconds(30);
+                _cacheService.SetData(user.Email, user, expiryTime);
+            }
+                
+            return await CreateTokenAsync(user);
         }
 
         public async Task<string> SignUpAsync(
@@ -77,7 +88,10 @@ namespace MeetUp.IdentityService.Application.Services
             }
 
             await _userManager.AddToRoleAsync(user, AccountRoles.GetDefaultRole);
-
+            
+            var expiryTime = DateTimeOffset.Now.AddSeconds(30);
+            _cacheService.SetData(user.Email, user, expiryTime);
+            
             return await CreateTokenAsync(user);
         }
 
@@ -157,15 +171,25 @@ namespace MeetUp.IdentityService.Application.Services
 
         public async Task<OutputUserDto> GetUserByEmail(string userEmail)
         {
+            var cacheData = _cacheService.GetData<IdentityUser>(userEmail);
+
+            if (cacheData is not null)
+            {
+                return cacheData.Adapt<OutputUserDto>();
+            }
+
             var user = await _userManager.FindByEmailAsync(userEmail);
 
             if (user is null)
-            {
+            {   
                 throw new EntityNotFoundException("User was not found!");
             }
 
+            var expiryTime = DateTimeOffset.Now.AddSeconds(30);
+            _cacheService.SetData(userEmail, user, expiryTime);
+            
             var outputUser = user.Adapt<OutputUserDto>();
-
+            
             return outputUser;
         }
     }
